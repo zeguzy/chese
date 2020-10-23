@@ -37,7 +37,41 @@ function sendMsg(data) {
         )
 }
 
+function getRelative(x, y) {
+    x = x - 35; //减去多余x轴的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
+    y = y - 50; //减去多余y轴的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
+    let xNum = x % 65; //计算出相对于当前x轴多余的数字，用于模糊计算（即是否在x轴加上一个单位距离）
+    let yNum = y % 65; //计算出相对于当前y轴多余的数字，用于模糊计算（即是否在y轴加上一个单位距离）
+    let xMul = parseInt(x / 65); //计算出当前x轴上有几个单位距离
+    let yMul = parseInt(y / 65); //计算出当前y轴上有几个单位距离
+    //如果余数大于32.5，则说明需要在x轴加上一个单位距离
+    if (xNum > 32.5) {
+        xMul++;
+    }
+    //如果余数大于32.5，则说明需要在y轴加上一个单位距离
+    if (yNum > 32.5) {
+        yMul++;
+    }
+    console.log(xMul);
+    console.log(yMul);
+    return {
+        xMul,
+        yMul
+    }
+}
 
+function getAbsolute(x, y) {
+    x = (x * 65) + 35; //得出在x轴上，棋盘交叉点x轴的位置
+    y = (y * 65) + 50; //得出在y轴上，棋盘交叉点y轴的位置
+
+    x = x - 25; //移动棋子自身一般宽度，用于棋子在棋盘上好看
+    y = y - 25; //移动棋子自身一般高度，用于棋子在棋盘上好看
+
+    return {
+        x,
+        y
+    }
+}
 
 $(function() {
     //点击棋盘
