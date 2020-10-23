@@ -1,0 +1,107 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: LuBing
+ * @Date: 2020-10-23 09:42:24
+ * @LastEditors: LuBing
+ * @LastEditTime: 2020-10-23 14:48:54
+-->
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棋盘</title>
+    <script src="../js/jquery.js"></script>
+    <script>
+        let board = {
+            click: {
+                x: null,
+                y: null,
+            }
+        }
+
+        $(function() {
+            $("#div").click(function() {
+
+                var x = event.offsetX; //获得鼠标点击对象内部的x轴坐标
+                var y = event.offsetY; //获得鼠标点击对象内部的y轴坐标
+                console.log(x + '_' + y); //打印坐标
+
+                x = x - 35; //减去多余x轴的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
+                y = y - 50; //减去多余y轴的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
+                let xNum = x % 65; //计算出相对于当前x轴多余的数字，用于模糊计算（即是否在x轴加上一个单位距离）
+                let yNum = y % 65; //计算出相对于当前y轴多余的数字，用于模糊计算（即是否在y轴加上一个单位距离）
+                let xMul = parseInt(x / 65); //计算出当前x轴上有几个单位距离
+                let yMul = parseInt(y / 65); //计算出当前y轴上有几个单位距离
+                //如果余数大于32.5，则说明需要在x轴加上一个单位距离
+                if (xNum > 32.5) {
+                    xMul++;
+                }
+                //如果余数大于32.5，则说明需要在y轴加上一个单位距离
+                if (yNum > 32.5) {
+                    yMul++;
+                }
+                x = (xMul * 65) + 35; //得出在x轴上，棋盘交叉点x轴的位置
+                y = (yMul * 65) + 50; //得出在y轴上，棋盘交叉点y轴的位置
+
+                x = x - 25; //移动棋子自身一般宽度，用于棋子在棋盘上好看
+                y = y - 25; //移动棋子自身一般高度，用于棋子在棋盘上好看
+
+                board.click.x = x
+                board.click.y = y
+
+
+                $('.qi').css({
+                    "left": (x) + "px",
+                    "top": (y) + "px"
+                }); //设置棋子在棋盘位置
+            });
+            $('.qi').click(function() {
+                event.stopPropagation(); //阻止点击棋子的冒泡事件，防止影响棋子位置
+                console.log('qi')
+            })
+        });
+        // 左上角座位 （35，50）长为65
+        // 9列十行，
+    </script>
+    <style>
+        ul,
+        li {
+            display: block;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        #div {
+            width: 600px;
+            height: 694px;
+            background: skyblue;
+            background: url(../images/board.bmp) no-repeat;
+            background-size: 100%;
+            margin: 0 auto;
+            border: 1px solid red;
+        }
+        
+        .qi {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            float: left;
+            position: relative;
+            left: 10px;
+            top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">
+        <div class="qi"></div>
+    </div>
+</body>
+
+</html>
