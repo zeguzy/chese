@@ -41,7 +41,7 @@ function sendMsg(data) {
 
 $(function() {
     //点击棋盘
-    $("#board1").click(function() {
+    $("#board").click(function() {
         var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
         var y = event.offsetY;
 
