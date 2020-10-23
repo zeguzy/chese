@@ -1,0 +1,38 @@
+ ul,
+ li {
+     display: block;
+ }
+ 
+ li {
+     list-style: none;
+ }
+ 
+ #board {
+     width: 600px;
+     height: 694px;
+     background: skyblue;
+     background: url(../images/board.bmp) no-repeat;
+     background-size: 100%;
+     margin: 0 auto;
+     border: 1px solid red;
+     display: none;
+ }
+ 
+ .qi {
+     width: 50px;
+     height: 50px;
+     background: rgba(0, 0, 0, 0.5);
+     float: left;
+     position: relative;
+     left: 10px;
+     top: 25px;
+     display: none;
+ }
+ 
+ .userName {
+     width: 200px;
+ }
+ 
+ .start {
+     display: none;
+ }
