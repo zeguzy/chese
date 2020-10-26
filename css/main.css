@@ -7,6 +7,10 @@
      list-style: none;
  }
  
+ div.box {
+     /* perspective: 400px; */
+ }
+ 
  #board {
      width: 600px;
      height: 694px;
@@ -15,15 +19,23 @@
      background-size: 100%;
      margin: 0 auto;
      border: 1px solid red;
+     position: relative;
      display: none;
+     /* transform: rotateX(15deg); */
+     transform-style: preserve-3d;
  }
  
  .qi {
-     width: 50px;
-     height: 50px;
+     width: 65px;
+     height: 65px;
      float: left;
-     position: relative;
+     position: absolute;
      display: none;
+ }
+ /*子被选中后的效*/
+ 
+ .on {
+     border: 1px solid white;
  }
  
  .userName {
@@ -32,4 +44,16 @@
  
  .start {
      display: none;
+ }
+ 
+ #headPortrait {
+     height: 40px;
+     width: 400px;
+     border: 1px solid black;
+ }
+ 
+ #headPortrait img {
+     height: 40px;
+     width: 40px;
+     float: left;
  }

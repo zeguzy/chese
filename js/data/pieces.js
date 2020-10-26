@@ -1,6 +1,6 @@
 /**
  * @description 棋子初始数据
- * @author zegu
+ * @author zegu  zhangbin
  */
 
 let pieces = {
@@ -52,7 +52,7 @@ let pieces = {
     },
     gun_r: {
         id: 5,
-        img: '.../images/pieces/gun_r.png'
+        img: '../images/pieces/gun_r.png'
     },
 
     car_b: { //车

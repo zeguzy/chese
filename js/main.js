@@ -3,44 +3,56 @@
  */
 let board = {
     click: {
-        x: null,
+        //鼠标点击的坐标
+        x: null, //相对坐标
         y: null,
-    }
-}
-let userInfo = null
-let ws = null
+        a_x: null, //绝对坐标
+        a_y: null,
+    },
+    onHand: null, //手子
+};
 
-// 发送 get 请求
+let player = {}; //用户信息
+player.ws = null; // webSocket
+player.userInfo = {};
+
+/**
+ * @description  发送 get 请求
+ * @param {*} url
+ * @author zegu
+ */
 function get(url) {
-    return $.get(url)
+    return $.get(url);
 }
 
-// 发送 post 请求
+/**
+ * @description 发送 post 请求
+ * @param {*} url
+ * @param {*} data
+ * @author zegu
+ */
 function post(url, data = {}) {
     return $.ajax({
-        type: 'post',
+        type: "post",
         url,
         data: JSON.stringify(data),
         contentType: "application/json",
-    })
+    });
 }
 
 /**
  * @description 向服务器发送消息
- * 
- *
+ * @author zegu
  */
 function sendMsg(data) {
-    if (ws)
-        ws.send(
-            JSON.stringify(data)
-        )
+    if (ws) ws.send(JSON.stringify(data));
 }
 
 /**
- * @description 获取相对坐标
- * @param {*} x 
- * @param {*} y 
+ * @description 获取相对坐标 
+ * @param {*} x   **未处理**
+ * @param {*} y
+ * @author LuBing
  */
 function getRelative(x, y) {
     x = x - 35; //减去多余的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
@@ -59,122 +71,173 @@ function getRelative(x, y) {
     }
     console.log(xMul);
     console.log(yMul);
+
     return {
-        xMul,
-        yMul
-    }
+        r_x: xMul,
+        r_y: yMul,
+    };
 }
 
 /**
  * @description 获取绝对坐标
- * @param {*} x 
- * @param {*} y 
+ * @param {*} x
+ * @param {*} y
+ * @author LuBing
  */
 function getAbsolute(x, y) {
-    x = (x * 65) + 35; //得出在轴上，棋盘交叉点轴的位置
-    y = (y * 65) + 50;
-    x = x - 25; //移动棋子自身一般宽度，用于棋子在棋盘上好看
-    y = y - 25;
+    x = x * 65 + 35; //得出在轴上，棋盘交叉点轴的位置
+    y = y * 65 + 50;
+    x = x - 32.5; //移动棋子自身一般宽度，用于棋子在棋盘上好看
+    y = y - 32.5;
 
     return {
-        x,
-        y
-    }
+        a_x: x,
+        a_y: y,
+    };
 }
 
 /**
  * @description 生成棋子DOM
- * @param {Array} piecesList 棋子数据 
+ * @param {Array} piecesList 棋子数据
+ * @author zegu
  */
 function generatePieces(piecesList) {
-    let $board = $('#board')
-    piecesList.forEach(element => {
-        let $piece = $(`<div class='qi' data-id=${element.id}></div>`)
+    let $board = $("#board");
+    piecesList.forEach((element) => {
+        let $piece = $(`<div class='qi' index=${element.id}></div>`);
         let {
-            x,
-            y
-        } = getAbsolute(element.position.x, element.position.y)
+            a_x,
+            a_y
+        } = getAbsolute(element.position.x, element.position.y);
         $piece.css({
-            top: `${y}px`,
-            left: `${x}px`,
-        })
-        $piece.css("background-image", `url(${element.pieces.img})`)
-        console.log($piece)
-        $board.append($piece)
-        $piece.show()
+            top: `${a_y}px`,
+            left: `${a_x}px`,
+        });
+        $piece.css("background", `url(${element.pieces.img}) no-repeat center center`);
+
+        // console.log($piece)
+        $board.append($piece);
+        $piece.show();
+        $piece.click(function() {
+            clickOnPieces($piece);
+        });
     });
 }
 
+/**
+ * @description 当棋子被点击时
+ * @param {*} $piece
+ * @author zegu
+ */
+function clickOnPieces($piece) {
+    event.stopPropagation() //阻止点击棋子的冒泡事件，防止影响棋子位置
+
+    //吃子
+    if (board.onHand && board.onHand != $piece) {
+        //检验规则
+
+        alert("吃")
+        $piece.remove()
+        board.onHand = null
+        return
+    }
+
+    //点自己两下  应该取消选中
+    if (board.onHand == $piece) {
+        $piece.removeClass("on")
+        board.onHand = null
+        return
+    }
+
+    //只点了一下
+    board.onHand = $piece
+    $($piece).addClass("on")
+}
+
+/**
+ * 点击棋盘后
+ * @author LuBing zegu
+ */
 $(function() {
+
     //点击棋盘
     $("#board").click(function() {
-        var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
-        var y = event.offsetY;
+        var x = event.offsetX //获得鼠标点击对象内部的x，y轴坐标
+        var y = event.offsetY
+        let {
+            r_x,
+            r_y
+        } = getRelative(x, y)
 
-        x = x - 35; //减去多余x，y轴的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
-        y = y - 50;
+        let {
+            a_x,
+            a_y
+        } = getAbsolute(r_x, r_y)
 
-        let xNum = x % 65; //计算出相对于当前x，y轴多余的数字，用于模糊计算（即是否在x轴加上一个单位距离）
-        let yNum = y % 65;
-        let xMul = parseInt(x / 65); //计算出当前x，y轴上有几个单位距离
-        let yMul = parseInt(y / 65);
+        board.click.r_x = r_x
+        board.click.r_y = r_y
+        board.click.a_x = a_x
+        board.click.a_y = a_y
+        console.log(board);
 
-        //如果余数大于32.5，则说明需要在x轴加上一个单位距离
-        if (xNum > 32.5) {
-            xMul++;
+        /**
+         * @description 点击棋盘后
+         * @author zegu
+         */
+        //点击非棋子，如果手上有子，则移动手子到点击个位置
+        if (board.onHand) {
+            board.onHand.css({
+                left: board.click.a_x + "px",
+                top: board.click.a_y + "px",
+            }); //设置棋子在棋盘位置
+
+            let index = board.onHand.attr("index")
+
+            //更新子的相对坐标
+            piecesList[index].position.x = board.click.x
+            piecesList[index].position.y = board.click.y
+
+            //移除选中样式
+            board.onHand.removeClass("on")
+            board.onHand = null
         }
-        //如果余数大于32.5，则说明需要在y轴加上一个单位距离
-        if (yNum > 32.5) {
-            yMul++;
-        }
-
-        x = (xMul * 65) + 35; //得出在x轴上，棋盘交叉点x轴的位置
-        y = (yMul * 65) + 50;
-
-        x = x - 25; //移动棋子自身一般宽度，用于棋子在棋盘上好看
-        y = y - 25;
-
-        board.click.x = xMul
-        board.click.y = yMul
-
-        console.log(board)
-        $('.qi').css({
-            "left": (x) + "px",
-            "top": (y) + "px"
-        }); //设置棋子在棋盘位置
     });
 
-    $('.qi').click(function() {
-        event.stopPropagation(); //阻止点击棋子的冒泡事件，防止影响棋子位置
-    })
+    /**
+     * 上传用户名
+     * @author zegu
+     */
+    $("button")
+        .eq(0)
+        .on("click", "", function() {
+            // let username = $('.userName').val()
+            //     //对username正则检验
 
-    //上传用户名
-    $('button').eq(0).on('click', '', function() {
-        // let username = $('.userName').val()
-        //     //对username正则检验
+            // post(apiAddress, {
+            //     username
+            // }).then((data) => {
+            //     player.userInfo = data.userInfo
 
-        // post(apiAddress, {
-        //     username
-        // }).then((data) => {
-        //     userInfo = data.userInfo
+            //     //完成后的回调
+            //     $('button').hide()
+            //     $('.userName').hide()
+            //     $('h3').html(data.userInfo.username)
+            //     $('.start').show()
+            // })
 
-        //     //完成后的回调
-        //     $('button').hide()
-        //     $('.userName').hide()
-        //     $('h3').html(data.userInfo.username)
-        //     $('.start').show()
-        // })
+            //模拟
 
-        //模拟
-        $('button').hide()
-        $('.userName').hide()
-        $('h3').html('你好 lubing')
-        $('.start').show()
-    })
+            player.redCamp = true //是否为黑子
+            $("button").hide()
+            $(".userName").hide()
+            $("h3").html("你好 lubing")
+            $(".start").show()
+            $(".usernameLable").hide()
+        })
 
     //开始按钮点击后
-    $('.start').on('click', '', function() {
-        $('.start').hide()
+    $(".start").on("click", "", function() {
+        $(".start").hide()
             //  ws = new WebSocket('ws://localhost:3000');
             //  ws.onmessage = function(msg) {
             //      msg = JSON.parse(msg.data)
@@ -189,17 +252,25 @@ $(function() {
 
         //模拟生成棋盘
         setTimeout(() => {
-                //显示棋盘
-                $('#board').show()
+            // 生成 棋子
+            generatePieces(piecesList)
 
-                // 生成 棋子
-                generatePieces(piecesList)
+            if (player.redCamp) {
+                $("#board").css({
+                    transform: 'rotateZ(180deg)'
+                })
+                $('.qi:lt(16)').css({
+                    transform: 'rotateZ(180deg)'
+                })
+            }
+            //显示棋盘
+            $("#board").show()
 
-            },
-            1000)
+
+        }, 1000)
 
         // 打开WebSocket连接后立刻发送一条消息:
-        //  ws.onopen = function() {
+        //  player.ws.onopen = function() {
         //      let data = {
         //          header: {
         //              action: 'match'
@@ -211,5 +282,4 @@ $(function() {
         //      sendMsg(data)
         //  }
     })
-
-});
+})

@@ -18,13 +18,24 @@
 </head>
 
 <body>
-    <div id="board">
+    <div class=box>
+        <div id="board">
+        </div>
     </div>
 
-    <button>发送</button>
-    <input type="text" class='userName'>
-    <h3></h3>
-    <button class='start'>进入房间</button>
+    <div class="pop-up">
+        <h3></h3>
+        <span class='usernameLable'>用户名</span>
+        <input type="text" class='userName'>
+        <button>确定</button>
+        <div id='headPortrait'>
+            <img src="../images/layout/headPortrait/0.jpg">
+            <img src="../images/layout/headPortrait/1.jpg">
+            <img src="../images/layout/headPortrait/3.jpg">
+        </div>
+        <button class='start'>进入房间</button>
+    </div>
+
     <script src="../js/constant/constant.js"></script>
     <script src="../js/utils/jquery.min.js"></script>
     <script src="../js/data/pieces.js"></script>
