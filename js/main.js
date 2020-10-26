@@ -113,7 +113,7 @@ function generatePieces(piecesList) {
             top: `${a_y}px`,
             left: `${a_x}px`,
         });
-        $piece.css("background", `url(${element.pieces.img}) no-repeat center center`);
+        $piece.css("background", `url(${element.piecesType.img}) no-repeat center center`);
 
         // console.log($piece)
         $board.append($piece);
@@ -122,6 +122,22 @@ function generatePieces(piecesList) {
             clickOnPieces($piece);
         });
     });
+}
+
+/**
+ * @param {Object} piece 棋子对象
+ * @param {Object} x 当前坐标
+ * @param {Object} n_x 新坐标
+ *  
+ */
+function rulesChecker(piece, {
+    x,
+    y,
+}, {
+    n_x,
+    n_y
+}) {
+    // switch(pieces.)
 }
 
 /**
@@ -259,7 +275,7 @@ $(function() {
                 $("#board").css({
                     transform: 'rotateZ(180deg)'
                 })
-                $('.qi:lt(16)').css({
+                $('.qi').css({
                     transform: 'rotateZ(180deg)'
                 })
             }
