@@ -137,7 +137,39 @@ function rulesChecker(piece, {
     n_x,
     n_y
 }) {
-    // switch(pieces.)
+
+
+
+    switch (pieces.piecesType) {
+        case 0: //兵卒
+            {
+                break
+            }
+        case 1: // 将帅
+            {
+
+            }
+        case 2: //士
+            {
+
+            }
+        case 3: // 马
+            {
+
+            }
+        case 4: //象
+            {
+
+            }
+        case 5: //炮
+            {
+
+            }
+        case 6: //车
+            {
+
+            }
+    }
 }
 
 /**
@@ -165,7 +197,7 @@ function clickOnPieces($piece) {
         return
     }
 
-    //只点了一下
+    //只点了一下 选中
     board.onHand = $piece
     $($piece).addClass("on")
 }
