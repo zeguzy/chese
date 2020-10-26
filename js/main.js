@@ -49,7 +49,7 @@ function sendMsg(data) {
 }
 
 /**
- * @description 获取相对坐标 
+ * @description 获取相对坐标
  * @param {*} x   **未处理**
  * @param {*} y
  * @author LuBing
@@ -105,15 +105,15 @@ function generatePieces(piecesList) {
     let $board = $("#board");
     piecesList.forEach((element) => {
         let $piece = $(`<div class='qi' index=${element.id}></div>`);
-        let {
-            a_x,
-            a_y
-        } = getAbsolute(element.position.x, element.position.y);
+        let { a_x, a_y } = getAbsolute(element.position.x, element.position.y);
         $piece.css({
             top: `${a_y}px`,
             left: `${a_x}px`,
         });
-        $piece.css("background", `url(${element.piecesType.img}) no-repeat center center`);
+        $piece.css(
+            "background",
+            `url(${element.piecesType.img}) no-repeat center center`
+        );
 
         // console.log($piece)
         $board.append($piece);
@@ -128,27 +128,22 @@ function generatePieces(piecesList) {
  * @param {Object} piece 棋子对象
  * @param {Object} x 当前坐标
  * @param {Object} n_x 新坐标
- *  
+ *
  */
-function rulesChecker(piece, {
-    x,
-    y,
-}, {
-    n_x,
-    n_y
-}) {
+function rulesChecker(piece, { x, y }, { n_x, n_y }) {
     //偏移量
-    _x = n_x - x
-    _y = n_y - y
+    _x = n_x - x;
+    _y = n_y - y;
 
-    m_x = (x + n_x) / 2
-    m_y = (y + n_y) / 2
+    m_x = (x + n_x) / 2;
+    m_y = (y + n_y) / 2;
 
-    let result = true
-    console.log(piece)
+    let result = true;
+    console.log(piece);
     switch (piece.piecesType.id) {
-        case 0: //兵卒         @author 斌
+        case 0:
             {
+                //兵卒         @author 斌
                 if (piece.id < 16) {
                     if (y <= 4) {
                         if (_y == 1) {
@@ -184,8 +179,9 @@ function rulesChecker(piece, {
                 }
                 return result;
             }
-        case 1: // 将帅         @author 斌
+        case 1:
             {
+                // 将帅         @author 斌
                 if (piece.id < 16) {
                     if (n_x < 6 && n_x > 2 && n_y < 3) {
                         if (_x == 0) {
@@ -213,8 +209,9 @@ function rulesChecker(piece, {
                 }
                 return result;
             }
-        case 2: //士         @author 斌
+        case 2:
             {
+                //士         @author 斌
                 if (piece.id < 16) {
                     if (n_x < 6 && n_x > 2 && n_y < 3) {
                         if (Math.abs(_x) == 1) {
@@ -238,19 +235,26 @@ function rulesChecker(piece, {
                 }
                 return result;
             }
-        case 3: // 马         @author 斌
+        case 3:
             {
+                // 马         @author 斌
                 if (Math.abs(_y) == 2) {
                     result = Math.abs(_x) == 1 ? true : false;
                     for (let i = 0; i < piecesList.length; i++) {
-                        if (x == piecesList[i].position.x && y + (_y / 2) == piecesList[i].position.y) {
+                        if (
+                            x == piecesList[i].position.x &&
+                            y + _y / 2 == piecesList[i].position.y
+                        ) {
                             result = false;
                         }
                     }
                 } else if (Math.abs(_x) == 2) {
                     result = Math.abs(_y) == 1 ? true : false;
                     for (let i = 0; i < piecesList.length; i++) {
-                        if (x + (_x / 2) == piecesList[i].position.x && y == piecesList[i].position.y) {
+                        if (
+                            x + _x / 2 == piecesList[i].position.x &&
+                            y == piecesList[i].position.y
+                        ) {
                             result = false;
                         }
                     }
@@ -259,66 +263,94 @@ function rulesChecker(piece, {
                 }
                 return result;
             }
-        case 4: //象 @author zegu
+        case 4:
             {
+                //象 @author zegu
                 if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
-                    result = false
+                    result = false;
                 } else if (piece.id < 16 && n_y > 4) {
-                    result = false
+                    result = false;
                 } else if (piece.id > 16 && n_y < 5) {
-                    result = false
+                    result = false;
                 }
 
                 //中点是否有子
-                let midpoint = piecesList.some(element => {
-                        return element.position.x == m_x && element.position.y == m_y
-                    })
-                    // alert(midpoint)
-                result = midpoint ? false : result
-                break
+                let midpoint = piecesList.some((element) => {
+                    return element.position.x == m_x && element.position.y == m_y;
+                });
+                // alert(midpoint)
+                result = midpoint ? false : result;
+                break;
             }
-        case 5: //炮 @author zegu
+        case 5:
             {
+                //炮 @author zegu
                 //走直线
-                let line = _x == 0 || _y == 0 && Math.abs(_x) + Math.abs(_y) != 0 ? true : false
+                let line =
+                    _x == 0 || (_y == 0 && Math.abs(_x) + Math.abs(_y) != 0) ? true : false;
                 if (!line) {
-                    result = false
-                    break
+                    result = false;
+                    break;
                 }
-                let sum = 0
+
+                let sum = 0;
+                let end = false;
+
                 if (_x != 0) {
-                    let max = Math.max(x, n_x)
-                    let min = Math.min(x, n_x)
-                        //中点是否有子
-                    piecesList.forEach(element => {
+                    let max = Math.max(x, n_x);
+                    let min = Math.min(x, n_x);
+
+                    //中间是否有子
+                    piecesList.forEach((element) => {
                         if (element.position.y == y) {
+                            if (element.position.x == n_x) {
+                                end = true;
+                            }
                             if (element.position.x > min && element.position.x < max) {
-                                sum++
+                                sum++;
                             }
                         }
-                    })
+                    });
                 }
                 if (_y != 0) {
-                    let max = Math.max(y, n_y)
-                    let min = Math.min(y, n_y)
-                        //中点是否有子
-                    piecesList.forEach(element => {
+                    let max = Math.max(y, n_y);
+                    let min = Math.min(y, n_y);
+
+                    //中点是否有子
+                    piecesList.forEach((element) => {
                         if (element.position.x == x) {
+                            if (element.position.y == n_y) {
+                                end = true;
+                            }
                             if (element.position.y > min && element.position.y < max) {
-                                sum++
+                                sum++;
                             }
                         }
-                    })
+                    });
                 }
-                result = sum <= 1 ? true : false
-                break
+
+                result = sum <= 1 ? true : false;
+
+                if (sum > 2) {
+                    result = false;
+                    break;
+                }
+                if (sum == 0 && end) {
+                    result = false;
+                    break;
+                } else if (sum == 1 && !end) {
+                    result = false;
+                }
+
+                break;
             }
-        case 6: //车 @author LuBing
+        case 6:
             {
-                break
+                //车 @author LuBing
+                break;
             }
     }
-    return result
+    return result;
 }
 
 /**
@@ -327,28 +359,70 @@ function rulesChecker(piece, {
  * @author zegu
  */
 function clickOnPieces($piece) {
-    event.stopPropagation() //阻止点击棋子的冒泡事件，防止影响棋子位置
+    event.stopPropagation(); //阻止点击棋子的冒泡事件，防止影响棋子位置
+
+    //不能吃自己的子
+    let isOwn = player.redCamp ?
+        $piece.attr("index") < 16 :
+        $piece.attr("index") > 15;
+
+    let r_x = piecesList[$piece.attr("index")].position.x;
+    let r_y = piecesList[$piece.attr("index")].position.y;
+    let { a_x, a_y } = getAbsolute(r_x, r_y);
 
     //吃子
-    if (board.onHand && board.onHand != $piece) {
-        //检验规则
+    if (board.onHand && board.onHand != $piece && !isOwn) {
+        //规则判断
+        let index = board.onHand.attr("index");
+        let checkResult = rulesChecker(
+            piecesList[index], {
+                x: piecesList[index].position.x,
+                y: piecesList[index].position.y,
+            }, {
+                n_x: r_x,
+                n_y: r_y,
+            }
+        );
 
-        alert("吃")
-        $piece.remove()
-        board.onHand = null
-        return
-    }
+        if (checkResult) {
+            //满足规则  吃
+            alert("吃");
+            $piece.remove();
 
-    //点自己两下  应该取消选中
-    if (board.onHand == $piece) {
-        $piece.removeClass("on")
-        board.onHand = null
-        return
+            //设置棋子在棋盘位置
+            board.onHand.css({
+                left: a_x + "px",
+                top: a_y + "px",
+            });
+
+            //更新坐标
+            piecesList[index].position = {
+                x: r_x,
+                y: r_y,
+            };
+
+            board.onHand.removeClass("on");
+            delete piecesList[$piece.attr("index")];
+            board.onHand = null;
+        } else {
+            alert("不满足走子规则");
+        }
+        return;
+    } else if (board.onHand == $piece) {
+        //点自己两下  应该取消选中
+        $piece.removeClass("on");
+        board.onHand = null;
+        return;
+    } else if (board.onHand && isOwn) {
+        board.onHand.removeClass("on");
+        board.onHand = $piece;
+        $($piece).addClass("on");
+        return;
     }
 
     //只点了一下 选中
-    board.onHand = $piece
-    $($piece).addClass("on")
+    board.onHand = $piece;
+    $($piece).addClass("on");
 }
 
 /**
@@ -356,59 +430,59 @@ function clickOnPieces($piece) {
  * @author LuBing zegu
  */
 $(function() {
-
     //点击棋盘
     $("#board").click(function() {
-        var x = event.offsetX //获得鼠标点击对象内部的x，y轴坐标
-        var y = event.offsetY
-        let {
-            r_x,
-            r_y
-        } = getRelative(x, y)
+        var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
+        var y = event.offsetY;
+        let { r_x, r_y } = getRelative(x, y);
 
-        let {
-            a_x,
-            a_y
-        } = getAbsolute(r_x, r_y)
+        let { a_x, a_y } = getAbsolute(r_x, r_y);
 
-        board.click.r_x = r_x
-        board.click.r_y = r_y
-        board.click.a_x = a_x
-        board.click.a_y = a_y
+        board.click.r_x = r_x;
+        board.click.r_y = r_y;
+        board.click.a_x = a_x;
+        board.click.a_y = a_y;
         console.log(board);
-
-
 
         /**
          * @description 点击棋盘后
          * @author zegu
          */
+        let isOwn = false;
+        if (board.onHand) {
+            isOwn = player.redCamp ?
+                board.onHand.attr("index") < 16 :
+                board.onHand.attr("index") > 15;
+        }
+        if (board.onHand && isOwn) {
+            //规则判断
+            let index = board.onHand.attr("index");
+            let checkResult = rulesChecker(
+                piecesList[index], {
+                    x: piecesList[index].position.x,
+                    y: piecesList[index].position.y,
+                }, {
+                    n_x: board.click.r_x,
+                    n_y: board.click.r_y,
+                }
+            );
+            console.log(checkResult);
 
-        //规则判断
-        let index = board.onHand.attr("index")
-        let checkResult = rulesChecker(piecesList[index], {
-            x: piecesList[index].position.x,
-            y: piecesList[index].position.y
-        }, {
-            n_x: board.click.r_x,
-            n_y: board.click.r_y
-        })
-        console.log(checkResult)
+            //点击非棋子，如果手上有子，则移动手子到点击个位置
+            if (checkResult) {
+                board.onHand.css({
+                    left: board.click.a_x + "px",
+                    top: board.click.a_y + "px",
+                }); //设置棋子在棋盘位置
 
-        //点击非棋子，如果手上有子，则移动手子到点击个位置
-        if (board.onHand && checkResult) {
-            board.onHand.css({
-                left: board.click.a_x + "px",
-                top: board.click.a_y + "px",
-            }); //设置棋子在棋盘位置
+                //更新子的相对坐标
+                piecesList[index].position.x = board.click.r_x;
+                piecesList[index].position.y = board.click.r_y;
 
-            //更新子的相对坐标
-            piecesList[index].position.x = board.click.r_x
-            piecesList[index].position.y = board.click.r_y
-
-            //移除选中样式
-            board.onHand.removeClass("on")
-            board.onHand = null
+                //移除选中样式
+                board.onHand.removeClass("on");
+                board.onHand = null;
+            }
         }
     });
 
@@ -436,47 +510,44 @@ $(function() {
 
             //模拟
 
-            player.redCamp = true //是否为黑子
-            $("button").hide()
-            $(".userName").hide()
-            $("h3").html("你好 lubing")
-            $(".start").show()
-            $(".usernameLable").hide()
-        })
+            player.redCamp = false; //是否为红
+            $("button").hide();
+            $(".userName").hide();
+            $("h3").html("你好 lubing");
+            $(".start").show();
+            $(".usernameLable").hide();
+        });
 
     //开始按钮点击后
     $(".start").on("click", "", function() {
-        $(".start").hide()
-            //  ws = new WebSocket('ws://localhost:3000');
-            //  ws.onmessage = function(msg) {
-            //      msg = JSON.parse(msg.data)
-            //          //  console.log(msg)
-            //      console.log(msg.header.action)
-            //      if (msg.header.action === 'OK') {
-            //          //准备棋盘和棋子
-            //          alert('准备棋盘和棋子')
-            //      }
+        $(".start").hide();
+        //  ws = new WebSocket('ws://localhost:3000');
+        //  ws.onmessage = function(msg) {
+        //      msg = JSON.parse(msg.data)
+        //          //  console.log(msg)
+        //      console.log(msg.header.action)
+        //      if (msg.header.action === 'OK') {
+        //          //准备棋盘和棋子
+        //          alert('准备棋盘和棋子')
+        //      }
 
         //  };
 
         //模拟生成棋盘
         setTimeout(() => {
             // 生成 棋子
-            generatePieces(piecesList)
-
-            // if (player.redCamp) {
-            //     $("#board").css({
-            //         transform: 'rotateZ(180deg)'
-            //     })
-            //     $('.qi').css({
-            //         transform: 'rotateZ(180deg)'
-            //     })
-            // }
-            //显示棋盘
-            $("#board").show()
-
-
-        }, 100)
+            generatePieces(piecesList);
+            if (player.redCamp) {
+                $("#board").css({
+                    transform: "rotateZ(180deg)",
+                });
+                $(".qi").css({
+                    transform: "rotateZ(180deg)",
+                });
+            }
+            // 显示棋盘
+            $("#board").show();
+        }, 100);
 
         // 打开WebSocket连接后立刻发送一条消息:
         //  player.ws.onopen = function() {
@@ -490,5 +561,5 @@ $(function() {
         //      }
         //      sendMsg(data)
         //  }
-    })
-})
+    });
+});
