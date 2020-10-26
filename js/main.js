@@ -142,6 +142,7 @@ function rulesChecker(piece, {
     _x = n_x - x
     _y = n_y - y
 
+<<<<<<< Updated upstream
     let result = true;
     switch (piece.piecesType.id) {
         case 0: //兵卒         @author 斌
@@ -259,15 +260,71 @@ function rulesChecker(piece, {
         case 4: //象
             {
                 break
+=======
+    let result = true
+    console.log('x:'+x+" y:"+y)
+    console.log('n_x:'+n_x+" n_y:"+n_y)
+    console.log(piece)
+    switch (piece.piecesType.id) {
+        case 0: //兵卒
+        {
+            break
+        }
+        case 1: // 将帅
+        {
+
+        }
+        case 2: //士
+        {
+
+        }
+        case 3: // 马
+        {
+
+        }
+        case 4: //象
+        {
+            if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
+                result = false
+            } else if (pieces.id < 16 && n_x > 4) {
+                result = false
+            } else if (pieces.id > 16 && n_x < 5) {
+                result = false
+>>>>>>> Stashed changes
             }
+            break
+        }
         case 5: //炮
-            {
-                break
-            }
+        {
+            break
+        }
         case 6: //车
-            {
-                break
+        {
+            if ((_x != 0 && _y != 0) || (_x == 0 && _y == 0)) {
+                return false
+            } else if (_x != 0 && _y == 0) {
+                for (let i = 0; i < piecesList.length; i++) {
+                    if (piecesList[i].position.y == y) {
+                        if (piecesList[i].position.x - x < 0 && _x < 0 && piecesList[i].position.x - x > _x) {
+                            return false;
+                        } else if (piecesList[i].position.x - x > 0 && _x > 0 && piecesList[i].position.x - x < _x) {
+                            return false;
+                        }
+                    }
+                }
+            } else if (_y != 0 && _x == 0) {
+                for (let i = 0; i < piecesList.length; i++) {
+                    if (piecesList[i].position.x == x) {
+                        if (piecesList[i].position.y - y < 0 && _y < 0 && piecesList[i].position.y - y > _y) {
+                            return false;
+                        } else if (piecesList[i].position.y - y > 0 && _y > 0 && piecesList[i].position.y - y < _y) {
+                            return false;
+                        }
+                    }
+                }
             }
+            break
+        }
     }
     return result
 }
