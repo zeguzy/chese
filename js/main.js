@@ -104,8 +104,12 @@ function getAbsolute(x, y) {
 function generatePieces(piecesList) {
     let $board = $("#board");
     piecesList.forEach((element) => {
+        element.survive = true;
         let $piece = $(`<div class='qi' index=${element.id}></div>`);
-        let { a_x, a_y } = getAbsolute(element.position.x, element.position.y);
+        let {
+            a_x,
+            a_y
+        } = getAbsolute(element.position.x, element.position.y);
         $piece.css({
             top: `${a_y}px`,
             left: `${a_x}px`,
@@ -130,7 +134,13 @@ function generatePieces(piecesList) {
  * @param {Object} n_x 新坐标
  *
  */
-function rulesChecker(piece, { x, y }, { n_x, n_y }) {
+function rulesChecker(piece, {
+    x,
+    y
+}, {
+    n_x,
+    n_y
+}) {
     //偏移量
     _x = n_x - x;
     _y = n_y - y;
@@ -243,7 +253,8 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                     for (let i = 0; i < piecesList.length; i++) {
                         if (
                             x == piecesList[i].position.x &&
-                            y + _y / 2 == piecesList[i].position.y
+                            y + _y / 2 == piecesList[i].position.y &&
+                            element.survive
                         ) {
                             result = false;
                         }
@@ -253,7 +264,8 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                     for (let i = 0; i < piecesList.length; i++) {
                         if (
                             x + _x / 2 == piecesList[i].position.x &&
-                            y == piecesList[i].position.y
+                            y == piecesList[i].position.y &&
+                            element.survive
                         ) {
                             result = false;
                         }
@@ -276,7 +288,11 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
 
                 //中点是否有子
                 let midpoint = piecesList.some((element) => {
-                    return element.position.x == m_x && element.position.y == m_y;
+                    return (
+                        element.position.x == m_x &&
+                        element.position.y == m_y &&
+                        element.survive
+                    );
                 });
                 // alert(midpoint)
                 result = midpoint ? false : result;
@@ -303,10 +319,14 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                     //中间是否有子
                     piecesList.forEach((element) => {
                         if (element.position.y == y) {
-                            if (element.position.x == n_x) {
+                            if (element.position.x == n_x && element.survive) {
                                 end = true;
                             }
-                            if (element.position.x > min && element.position.x < max) {
+                            if (
+                                element.position.x > min &&
+                                element.position.x < max &&
+                                element.survive
+                            ) {
                                 sum++;
                             }
                         }
@@ -319,10 +339,14 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                     //中点是否有子
                     piecesList.forEach((element) => {
                         if (element.position.x == x) {
-                            if (element.position.y == n_y) {
+                            if (element.position.y == n_y && element.survive) {
                                 end = true;
                             }
-                            if (element.position.y > min && element.position.y < max) {
+                            if (
+                                element.position.y > min &&
+                                element.position.y < max &&
+                                element.survive
+                            ) {
                                 sum++;
                             }
                         }
@@ -345,11 +369,15 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                 break;
             }
         case 6:
-            { //车 @author LuBing
+            {
+                //车 @author LuBing
                 if ((_x != 0 && _y != 0) || (_x == 0 && _y == 0)) {
                     return false;
-                } else if (_x != 0 && _y == 0) {
+                } else if (_x != 0 && _y == 0 || _y != 0 && _x == 0) {
                     for (let i = 0; i < piecesList.length; i++) {
+                        if (!piecesList[i].survive) {
+                            continue
+                        }
                         if (piecesList[i].position.y == y) {
                             if (
                                 piecesList[i].position.x - x < 0 &&
@@ -365,9 +393,6 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                                 return false;
                             }
                         }
-                    }
-                } else if (_y != 0 && _x == 0) {
-                    for (let i = 0; i < piecesList.length; i++) {
                         if (piecesList[i].position.x == x) {
                             if (
                                 piecesList[i].position.y - y < 0 &&
@@ -406,7 +431,10 @@ function clickOnPieces($piece) {
 
     let r_x = piecesList[$piece.attr("index")].position.x;
     let r_y = piecesList[$piece.attr("index")].position.y;
-    let { a_x, a_y } = getAbsolute(r_x, r_y);
+    let {
+        a_x,
+        a_y
+    } = getAbsolute(r_x, r_y);
 
     //吃子
     if (board.onHand && board.onHand != $piece && !isOwn) {
@@ -440,8 +468,10 @@ function clickOnPieces($piece) {
             };
 
             board.onHand.removeClass("on");
-            delete piecesList[$piece.attr("index")];
+
+            piecesList[$piece.attr("index")].survive = false;
             board.onHand = null;
+            console.log(piecesList);
         } else {
             alert("不满足走子规则");
         }
@@ -472,9 +502,15 @@ $(function() {
     $("#board").click(function() {
         var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
         var y = event.offsetY;
-        let { r_x, r_y } = getRelative(x, y);
+        let {
+            r_x,
+            r_y
+        } = getRelative(x, y);
 
-        let { a_x, a_y } = getAbsolute(r_x, r_y);
+        let {
+            a_x,
+            a_y
+        } = getAbsolute(r_x, r_y);
 
         board.click.r_x = r_x;
         board.click.r_y = r_y;
