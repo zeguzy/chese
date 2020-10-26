@@ -345,8 +345,46 @@ function rulesChecker(piece, { x, y }, { n_x, n_y }) {
                 break;
             }
         case 6:
-            {
-                //车 @author LuBing
+            { //车 @author LuBing
+                if ((_x != 0 && _y != 0) || (_x == 0 && _y == 0)) {
+                    return false;
+                } else if (_x != 0 && _y == 0) {
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (piecesList[i].position.y == y) {
+                            if (
+                                piecesList[i].position.x - x < 0 &&
+                                _x < 0 &&
+                                piecesList[i].position.x - x > _x
+                            ) {
+                                return false;
+                            } else if (
+                                piecesList[i].position.x - x > 0 &&
+                                _x > 0 &&
+                                piecesList[i].position.x - x < _x
+                            ) {
+                                return false;
+                            }
+                        }
+                    }
+                } else if (_y != 0 && _x == 0) {
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (piecesList[i].position.x == x) {
+                            if (
+                                piecesList[i].position.y - y < 0 &&
+                                _y < 0 &&
+                                piecesList[i].position.y - y > _y
+                            ) {
+                                return false;
+                            } else if (
+                                piecesList[i].position.y - y > 0 &&
+                                _y > 0 &&
+                                piecesList[i].position.y - y < _y
+                            ) {
+                                return false;
+                            }
+                        }
+                    }
+                }
                 break;
             }
     }
