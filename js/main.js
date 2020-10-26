@@ -118,7 +118,7 @@ function generatePieces(piecesList) {
         // console.log($piece)
         $board.append($piece);
         $piece.show();
-        $piece.click(function() {
+        $piece.click(function () {
             clickOnPieces($piece);
         });
     });
@@ -142,34 +142,122 @@ function rulesChecker(piece, {
     _x = n_x - x
     _y = n_y - y
 
-    let result = true
-    console.log(piece)
+    let result = true;
     switch (piece.piecesType.id) {
-        case 0: //兵卒
+        case 0: //兵卒         @author 斌
             {
-                break
+                if (piece.id < 16) {
+                    if (y <= 4) {
+                        if (_y == 1) {
+                            result = _x == 0 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        if (_y == 0) {
+                            result = Math.abs(_x) == 1 ? true : false;
+                        } else if (_y == 1) {
+                            result = _x == 0 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    }
+                } else {
+                    if (y >= 5) {
+                        if (_y == -1) {
+                            result = _x == 0 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        if (_y == 0) {
+                            result = Math.abs(_x) == 1 ? true : false;
+                        } else if (_y == -1) {
+                            result = _x == 0 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    }
+                }
+                return result;
             }
-        case 1: // 将帅
+        case 1: // 将帅         @author 斌
             {
-
+                if (piece.id < 16) {
+                    if (n_x < 6 && n_x > 2 && n_y < 3) {
+                        if (_x == 0) {
+                            result = Math.abs(_y) == 1 ? true : false;
+                        } else if (_y == 0) {
+                            result = Math.abs(_x) == 1 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        result = false;
+                    }
+                } else {
+                    if (n_x < 6 && n_x > 2 && n_y > 6) {
+                        if (_x == 0) {
+                            result = Math.abs(_y) == 1 ? true : false;
+                        } else if (_y == 0) {
+                            result = Math.abs(_x) == 1 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        result = false;
+                    }
+                }
+                return result;
             }
-        case 2: //士
+        case 2: //士         @author 斌
             {
-
+                if (piece.id < 16) {
+                    if (n_x < 6 && n_x > 2 && n_y < 3) {
+                        if (Math.abs(_x) == 1) {
+                            result = Math.abs(_y) == 1 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        result = false;
+                    }
+                } else {
+                    if (n_x < 6 && n_x > 2 && n_y > 6) {
+                        if (Math.abs(_x) == 1) {
+                            result = Math.abs(_y) == 1 ? true : false;
+                        } else {
+                            result = false;
+                        }
+                    } else {
+                        result = false;
+                    }
+                }
+                return result;
             }
-        case 3: // 马
+        case 3: // 马         @author 斌
             {
-
+                if(Math.abs(_y)==2){
+                    result = Math.abs(_x) == 1 ? true:false;
+                    for(let i=0;i<piecesList.length;i++){
+                        if(x == piecesList[i].position.x && y+(_y/2) ==piecesList[i].position.y){
+                            result = false;
+                        }
+                    }
+                }else if(Math.abs(_x)==2){
+                    result = Math.abs(_y) == 1 ? true:false;
+                    for(let i=0;i<piecesList.length;i++){
+                        if(x+(_x/2) == piecesList[i].position.x && y ==piecesList[i].position.y){
+                            result = false;
+                        }
+                    }
+                }else{
+                    result=false;
+                }
+                return result;
             }
         case 4: //象
             {
-                if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
-                    result = false
-                } else if (pieces.id < 16 && n_x > 4) {
-                    result = false
-                } else if (pieces.id > 16 && n_x < 5) {
-                    result = false
-                }
                 break
             }
         case 5: //炮
@@ -218,10 +306,10 @@ function clickOnPieces($piece) {
  * 点击棋盘后
  * @author LuBing zegu
  */
-$(function() {
+$(function () {
 
     //点击棋盘
-    $("#board").click(function() {
+    $("#board").click(function () {
         var x = event.offsetX //获得鼠标点击对象内部的x，y轴坐标
         var y = event.offsetY
         let {
@@ -266,8 +354,8 @@ $(function() {
             }); //设置棋子在棋盘位置
 
             //更新子的相对坐标
-            piecesList[index].position.x = board.click.x
-            piecesList[index].position.y = board.click.y
+            piecesList[index].position.x = board.click.r_x
+            piecesList[index].position.y = board.click.r_y
 
             //移除选中样式
             board.onHand.removeClass("on")
@@ -281,7 +369,7 @@ $(function() {
      */
     $("button")
         .eq(0)
-        .on("click", "", function() {
+        .on("click", "", function () {
             // let username = $('.userName').val()
             //     //对username正则检验
 
@@ -308,17 +396,17 @@ $(function() {
         })
 
     //开始按钮点击后
-    $(".start").on("click", "", function() {
+    $(".start").on("click", "", function () {
         $(".start").hide()
-            //  ws = new WebSocket('ws://localhost:3000');
-            //  ws.onmessage = function(msg) {
-            //      msg = JSON.parse(msg.data)
-            //          //  console.log(msg)
-            //      console.log(msg.header.action)
-            //      if (msg.header.action === 'OK') {
-            //          //准备棋盘和棋子
-            //          alert('准备棋盘和棋子')
-            //      }
+        //  ws = new WebSocket('ws://localhost:3000');
+        //  ws.onmessage = function(msg) {
+        //      msg = JSON.parse(msg.data)
+        //          //  console.log(msg)
+        //      console.log(msg.header.action)
+        //      if (msg.header.action === 'OK') {
+        //          //准备棋盘和棋子
+        //          alert('准备棋盘和棋子')
+        //      }
 
         //  };
 
