@@ -3,7 +3,7 @@
  * @author zegu  zhangbin
  */
 
-let pieces = {
+let piecesType = {
 
     soldiers_b: { //兵
         id: 0,
@@ -70,7 +70,7 @@ let piecesList = [
     //          玩家1
     { //车
         id: 0,
-        piecesType: pieces.car_b,
+        piecesType: piecesType.car_b,
         position: {
             x: 0,
             y: 0
@@ -79,7 +79,7 @@ let piecesList = [
     },
     { //马
         id: 1,
-        piecesType: pieces.horse_b,
+        piecesType: piecesType.horse_b,
         position: {
             x: 1,
             y: 0
@@ -88,7 +88,7 @@ let piecesList = [
     },
     { //象
         id: 2,
-        piecesType: pieces.elephant_b,
+        piecesType: piecesType.elephant_b,
         position: {
             x: 2,
             y: 0
@@ -97,7 +97,7 @@ let piecesList = [
     },
     { //士
         id: 3,
-        piecesType: pieces.scholar_b,
+        piecesType: piecesType.scholar_b,
         position: {
             x: 3,
             y: 0
@@ -106,7 +106,7 @@ let piecesList = [
     },
     { //将
         id: 4,
-        piecesType: pieces.general_b,
+        piecesType: piecesType.general_b,
         position: {
             x: 4,
             y: 0
@@ -115,7 +115,7 @@ let piecesList = [
     },
     { //士
         id: 5,
-        piecesType: pieces.scholar_b,
+        piecesType: piecesType.scholar_b,
         position: {
             x: 5,
             y: 0
@@ -124,7 +124,7 @@ let piecesList = [
     },
     { //象
         id: 6,
-        piecesType: pieces.elephant_b,
+        piecesType: piecesType.elephant_b,
         position: {
             x: 6,
             y: 0
@@ -133,7 +133,7 @@ let piecesList = [
     },
     { //马
         id: 7,
-        piecesType: pieces.horse_b,
+        piecesType: piecesType.horse_b,
         position: {
             x: 7,
             y: 0
@@ -142,7 +142,7 @@ let piecesList = [
     },
     { //车
         id: 8,
-        piecesType: pieces.car_b,
+        piecesType: piecesType.car_b,
         position: {
             x: 8,
             y: 0
@@ -150,7 +150,7 @@ let piecesList = [
     },
     { //炮
         id: 9,
-        piecesType: pieces.gun_b,
+        piecesType: piecesType.gun_b,
         position: {
             x: 1,
             y: 2
@@ -159,7 +159,7 @@ let piecesList = [
     },
     { //炮
         id: 10,
-        piecesType: pieces.gun_b,
+        piecesType: piecesType.gun_b,
         position: {
             x: 7,
             y: 2
@@ -167,7 +167,7 @@ let piecesList = [
     },
     { //兵
         id: 11,
-        piecesType: pieces.soldiers_b,
+        piecesType: piecesType.soldiers_b,
         position: {
             x: 0,
             y: 3
@@ -176,7 +176,7 @@ let piecesList = [
     },
     { //兵
         id: 12,
-        piecesType: pieces.soldiers_b,
+        piecesType: piecesType.soldiers_b,
         position: {
             x: 2,
             y: 3
@@ -185,7 +185,7 @@ let piecesList = [
     },
     { //兵
         id: 13,
-        piecesType: pieces.soldiers_b,
+        piecesType: piecesType.soldiers_b,
         position: {
             x: 4,
             y: 3
@@ -193,7 +193,7 @@ let piecesList = [
     },
     { //兵
         id: 14,
-        piecesType: pieces.soldiers_b,
+        piecesType: piecesType.soldiers_b,
         position: {
             x: 6,
             y: 3
@@ -202,7 +202,7 @@ let piecesList = [
     },
     { //兵
         id: 15,
-        piecesType: pieces.soldiers_b,
+        piecesType: piecesType.soldiers_b,
         position: {
             x: 8,
             y: 3
@@ -214,7 +214,7 @@ let piecesList = [
 
     { //兵
         id: 16,
-        piecesType: pieces.soldiers_r,
+        piecesType: piecesType.soldiers_r,
         position: {
             x: 0,
             y: 6
@@ -222,7 +222,7 @@ let piecesList = [
     },
     { //兵
         id: 17,
-        piecesType: pieces.soldiers_r,
+        piecesType: piecesType.soldiers_r,
         position: {
             x: 2,
             y: 6
@@ -230,7 +230,7 @@ let piecesList = [
     },
     { //兵
         id: 18,
-        piecesType: pieces.soldiers_r,
+        piecesType: piecesType.soldiers_r,
         position: {
             x: 4,
             y: 6
@@ -238,7 +238,7 @@ let piecesList = [
     },
     { //兵
         id: 19,
-        piecesType: pieces.soldiers_r,
+        piecesType: piecesType.soldiers_r,
         position: {
             x: 6,
             y: 6
@@ -246,7 +246,7 @@ let piecesList = [
     },
     { //兵
         id: 20,
-        piecesType: pieces.soldiers_r,
+        piecesType: piecesType.soldiers_r,
         position: {
             x: 8,
             y: 6
@@ -254,7 +254,7 @@ let piecesList = [
     },
     { //炮
         id: 21,
-        piecesType: pieces.gun_r,
+        piecesType: piecesType.gun_r,
         position: {
             x: 1,
             y: 7
@@ -262,7 +262,7 @@ let piecesList = [
     },
     { //炮
         id: 22,
-        piecesType: pieces.gun_r,
+        piecesType: piecesType.gun_r,
         position: {
             x: 7,
             y: 7
@@ -270,7 +270,7 @@ let piecesList = [
     },
     { //车
         id: 23,
-        piecesType: pieces.car_r,
+        piecesType: piecesType.car_r,
         position: {
             x: 0,
             y: 9
@@ -278,7 +278,7 @@ let piecesList = [
     },
     { //马
         id: 24,
-        piecesType: pieces.horse_r,
+        piecesType: piecesType.horse_r,
         position: {
             x: 1,
             y: 9
@@ -286,7 +286,7 @@ let piecesList = [
     },
     { //象
         id: 25,
-        piecesType: pieces.elephant_r,
+        piecesType: piecesType.elephant_r,
         position: {
             x: 2,
             y: 9
@@ -294,7 +294,7 @@ let piecesList = [
     },
     { //士
         id: 26,
-        piecesType: pieces.scholar_r,
+        piecesType: piecesType.scholar_r,
         position: {
             x: 3,
             y: 9
@@ -302,7 +302,7 @@ let piecesList = [
     },
     { //将
         id: 27,
-        piecesType: pieces.general_r,
+        piecesType: piecesType.general_r,
         position: {
             x: 4,
             y: 9
@@ -310,7 +310,7 @@ let piecesList = [
     },
     { //士
         id: 28,
-        piecesType: pieces.scholar_r,
+        piecesType: piecesType.scholar_r,
         position: {
             x: 5,
             y: 9
@@ -318,7 +318,7 @@ let piecesList = [
     },
     { //象
         id: 29,
-        piecesType: pieces.elephant_r,
+        piecesType: piecesType.elephant_r,
         position: {
             x: 6,
             y: 9
@@ -326,7 +326,7 @@ let piecesList = [
     },
     { //马
         id: 30,
-        piecesType: pieces.horse_r,
+        piecesType: piecesType.horse_r,
         position: {
             x: 7,
             y: 9
@@ -334,7 +334,7 @@ let piecesList = [
     },
     { //车
         id: 31,
-        piecesType: pieces.car_r,
+        piecesType: piecesType.car_r,
         position: {
             x: 8,
             y: 9

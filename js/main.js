@@ -142,8 +142,9 @@ function rulesChecker(piece, {
     _x = n_x - x
     _y = n_y - y
 
-    let result = false
-    switch (pieces.piecesType) {
+    let result = true
+    console.log(piece)
+    switch (piece.piecesType.id) {
         case 0: //兵卒
             {
                 break
@@ -162,15 +163,22 @@ function rulesChecker(piece, {
             }
         case 4: //象
             {
-
+                if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
+                    result = false
+                } else if (pieces.id < 16 && n_x > 4) {
+                    result = false
+                } else if (pieces.id > 16 && n_x < 5) {
+                    result = false
+                }
+                break
             }
         case 5: //炮
             {
-
+                break
             }
         case 6: //车
             {
-
+                break
             }
     }
     return result
@@ -232,18 +240,30 @@ $(function() {
         board.click.a_y = a_y
         console.log(board);
 
+
+
         /**
          * @description 点击棋盘后
          * @author zegu
          */
+
+        //规则判断
+        let index = board.onHand.attr("index")
+        let checkResult = rulesChecker(piecesList[index], {
+            x: piecesList[index].position.x,
+            y: piecesList[index].position.y
+        }, {
+            n_x: board.click.r_x,
+            n_y: board.click.r_y
+        })
+        console.log(checkResult)
+
         //点击非棋子，如果手上有子，则移动手子到点击个位置
-        if (board.onHand) {
+        if (board.onHand && checkResult) {
             board.onHand.css({
                 left: board.click.a_x + "px",
                 top: board.click.a_y + "px",
             }); //设置棋子在棋盘位置
-
-            let index = board.onHand.attr("index")
 
             //更新子的相对坐标
             piecesList[index].position.x = board.click.x
