@@ -4,8 +4,8 @@
 let board = {
     click: {
         //鼠标点击的坐标
-        x: null, //相对坐标
-        y: null,
+        r_x: null, //相对坐标
+        r_y: null,
         a_x: null, //绝对坐标
         a_y: null,
     },
@@ -137,10 +137,12 @@ function rulesChecker(piece, {
     n_x,
     n_y
 }) {
-
     //偏移量
     _x = n_x - x
     _y = n_y - y
+
+    m_x = (x + n_x) / 2
+    m_y = (y + n_y) / 2
 
     let result = true
     console.log(piece)
@@ -161,22 +163,61 @@ function rulesChecker(piece, {
             {
 
             }
-        case 4: //象
+        case 4: //象 @author zegu
             {
                 if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
                     result = false
-                } else if (pieces.id < 16 && n_x > 4) {
+                } else if (piece.id < 16 && n_y > 4) {
                     result = false
-                } else if (pieces.id > 16 && n_x < 5) {
+                } else if (piece.id > 16 && n_y < 5) {
                     result = false
                 }
+
+                //中点是否有子
+                let midpoint = piecesList.some(element => {
+                        return element.position.x == m_x && element.position.y == m_y
+                    })
+                    // alert(midpoint)
+                result = midpoint ? false : result
                 break
             }
-        case 5: //炮
+        case 5: //炮 @author zegu
             {
+                //走直线
+                let line = _x == 0 || _y == 0 && Math.abs(_x) + Math.abs(_y) != 0 ? true : false
+                if (!line) {
+                    result = false
+                    break
+                }
+                let sum = 0
+                if (_x != 0) {
+                    let max = Math.max(x, n_x)
+                    let min = Math.min(x, n_x)
+                        //中点是否有子
+                    piecesList.forEach(element => {
+                        if (element.position.y == y) {
+                            if (element.position.x > min && element.position.x < max) {
+                                sum++
+                            }
+                        }
+                    })
+                }
+                if (_y != 0) {
+                    let max = Math.max(y, n_y)
+                    let min = Math.min(y, n_y)
+                        //中点是否有子
+                    piecesList.forEach(element => {
+                        if (element.position.x == x) {
+                            if (element.position.y > min && element.position.y < max) {
+                                sum++
+                            }
+                        }
+                    })
+                }
+                result = sum <= 1 ? true : false
                 break
             }
-        case 6: //车
+        case 6: //车 @author LuBing
             {
                 break
             }
@@ -266,8 +307,8 @@ $(function() {
             }); //设置棋子在棋盘位置
 
             //更新子的相对坐标
-            piecesList[index].position.x = board.click.x
-            piecesList[index].position.y = board.click.y
+            piecesList[index].position.x = board.click.r_x
+            piecesList[index].position.y = board.click.r_y
 
             //移除选中样式
             board.onHand.removeClass("on")
@@ -339,7 +380,7 @@ $(function() {
             $("#board").show()
 
 
-        }, 1000)
+        }, 100)
 
         // 打开WebSocket连接后立刻发送一条消息:
         //  player.ws.onopen = function() {
