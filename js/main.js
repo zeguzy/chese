@@ -138,8 +138,11 @@ function rulesChecker(piece, {
     n_y
 }) {
 
+    //偏移量
+    _x = n_x - x
+    _y = n_y - y
 
-
+    let result = false
     switch (pieces.piecesType) {
         case 0: //兵卒
             {
@@ -170,6 +173,7 @@ function rulesChecker(piece, {
 
             }
     }
+    return result
 }
 
 /**
@@ -303,14 +307,14 @@ $(function() {
             // 生成 棋子
             generatePieces(piecesList)
 
-            if (player.redCamp) {
-                $("#board").css({
-                    transform: 'rotateZ(180deg)'
-                })
-                $('.qi').css({
-                    transform: 'rotateZ(180deg)'
-                })
-            }
+            // if (player.redCamp) {
+            //     $("#board").css({
+            //         transform: 'rotateZ(180deg)'
+            //     })
+            //     $('.qi').css({
+            //         transform: 'rotateZ(180deg)'
+            //     })
+            // }
             //显示棋盘
             $("#board").show()
 
