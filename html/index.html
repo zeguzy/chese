@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大师象棋-欢迎您</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/index.js"></script>
+    <!-- 滚轮插件 -->
+    <script src="../js/jquery.mousewheel.js"></script>
+    <style>
+        .logo2{
+            width: 20%;
+            height: 40%;
+            position: absolute;
+            top: 10%;
+            bottom: 50%;
+            left: 5%;
+            right: 75%;
+        }
+        .logo2 img{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
+        <source src="../music/background.mp3" type="audio/mp3">
+    </audio>
+    <section class="header">
+        <div class="videoBack">
+            <!-- 设置自动播放autoplay="autoplay" loop="loop" -->
+            <video muted autoplay="autoplay" loop="loop" style="opacity: 1.6;">
+                <source src="../video/background4.mp4" type="video/mp4" />
+            </video>
+            <!-- 加亮度 -->
+            <video muted autoplay="autoplay" loop="loop" style="opacity: 0.2;filter: brightness(2.3);">
+                <source src="../video/background5.mp4" type="video/mp4"/>
+            </video>
+        </div>
+        <div><img class="logo" src="../image/提示框/logo.png" /></div>
+        <div class="playBtn">
+            <img src="../image/提示框/playBtn.png" />
+        </div>
+        <div class="videos">
+            <video loop="loop" controls="controls" preload="auto" playsinline type="video/mp4" height="100%"
+                width="100%" src="../video/象棋规则.mp4">
+            </video>
+            <div class="close">
+            </div>
+        </div>
+        <div class="lunboBtn">
+            <div class="left"></div>
+            <div class="lunboContent">
+                <div class="lunbo lunbo1"><a href="../html/game1.html"><img src="../image/提示框/star1.png" width="100%"></a></div>
+                <div class="lunbo "><img src="../image/提示框/ruleGame1.png" width="100%"></div>
+
+                <div class="lunbo "><img src="../image/提示框/setGame1.png" width="100%"></div>
+                <div class="lunbo exit"><img src="../image/提示框/exitGame1.png" width="100%"></div>
+            </div>
+            <div class="right"></div>
+        </div>
+        <div class="exitW" style="display: none;">
+            <div class="exitBack">
+                <img src="../image/提示框/exitBack.png" alt="" srcset="">
+                <div class="exitContent">
+                    <p>你是否确定退出游戏？</p>
+                </div>
+                <div class="no"><img src="../image/提示框/noW1.png" /></div>
+                <div class="ok"><img src="../image/提示框/okW1.png" /></div>
+            </div>
+        </div>
+        <!-- <div class="logo2"> <img src="../image/背景/backLogo.png"></div> -->
+    </section>
+</body>
+
+</html>

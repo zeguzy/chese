@@ -1,0 +1,379 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../image/背景/背景7.jpg) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.content {
+    width: 1280px;
+    border: 1px solid red;
+    margin: 0 auto;
+}
+
+.content>div {
+    float: left;
+}
+
+/*左边用户信息*/
+.left {
+    width: 310px;
+    height: 650px;
+}
+
+/* 用户1 */
+.play1 {
+    width: 310px;
+    height: 280px;
+    background: url(../image/背景/背景1.jpg);
+    position: relative;
+    margin: 20px 0 0 0;
+    /* 图片边框*/
+    /* -o-border-image:url(../image/背景/border.png) 30 30 round;
+    border-image: url(../image/背景/border.png) 30 30 round; */
+
+}
+
+/*头像背景*/
+.play1 .headerBack {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    margin: 22.5px 0 0 12.5px;
+    border-radius: 50%;
+    background: url(../image/背景/背景5.jpg) no-repeat;
+    box-shadow: 0 0 15px rgb(247, 210, 3);
+}
+
+/* 头像 */
+.play1 .userHeader {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin: 30px 0 0 20px;
+    border-radius: 50%;
+    background: url(../image/背景/人物1.jpg) no-repeat;
+}
+
+
+/* 用户名 */
+.play1 .userName {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 49px 0 0 130px;
+    background: url(../image/背景/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 用户段位 */
+.play1 .userRank {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 79px 0 0 130px;
+    background: url(../image/背景/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play1 .userName span,
+.play1 .userRank span {
+    margin: 6px 0 0 6px;
+    font-size: 14px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+    /*字体加阴影*/
+}
+
+/* 时长 */
+.play1 .userTime {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 140px 0 0 18px;
+    background: url(../image/背景/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 步数 */
+.play1 .userStep {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 200px 0 0 18px;
+    background: url(../image/背景/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play1 .userTime .time,
+.play1 .userStep .step {
+    margin: 9px 0 0 25px;
+    font-size: 32px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+
+
+.play2 {
+    width: 310px;
+    height: 280px;
+    background: url(../image/背景/背景1.jpg);
+    margin-top: 70px;
+    position: relative;
+}
+
+/*头像背景*/
+.play2 .headerBack {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    margin: 22.5px 0 0 12.5px;
+    border-radius: 50%;
+    background: url(../image/背景/背景5.jpg) no-repeat;
+    box-shadow: 0 0 15px rgb(247, 210, 3);
+}
+
+
+
+.play2 .userHeader {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin: 30px 0 0 20px;
+    border-radius: 50%;
+    background: url(../image/背景/人物2.jpg) no-repeat;
+}
+
+.play2 .userName {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 49px 0 0 130px;
+    background: url(../image/背景/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userRank {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 79px 0 0 130px;
+    background: url(../image/背景/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userName span,
+.play2 .userRank span {
+    margin: 6px 0 0 6px;
+    font-size: 14px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+.play2 .userTime {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 140px 0 0 18px;
+    background: url(../image/背景/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+.play2 .userStep {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 200px 0 0 18px;
+    background: url(../image/背景/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userTime .time,
+.play2 .userStep .step {
+    margin: 9px 0 0 25px;
+    font-size: 32px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+.mid {
+    width: 600px;
+    height: 650px;
+    /* background: url(../image/棋盘/back.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover; */
+    margin-left: 30px;
+    position: relative;
+}
+
+.mid .chess {
+    width: 536px;
+    height: 600px;
+    position: absolute;
+    top: 30px;
+    left: 34px;
+    background: url(../image/棋盘/棋盘2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.right {
+    width: 310px;
+    height: 650px;
+    /* background: url(../image/棋盘/back.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover; */
+    margin-left: 30px;
+    position: relative;
+}
+
+
+/*小logo*/
+.right .rightTop {
+    width: 310px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: url(../image/提示框/logo.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    /* animation: topRun 5s linear infinite; */
+}
+
+@keyframes topRun {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: 4px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
+/**排行榜*/
+.right .rightMid {
+    width: 310px;
+    height: 150px;
+    position: absolute;
+    left: 0px;
+    top: 201px;
+    background: url(../image/提示框/charts.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.rightMid .chartLogo {
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    margin: 0 auto;
+    background: url(../image/提示框/chartLogo.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/*聊天框*/
+.right .rightBottom {
+    width: 310px;
+    height: 298px;
+    position: absolute;
+    left: 0px;
+    top: 352px;
+    background: url(../image/背景/chart背景2.jpg) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/*计时器*/
+.play1 .rockTime {
+    width: 30px;
+    height: 39px;
+    position: absolute;
+    left: 320px;
+    top: 5px;
+    background: url(../image/背景/漏斗.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    animation: rockRun 2s linear infinite;
+
+}
+
+.play2 .rockTime {
+    width: 30px;
+    height: 39px;
+    position: absolute;
+    left: 320px;
+    top: 5px;
+    background: url(../image/背景/漏斗.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    animation: rockRun 2s linear infinite;
+
+}
+
+@keyframes rockRun {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+/*排行榜信息*/
+.rightMid table {
+    display: block;
+    width: 310px;
+    height: 130px;
+    margin-top: 25px;
+    color: white;
+}
+
+.rightMid table tr th {
+    width: 100px;
+    color: white;
+}
+
+.rightMid .rightCharts {
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    left: 30px;
+    top: 0;
+}
+
+/*主要按钮*/
+.contentBtn {
+    width: 600px;
+    height: 65px;
+    position: absolute;
+    left: 50%;
+    top: 650px;
+    margin-top: -15px;
+    margin-left: -300px;
+}
+
+.contentBtn>div {
+    width: 130px;
+    height: 60px;
+    float: left;
+    background: blue;
+    margin: 2px 10px 0 10px;
+}
