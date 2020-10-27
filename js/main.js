@@ -30,6 +30,10 @@ $(function() {
     $("#board").click(function() {
         var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
         var y = event.offsetY;
+        console.log('x:'+x+'y:'+y)
+        if(x>=585||y>=665||y<20||x<5){
+            return false;
+        }
         let {
             r_x,
             r_y
