@@ -301,7 +301,8 @@ function clickOnPieces($piece) {
         a_y
     } = getAbsolute(r_x, r_y);
 
-    //吃子
+    console.log('isOwn ' + isOwn)
+        //吃子
     if (board.onHand && board.onHand != $piece && !isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -315,10 +316,10 @@ function clickOnPieces($piece) {
             }
         );
 
-        if (checkResult) {
+        if (checkResult && player.current) {
             //满足规则  吃
             alert("吃");
-            $piece.remove();
+            $piece.hide();
 
             //设置棋子在棋盘位置
             board.onHand.css({
@@ -333,15 +334,31 @@ function clickOnPieces($piece) {
             };
 
             board.onHand.removeClass("on");
-
             piecesList[$piece.attr("index")].survive = false;
+            let data = {
+                header: {
+                    action: 'eat'
+                },
+                data: {
+                    userId: player.userInfo.id,
+                    roomId: player.roomId,
+                    piece: {
+                        onHandId: board.onHand.attr('index'),
+                        byEatId: $piece.attr("index")
+                    }
+                }
+            }
+            sendMsg(data)
+
             board.onHand = null;
             console.log(piecesList);
+            player.current = false
         } else {
             alert("不满足走子规则");
         }
         return;
     } else if (board.onHand == $piece) {
+
         //点自己两下  应该取消选中
         $piece.removeClass("on");
         board.onHand = null;
@@ -373,6 +390,7 @@ function movePieces() {
             board.onHand.attr("index") < 16 :
             board.onHand.attr("index") > 15;
     }
+    console.log('isOwn ' + isOwn)
     if (board.onHand && isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -385,10 +403,10 @@ function movePieces() {
                 n_y: board.click.r_y,
             }
         );
-        console.log(checkResult);
+        console.log('rulescheck ' + checkResult);
 
         //点击非棋子，如果手上有子，则移动手子到点击个位置
-        if (checkResult) {
+        if (checkResult && player.current) {
             board.onHand.css({
                 left: board.click.a_x + "px",
                 top: board.click.a_y + "px",
@@ -398,9 +416,28 @@ function movePieces() {
             piecesList[index].position.x = board.click.r_x;
             piecesList[index].position.y = board.click.r_y;
 
+            let data = {
+                header: {
+                    action: 'move'
+                },
+                data: {
+                    userId: player.userInfo.id,
+                    roomId: player.roomId,
+                    piece: {
+                        id: board.onHand.attr('index'),
+                        position: {
+                            x: board.click.r_x,
+                            y: board.click.r_y
+                        }
+                    }
+                }
+            }
+            sendMsg(data)
+
             //移除选中样式
             board.onHand.removeClass("on");
             board.onHand = null;
+            player.current = false
         }
     }
 }

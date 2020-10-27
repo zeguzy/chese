@@ -15,8 +15,11 @@ let board = {
 let player = {}; //用户信息
 player.ws = null; // webSocket
 player.userInfo = {};
+otherPlayer = {}
 
-
+player.current = player.redCamp ? true : false //初始化
+let apiAddress = 'http://192.168.31.221:81/api/login'
+let wsAddress = 'ws://192.168.31.221:3000'
 
 /**
  * 点击棋盘后
@@ -54,73 +57,87 @@ $(function() {
     $("button")
         .eq(0)
         .on("click", "", function() {
-            // let username = $('.userName').val()
-            //     //对username正则检验
+            let username = $('.userName').val()
 
-            // post(apiAddress, {
-            //     username
-            // }).then((data) => {
-            //     player.userInfo = data.userInfo
+            //对username正则检验
 
-            //     //完成后的回调
-            //     $('button').hide()
-            //     $('.userName').hide()
-            //     $('h3').html(data.userInfo.username)
-            //     $('.start').show()
-            // })
+            post(apiAddress, {
+                username
+            }).then((data) => {
+                player.userInfo = data.userInfo
+
+                console.log(player.userInfo)
+
+                //完成后的回调
+                $('button').hide()
+                $('.userName').hide()
+                $('h3').html(data.userInfo.username)
+                $('.start').show()
+            })
 
             //模拟
 
-            player.redCamp = false; //是否为红
-            $("button").hide();
-            $(".userName").hide();
-            $("h3").html("你好 lubing");
-            $(".start").show();
-            $(".usernameLable").hide();
+            // player.redCamp = false; //是否为红
+            // $("button").hide();
+            // $(".userName").hide();
+            // $("h3").html("你好 lubing");
+            // $(".start").show();
+            // $(".usernameLable").hide();
         });
 
     //开始按钮点击后
     $(".start").on("click", "", function() {
         $(".start").hide();
-        //  ws = new WebSocket('ws://localhost:3000');
-        //  ws.onmessage = function(msg) {
-        //      msg = JSON.parse(msg.data)
-        //          //  console.log(msg)
-        //      console.log(msg.header.action)
-        //      if (msg.header.action === 'OK') {
-        //          //准备棋盘和棋子
-        //          alert('准备棋盘和棋子')
-        //      }
+        player.ws = new WebSocket(wsAddress);
+        player.ws.onmessage = function(msg) {
 
-        //  };
+            try {
+                msg = JSON.parse(msg.data)
+            } catch (err) {
+                msg = null
+            }
+            console.log(msg)
+            console.log(msg.header.action)
+
+            if (msg && msg.header.action === 'OK') {
+                gameOk(msg.data)
+            }
+            if (msg && msg.header.action === 'move') {
+                otherMove(msg.data)
+            }
+            if (msg && msg.header.action === 'eat') {
+                otherEat(msg.data)
+            }
+
+        };
 
         //模拟生成棋盘
-        setTimeout(() => {
-            // 生成 棋子
-            generatePieces(piecesList);
-            if (player.redCamp) {
-                $("#board").css({
-                    transform: "rotateZ(180deg)",
-                });
-                $(".qi").css({
-                    transform: "rotateZ(180deg)",
-                });
-            }
-            // 显示棋盘
-            $("#board").show();
-        }, 100);
+        // setTimeout(() => {
+        //     // 生成 棋子
+        //     generatePieces(piecesList);
+        //     if (player.redCamp) {
+        //         $("#board").css({
+        //             transform: "rotateZ(180deg)",
+        //         });
+        //         $(".qi").css({
+        //             transform: "rotateZ(180deg)",
+        //         });
+        //     }
+        //     // 显示棋盘
+        //     $("#board").show();
+        // }, 100);
 
         // 打开WebSocket连接后立刻发送一条消息:
-        //  player.ws.onopen = function() {
-        //      let data = {
-        //          header: {
-        //              action: 'match'
-        //          },
-        //          data: {
-        //              userInfo
-        //          }
-        //      }
-        //      sendMsg(data)
-        //  }
+        player.ws.onopen = function() {
+            let data = {
+                header: {
+                    action: 'match'
+                },
+                data: {
+                    userInfo: player.userInfo
+                }
+            }
+            sendMsg(data)
+        }
     });
 });

@@ -27,5 +27,5 @@ function post(url, data = {}) {
  * @author zegu
  */
 function sendMsg(data) {
-    if (ws) ws.send(JSON.stringify(data));
+    if (player.ws) player.ws.send(JSON.stringify(data));
 }

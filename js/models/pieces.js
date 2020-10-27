@@ -56,6 +56,7 @@ function generatePieces(piecesList) {
     piecesList.forEach((element) => {
         element.survive = true;
         let $piece = $(`<div class='qi' index=${element.id}></div>`);
+        element.DOM = $piece
         let {
             a_x,
             a_y
