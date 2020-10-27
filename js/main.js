@@ -301,6 +301,7 @@ function rulesChecker(piece, {
         case 5:
             {
                 //炮 @author zegu
+
                 //走直线
                 let line =
                     _x == 0 || (_y == 0 && Math.abs(_x) + Math.abs(_y) != 0) ? true : false;
@@ -318,18 +319,21 @@ function rulesChecker(piece, {
 
                     //中间是否有子
                     piecesList.forEach((element) => {
-                        if (element.position.y == y) {
-                            if (element.position.x == n_x && element.survive) {
-                                end = true;
-                            }
-                            if (
-                                element.position.x > min &&
-                                element.position.x < max &&
-                                element.survive
-                            ) {
-                                sum++;
-                            }
+                        if ( //末尾有子否
+                            element.position.x == n_x &&
+                            element.survive &&
+                            element.position.y == y) {
+                            end = true;
                         }
+                        if ( //中间子数
+                            element.position.x > min &&
+                            element.position.x < max &&
+                            element.survive &&
+                            element.position.y == y
+                        ) {
+                            sum++;
+                        }
+
                     });
                 }
                 if (_y != 0) {
@@ -338,34 +342,26 @@ function rulesChecker(piece, {
 
                     //中点是否有子
                     piecesList.forEach((element) => {
-                        if (element.position.x == x) {
-                            if (element.position.y == n_y && element.survive) {
-                                end = true;
-                            }
-                            if (
-                                element.position.y > min &&
-                                element.position.y < max &&
-                                element.survive
-                            ) {
-                                sum++;
-                            }
+                        if (element.position.y == n_y && element.survive && element.position.x == x) {
+                            end = true;
+                        }
+                        if (
+                            element.position.y > min &&
+                            element.position.y < max &&
+                            element.survive &&
+                            element.position.x == x
+                        ) {
+                            sum++;
                         }
                     });
                 }
 
                 result = sum <= 1 ? true : false;
 
-                if (sum > 2) {
+                if ((sum == 0 && end) || sum > 2 || (sum == 1 && !end)) {
                     result = false;
                     break;
                 }
-                if (sum == 0 && end) {
-                    result = false;
-                    break;
-                } else if (sum == 1 && !end) {
-                    result = false;
-                }
-
                 break;
             }
         case 6:
