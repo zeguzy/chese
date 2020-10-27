@@ -12,11 +12,11 @@ function getRelative(x, y) {
     let xMul = parseInt(x / 65); //计算出当前轴上有几个单位距离
     let yMul = parseInt(y / 65);
     //如果余数大于32.5，则说明需要在x轴加上一个单位距离
-    if (xNum > 32.5) {
+    if (xNum > 32.5 && xMul < 8) {
         xMul++;
     }
     //如果余数大于32.5，则说明需要在y轴加上一个单位距离
-    if (yNum > 32.5) {
+    if (yNum > 32.5 && yMul < 9) {
         yMul++;
     }
     console.log(xMul);
