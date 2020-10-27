@@ -18,7 +18,7 @@
      background: url(../images/board.bmp) no-repeat;
      background-size: 100%;
      margin: 0 auto;
-     border: 1px solid red;
+     /* border: 1px solid red; */
      position: relative;
      display: none;
      /* transform: rotateX(15deg); */
