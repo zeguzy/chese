@@ -55,18 +55,18 @@ function sendMsg(data) {
  * @author LuBing
  */
 function getRelative(x, y) {
-    x = x - 35; //减去多余的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
-    y = y - 50;
-    let xNum = x % 65; //计算出相对于当前轴多余的数字，用于模糊计算（即是否在x轴加上一个单位距离）
-    let yNum = y % 65;
-    let xMul = parseInt(x / 65); //计算出当前轴上有几个单位距离
-    let yMul = parseInt(y / 65);
+    x = x - 10; //减去多余的位置，使得坐标位置从棋盘的左上角开始，而不是图片的左上角
+    y = y - 11;
+    let xNum = x % 60; //计算出相对于当前轴多余的数字，用于模糊计算（即是否在x轴加上一个单位距离）
+    let yNum = y % 60;
+    let xMul = parseInt(x / 60); //计算出当前轴上有几个单位距离
+    let yMul = parseInt(y / 60);
     //如果余数大于32.5，则说明需要在x轴加上一个单位距离
-    if (xNum > 32.5) {
+    if (xNum > 30) {
         xMul++;
     }
     //如果余数大于32.5，则说明需要在y轴加上一个单位距离
-    if (yNum > 32.5) {
+    if (yNum > 30) {
         yMul++;
     }
     console.log(xMul);
@@ -85,10 +85,10 @@ function getRelative(x, y) {
  * @author LuBing
  */
 function getAbsolute(x, y) {
-    x = x * 65 + 35; //得出在轴上，棋盘交叉点轴的位置
-    y = y * 65 + 50;
-    x = x - 32.5; //移动棋子自身一般宽度，用于棋子在棋盘上好看
-    y = y - 32.5;
+    x = x * 60 + 10; //得出在轴上，棋盘交叉点轴的位置
+    y = y * 60 + 11;
+    x = x - 30; //移动棋子自身一般宽度，用于棋子在棋盘上好看
+    y = y - 30;
 
     return {
         a_x: x,
@@ -164,6 +164,7 @@ $(function() {
     $("#board").click(function() {
         var x = event.offsetX //获得鼠标点击对象内部的x，y轴坐标
         var y = event.offsetY
+        console.log('x:'+x+"y:"+y)
         let {
             r_x,
             r_y

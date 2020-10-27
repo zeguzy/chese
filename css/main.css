@@ -10,15 +10,20 @@
  div.box {
      /* perspective: 400px; */
  }
+ body{
+     margin: 0;
+     padding: 0;
+     background-color: rgb(50, 110, 50);
+ }
  
  #board {
-     width: 600px;
-     height: 694px;
+     width: 500px;
+     height: 560px;
      background: skyblue;
-     background: url(../images/board.bmp) no-repeat;
+     background: url(../images/chessBoard.png) no-repeat;
      background-size: 100%;
      margin: 0 auto;
-     border: 1px solid red;
+     /* border: 1px solid red; */
      position: relative;
      display: none;
      /* transform: rotateX(15deg); */
@@ -26,8 +31,8 @@
  }
  
  .qi {
-     width: 65px;
-     height: 65px;
+     width: 60px;
+     height: 60px;
      float: left;
      position: absolute;
      display: none;
