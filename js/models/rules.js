@@ -42,29 +42,46 @@ function rulesChecker(piece, {
             return result;
         }
         case 1: {
-            // 将帅         @author 斌
-            let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
-            if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
-                if (_x == 0) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else if (_y == 0) {
-                    result = Math.abs(_x) == 1 ? true : false;
+                //   作用：判断纵轴上有无除了将帅的棋子
+                function HaveWhether(Axis) {
+                    let exitwhether = false;
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (piecesList[i].position.x == Axis && piecesList[i].survive && piecesList[i].position.y > piecesList[4].position.y && piecesList[i].position.y < piecesList[27].position.y) {
+                            exitwhether = true;
+                        }
+                    }
+                    return exitwhether;
+                }
+                // 将帅         @author 斌
+                let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
+
+                if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
+                    if (_x == 0) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else if (_y == 0) {
+                        result = Math.abs(_x) == 1 ? true : false;
+                    } else {
+                        result = false;
+                    }
+                    if (!HaveWhether(piecesList[n_x].position.x && n_x == piecesList[27].position.x)) {
+                        result = false;
+                    }
+                } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
+                    if (_x == 0) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else if (_y == 0) {
+                        result = Math.abs(_x) == 1 ? true : false;
+                    } else {
+                        result = false;
+                    }
+                    if (!HaveWhether(piecesList[n_x].position.x) && n_x == piecesList[4].position.x) {
+                        result = false;
+                    }
                 } else {
                     result = false;
                 }
-            } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
-                if (_x == 0) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else if (_y == 0) {
-                    result = Math.abs(_x) == 1 ? true : false;
-                } else {
-                    result = false;
-                }
-            } else {
-                result = false;
+                return result;
             }
-            return result;
-        }
         case 2: {
             //士         @author 斌
             let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
