@@ -1,5 +1,5 @@
 $(function () {
-    // let backMusic = $("<audio src='../music/background.mp3' autoplay id='hint'/>");//加背景音乐
+    // let backMusic = $("<audio src='../music/background.mp3' autoplay id='hint'/>");//加bg音乐
     // backMusic.appendTo("body");
     /*自动播放 */
     let index = 0;//当前按钮的位置
@@ -8,7 +8,7 @@ $(function () {
     let btnT = false;//判断是否能继续点击
     let backMusic = document.getElementsByClassName("backMusic")[0];
     $("body").on("click",function(){
-        backMusic.play();//继续背景音乐
+        backMusic.play();//继续bg音乐
     })
     //点击按钮播放视频
     $(".playBtn").on("click", function () {
@@ -16,21 +16,21 @@ $(function () {
         $(".videos").css({ "left": "50%" });
         $(".videos video").trigger("load");//重新加载视频
         $(".videos video").trigger("play");//播放视频
-        backMusic.pause();//暂停背景音乐
+        backMusic.pause();//暂停bg音乐
     })
     //点击X按钮关闭视频
     $(".close").on("click", function () {
         showSound("../music/clickOn.mp3");
         $(".videos").css({ "left": "500%" });
         $(".videos video").trigger("pause");//暂停视频
-        backMusic.play();//继续背景音乐
+        backMusic.play();//继续bg音乐
     })
 
-    let srcArr = [{ src1: "../image/提示框/star2.png", src2: "../image/提示框/star1.png" },
-    { src1: "../image/提示框/ruleGame2.png", src2: "../image/提示框/ruleGame1.png" },
+    let srcArr = [{ src1: "../image/promptBox/star2.png", src2: "../image/promptBox/star1.png" },
+    { src1: "../image/promptBox/ruleGame2.png", src2: "../image/promptBox/ruleGame1.png" },
 
-    { src1: "../image/提示框/setGame2.png", src2: "../image/提示框/setGame1.png" },
-    { src1: "../image/提示框/exitGame2.png", src2: "../image/提示框/exitGame1.png" }]
+    { src1: "../image/promptBox/setGame2.png", src2: "../image/promptBox/setGame1.png" },
+    { src1: "../image/promptBox/exitGame2.png", src2: "../image/promptBox/exitGame1.png" }]
     for (let i = 0; i < $(".lunbo").length; i++) {
         //鼠标放在标签上改变图片
         $(".lunbo").eq(i).mouseover(function () {
@@ -41,29 +41,6 @@ $(function () {
             $(".lunbo:eq(" + i + ") img").attr({ src: srcArr[i].src2 })
         });
     }
-    //鼠标放在按钮上变化颜色
-    $(".no").mouseover(function () {
-        $(".no img").attr({ src: "../image/提示框/noW2.png" })
-    })
-    $(".no").mouseout(function () {
-        $(".no img").attr({ src: "../image/提示框/noW1.png" })
-    })
-    $(".no").on("click", function () {
-        showSound("../music/clickOn.mp3");
-        $(".exitW").css({ "display": "none" })
-    })
-
-    $(".ok").mouseover(function () {
-        $(".ok img").attr({ src: "../image/提示框/okW2.png" })
-    })
-    $(".ok").mouseout(function () {
-        $(".ok img").attr({ src: "../image/提示框/okW1.png" })
-    })
-
-    $(".ok").on("click", function () {
-        showSound("../music/clickOn.mp3");
-        window.close();
-    })
     //点击左边按钮左移
     $(".left").on("click", function () {
         showSound("../music/clickOn.mp3");
@@ -134,9 +111,21 @@ $(function () {
             btnT = false;
         });
     })
+   /*点击退出游戏按钮 */
     $(".exit").on("click", function () {
         showSound("../music/clickOn.mp3");
-        $(".exitW").css({ "display": "block" })
+        $(".quit").css({ "left": "0" })
+    })
+    /*点击取消退出游戏 */
+    $(".quitNo").on("click", function () {
+        showSound("../music/clickOn.mp3");
+        $(".quit").css({ "left": "-200%" });
+    })
+
+    /*点击确定退出游戏 */
+    $(".quitOk").on("click", function () {
+        showSound("../music/clickOn.mp3");
+        window.close();
     })
     /**
         * 产生音效

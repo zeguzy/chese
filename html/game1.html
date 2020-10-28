@@ -8,16 +8,32 @@
     <link rel="stylesheet" href="../css/game1.css">
     <script src="../js/jquery-1.11.1.min.js"></script>
     <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/data.js"></script>
     <script src="../js/game1.js"></script>
+    
     <!-- 滚轮插件 -->
     <script src="../js/jquery.mousewheel.js"></script>
     <style>
-       
 
     </style>
 </head>
 
 <body>
+    <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
+        <source src="../music/backgroundMusic.mp3" type="audio/mp3">
+    </audio>
+    <!-- 确认登录按钮 -->
+    <div class="login">
+        <div class="loginBox">
+            <input class="usInput" type="text" value="" placeholder="请输入用户名！">
+        </div>
+        <div class="loginOk"></div>
+    </div>
+    <!-- 对局开始按钮 -->
+    <div class="gameStar">
+        <div class="gameStarImg"></div>
+    </div>
+
     <section class="content">
         <div class="left">
             <div class="play1">
@@ -26,8 +42,10 @@
                 <div class="userName"><span>用户名：陈子龙</span></div>
                 <div class="userRank"><span>用户段位：象棋大师</span></div>
                 <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                <div class="userStep"><span class="step">步数：</span></div>
-                <div class="rockTime"></div>
+                <div class="userStep"><span class="step">步数：0</span></div>
+                <div class="rockTime">
+                    <div class="img"></div>
+                </div>
             </div>
             <div class="play2">
                 <div class="headerBack"> </div>
@@ -35,13 +53,14 @@
                 <div class="userName"><span>用户名：卢冰</span></div>
                 <div class="userRank"><span>用户段位：象棋大师</span></div>
                 <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                <div class="userStep"><span class="step">步数：</span></div>
-                <div class="rockTime"></div>
+                <div class="userStep"><span class="step">步数：0</span></div>
+                <div class="rockTime">
+                    <div class="img"></div>
+                </div>
             </div>
         </div>
         <div class="mid">
             <div class='chess'>
-
             </div>
         </div>
         <div class="right">
@@ -56,20 +75,20 @@
                         <th>用户名</th>
                         <th>段位</th>
                     </tr>
-                    <tr>
-                        <th><img src="../image/提示框/one.png" alt=""></th>
-                        <th><span>陈子龙</span></th>
-                        <th><span>象棋大师</span></th>
+                    <tr style="color: rgb(250, 4, 4);">
+                        <td><img src="../image/promptBox/one.png" alt=""></td>
+                        <td><span style="color: rgb(250, 4, 4);">陈子龙</span></td>
+                        <td><span style="color: rgb(250, 4, 4);">象棋大师</span></td>
                     </tr>
-                    <tr>
-                        <th><img src="../image/提示框/two.png" alt=""></th>
-                        <th><span>卢冰</span></th>
-                        <th><span>象棋大师</span></th>
+                    <tr style="color: rgb(250, 205, 4);">
+                        <td><img src="../image/promptBox/two.png" alt=""></td>
+                        <td><span style="color: rgb(250, 205, 4);">卢冰</span></td>
+                        <td><span style="color: rgb(250, 205, 4);">象棋大师</span></td>
                     </tr>
-                    <tr>
-                        <th><img src="../image/提示框/three.png" alt=""></th>
-                        <th><span>张耀</span></th>
-                        <th><span>象棋大师</span></th>
+                    <tr style="color: rgb(183, 185, 33);">
+                        <td><img src="../image/promptBox/three.png" alt=""></td>
+                        <td><span style="color: rgb(183, 185, 33);">张耀</span></td>
+                        <td><span style="color: rgb(183, 185, 33);">象棋大师</span></td>
                     </tr>
                 </table>
             </div>
@@ -78,12 +97,54 @@
             </div>
         </div>
         <div class="contentBtn">
-            <div class="btn1"></div>
-            <div class="btn2"></div>
-            <div class="btn3"></div>
-            <div class="btn4"></div>
+            <div class="btn1">
+                <div></div>
+            </div>
+            <div class="btn2">
+                <div></div>
+            </div>
+            <div class="btn3">
+                <div></div>
+            </div>
+            <div class="btn4">
+                <div></div>
+            </div>
         </div>
     </section>
+    <!-- 退出游戏 -->
+    <div class="quit">
+        <div class="quitBox">
+            <div class="quitNo"></div>
+            <div class="quitOk"></div>
+        </div>
+    </div>
+    <!-- 认输按钮 -->
+    <div class="giveUp">
+        <div class="giveUpBox">
+            <div class="giveUpNo"></div>
+            <div class="giveUpOk"></a></div>
+        </div>
+    </div>
+    <!-- 输了 -->
+    <div class="fail">
+        <div class="failImg"></div>
+    </div>
+    <!-- 赢了 -->
+    <div class="win">
+        <div class="winImg"></div>
+    </div>
+    <!-- 平局 -->
+    <div class="tieGame">
+        <div class="tieGameImg"></div>
+    </div>
+    <!-- 棋子 -->
+    <div class="pieces">
+        <ul class="piecesImg">
+           
+        </ul>
+    </div>
+
+
 </body>
 
 </html>
