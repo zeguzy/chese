@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background: url(../image/bg/bg7.jpg) no-repeat;
+    background: url(../image/bg/bg72.jpg) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
@@ -404,11 +404,11 @@ li{
     left: 50%;
     top: 650px;
     margin-top: -15px;
-    margin-left: -300px;
+    margin-left: -294px;
 }
 
 .contentBtn>div {
-    width: 130px;
+    width: 100px;
     height: 60px;
     float: left;
     margin: 2px 10px 0 10px;
@@ -423,7 +423,7 @@ li{
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -485,6 +485,7 @@ li{
     background: url(../image/promptBox/remorseful1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
+    transform: scale(1.1);
 }
 .btn2>div {
     width: 100px;
@@ -500,6 +501,7 @@ li{
     background: url(../image/promptBox/tieGame1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
+    transform: scale(1.1);
 }
 .btn3>div {
     width: 100px;
@@ -509,11 +511,13 @@ li{
     background: url(../image/promptBox/giveUp.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
+    
 }
 .btn3>div:hover {
     background: url(../image/promptBox/giveUp1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
+    transform: scale(1.1);
 }
 .btn4>div {
     width: 100px;
@@ -528,6 +532,19 @@ li{
     background: url(../image/promptBox/quit1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
+    transform: scale(1.1);
+}
+.btn5>div {
+    width: 50px;
+    height: 50px;
+    margin: 5.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/bg/wMusic.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+.btn5>div:hover {
+    transform: scale(1.1);
 }
  /*退出界面*/
  .quit {
@@ -538,7 +555,7 @@ li{
     bottom: 0;
     left: -200%;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -597,7 +614,7 @@ li{
     bottom: 0;
     left: -200%;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -786,4 +803,34 @@ li{
     right: 0;
     background: rgba(0,0,0,0);
     z-index: 1;
+}
+/*聊天框*/
+.chartbg{
+    width: 220px;
+    height: 39px;
+    position: absolute;
+    left: 2px;
+    bottom: 4px;
+    background: url(../image/bg/bg7.jpg) no-repeat;
+}
+.chartbg input{
+    width: 200px;
+    height: 28px;
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
+    background: rgb(212, 149, 66);
+}
+.chartbtn{
+    width: 80px;
+    height: 39px;
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    border-radius: 5px;
+    background: url(../image/promptBox/send1.png) no-repeat;
+}
+.chartbtn:hover{
+
+    background: url(../image/promptBox/send2.png) no-repeat;
 }

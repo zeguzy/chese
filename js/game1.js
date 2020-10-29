@@ -35,6 +35,7 @@ $(function () {
     /*点击确定退出游戏 */
     $(".quitOk").on("click", function () {
         showSound("../music/clickOn.mp3");
+        /*回到欢迎界面 */
         $(window).attr('location', "../html/index.html");
     })
 
@@ -80,9 +81,11 @@ $(function () {
     $(".win").on("click", function () {
         showSound("../music/clickOn.mp3");
         $(".win").css({ "left": "-200%" });
-    })
+    }) 
+    let o = -1;
     // 添加棋子
     function addPieces() {
+        
         let pieces_html = '';
         for (let i = 31; i >= 0; i--) {
             pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: ' + 280 + 'px;left: ' + 260 + 'px;background: url(' + piecesList[i].pieces.img + ') no-repeat"></li>';
@@ -90,25 +93,51 @@ $(function () {
         }
         $(".piecesImg").html(pieces_html);       // 把象棋的HTML代码放入页面对应的元素中
         /*移动象棋动画 */
-        let o = 0;
+       
         function go() {
-            $(".piecesImg li:last").animate({ top: ((-piecesList[o].position.y + 9) * 60 + 11) + 'px', left: (piecesList[o].position.x * 60 + 10) + 'px' }, 300, function () {
+            o++;
+            console.log(piecesList[o].position.x);
+            /*移动动画 */
+            $(".piecesImg li:last").animate({ top: ((piecesList[o].position.y) * 60 + 12) + 'px', left: (piecesList[o].position.x * 60 + 11) + 'px' }, 500, function () {
                 $(".piecesImg li:last").remove();//移除元素
                 showSound("../music/playChess.mp3");
-                let strDiv = '<div  style=" width: 50px; height: 50px;position: absolute;top: ' + ((-piecesList[o].position.y + 9) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 11) + 'px;background: url(' + piecesList[o].pieces.img + ') no-repeat"></div>';
+                let strDiv = '<div class="is"  style=" width: 50px; height: 50px;position: absolute;top: ' + ((piecesList[o].position.y) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 12) + 'px;background: url(' + piecesList[o].pieces.img + ') no-repeat"></div>';
+                /*在相应位置生成相应的图片 */
                 $(".pieces").append(strDiv);
-                o++;
                 go();
+                // o=o+1;
+                // console.log(o);
                 if (o == 31) {
                     $(".page1").css({ "left": "-200%" });
+                    return 0;
                 }
-
             });
         }
         go();
     }
+    /*按钮控制音效 */
+    $(".btn5 div").on("click", function () {
+        if ($(".btn5 div").attr("data-index") == 0) {
+            $(".btn5 div").css({
+                "background": "url(../image/bg/wMusic2.png) no-repeat",
+                "background-size": "cover",
+                "-moz-background-size": "cover"
+            });
+            /*设置自定义属性值 */
+            $(".btn5 div").attr("data-index","1");
 
-
+            $("audio").trigger("pause");
+        }
+        else if ($(".btn5 div").attr("data-index") == 1) {
+            $(".btn5 div").css({
+                "background": "url(../image/bg/wMusic.png) no-repeat",
+                "background-size": "cover",
+                "-moz-background-size": "cover"
+            });
+            $(".btn5 div").attr("data-index","0");
+            $("audio").trigger("play");
+        }
+    })
 
     /**
       * 产生音效
