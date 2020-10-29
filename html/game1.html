@@ -10,18 +10,18 @@
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/data.js"></script>
     <script src="../js/game1.js"></script>
-    
+
     <!-- 滚轮插件 -->
     <script src="../js/jquery.mousewheel.js"></script>
     <style>
-
+      
     </style>
 </head>
 
 <body>
-    <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
+    <!-- <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
         <source src="../music/backgroundMusic.mp3" type="audio/mp3">
-    </audio>
+    </audio> -->
     <!-- 确认登录按钮 -->
     <div class="login">
         <div class="loginBox">
@@ -61,6 +61,10 @@
         </div>
         <div class="mid">
             <div class='chess'>
+                <div class="pieces">
+                    <ul class="piecesImg">
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="right">
@@ -137,13 +141,9 @@
     <div class="tieGame">
         <div class="tieGameImg"></div>
     </div>
-    <!-- 棋子 -->
-    <div class="pieces">
-        <ul class="piecesImg">
-           
-        </ul>
+    <!-- 蒙版 -->
+    <div class="page1">
     </div>
-
 
 </body>
 

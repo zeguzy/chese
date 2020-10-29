@@ -16,7 +16,9 @@ $(function () {
     $(".gameStarImg").on("click", function () {
         showSound("../music/clickOn.mp3");
         $(".gameStar").css({ "left": "-200%" });
-        $(".pieces").css({ "left": "0" });
+        $(".pieces").css({ "z-index": "1" });
+        $(".page1").css({ "left": "0" });
+        addPieces();
     })
     /*退出游戏按钮 */
     $(".btn4").on("click", function () {
@@ -56,33 +58,57 @@ $(function () {
     })
     /*出现平局页面 */
     $(".btn2").on("click", function () {
+        showSound("../music/clickOn.mp3");
         $(".tieGame").css({ "left": "0" });
     })
     /*悔棋 */
     $(".btn1").on("click", function () {
+        showSound("../music/clickOn.mp3");
         alert("对面是否同意悔棋");
     })
     /*点击任意地方平局界面消失 */
     $(".tieGame").on("click", function () {
+        showSound("../music/clickOn.mp3");
         $(".tieGame").css({ "left": "-200%" });
     })
     /*点击任意地方失败页面消失 */
     $(".fail").on("click", function () {
+        showSound("../music/clickOn.mp3");
         $(".fail").css({ "left": "-200%" });
     })
     /*点击任意地方成功界面消失 */
     $(".win").on("click", function () {
+        showSound("../music/clickOn.mp3");
         $(".win").css({ "left": "-200%" });
     })
-
+    // 添加棋子
     function addPieces() {
         let pieces_html = '';
-        for (let i = 0; i < 16; i++) {
-            pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: '+(piecesList[i].position.y*60+11) +'px;left: '+ (piecesList[i].position.x*60+10)+'px;background: url('+ piecesList[i].pieces.img +') no-repeat"></li>'; 
+        for (let i = 31; i >= 0; i--) {
+            pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: ' + 280 + 'px;left: ' + 260 + 'px;background: url(' + piecesList[i].pieces.img + ') no-repeat"></li>';
+            // pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: '+(piecesList[i].position.y*60+11) +'px;left: '+ (piecesList[i].position.x*60+10)+'px;background: url('+ piecesList[i].pieces.img +') no-repeat"></li>'; 
         }
         $(".piecesImg").html(pieces_html);       // 把象棋的HTML代码放入页面对应的元素中
+        /*移动象棋动画 */
+        let o = 0;
+        function go() {
+            $(".piecesImg li:last").animate({ top: ((-piecesList[o].position.y + 9) * 60 + 11) + 'px', left: (piecesList[o].position.x * 60 + 10) + 'px' }, 300, function () {
+                $(".piecesImg li:last").remove();//移除元素
+                showSound("../music/playChess.mp3");
+                let strDiv = '<div  style=" width: 50px; height: 50px;position: absolute;top: ' + ((-piecesList[o].position.y + 9) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 11) + 'px;background: url(' + piecesList[o].pieces.img + ') no-repeat"></div>';
+                $(".pieces").append(strDiv);
+                o++;
+                go();
+                if (o == 31) {
+                    $(".page1").css({ "left": "-200%" });
+                }
+
+            });
+        }
+        go();
     }
-    addPieces();
+
+
 
     /**
       * 产生音效

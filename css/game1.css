@@ -754,18 +754,36 @@ li{
     position: absolute;
     top: 0;
     bottom: 0;
-    left:-200%;
+    left:0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0);
+    z-index: -6;
 }
 .piecesImg {
     width: 50px;
     height: 50px;
     position: absolute;
-    left: 515px;
-    top: 55px;
+    left: 0px;
+    top: 0px;
     margin: -25px 0 0 -25px;
 
 }
-
+.on {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+/*动画蒙版*/
+.page1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0,0,0,0);
+    z-index: 1;
+}
