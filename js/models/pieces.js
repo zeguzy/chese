@@ -53,6 +53,7 @@ function getAbsolute(x, y) {
  */
 function generatePieces(piecesList) {
     let $board = $("#board");
+
     piecesList.forEach((element) => {
         element.survive = true;
         let $piece = $(`<div class='qi' index=${element.id}></div>`);
@@ -70,7 +71,7 @@ function generatePieces(piecesList) {
             `url(${element.piecesType.img}) no-repeat center center`
         );
 
-        // console.log($piece)
+
         $board.append($piece);
         $piece.show();
         $piece.click(function() {

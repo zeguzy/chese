@@ -9,7 +9,7 @@ function gameOk(data) {
 
     //准备棋盘和棋子
     generatePieces(piecesList);
-    if (player.redCamp) {
+    if (!player.redCamp) {
         $("#board").css({
             transform: "rotateZ(180deg)",
         });
@@ -57,6 +57,8 @@ function otherMove(data) {
         })
     }
     player.current = true
+
+    // callback()
 }
 
 /**
@@ -94,4 +96,5 @@ function otherEat(data) {
         piece_byEat.survive = false
     }
     player.current = true
+        // callback()
 }

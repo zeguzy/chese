@@ -19,232 +19,239 @@ function rulesChecker(piece, {
     m_y = (y + n_y) / 2;
 
     let result = true;
-    console.log(piece);
+    // console.log(piece);
     switch (piece.piecesType.id) {
-        case 0: {
-            //兵卒         @author 斌
-            let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
-            if (mover == 0 && y <= 4 && _y == 1) {
-                result = _x == 0 ? true : false;
-            } else if (mover == 0 && y > 4 && _y == 0) {
-                result = Math.abs(_x) == 1 ? true : false;
-            } else if (mover == 0 && y > 4 && _y == 1) {
-                result = _x == 0 ? true : false;
-            } else if (mover == 1 && y >= 5 && _y == -1) {
-                result = _x == 0 ? true : false;
-            } else if (mover == 1 && y < 5 && _y == 0) {
-                result = Math.abs(_x) == 1 ? true : false;
-            } else if (mover == 1 && y < 5 && _y == -1) {
-                result = _x == 0 ? true : false;
-            } else {
-                result = false;
-            }
-            return result;
-        }
-        case 1: {
-            // 将帅         @author 斌
-            let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
-            if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
-                if (_x == 0) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else if (_y == 0) {
+        case 0:
+            {
+                //兵卒         @author 斌
+                let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
+                if (mover == 0 && y <= 4 && _y == 1) {
+                    result = _x == 0 ? true : false;
+                } else if (mover == 0 && y > 4 && _y == 0) {
                     result = Math.abs(_x) == 1 ? true : false;
-                } else {
-                    result = false;
-                }
-            } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
-                if (_x == 0) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else if (_y == 0) {
+                } else if (mover == 0 && y > 4 && _y == 1) {
+                    result = _x == 0 ? true : false;
+                } else if (mover == 1 && y >= 5 && _y == -1) {
+                    result = _x == 0 ? true : false;
+                } else if (mover == 1 && y < 5 && _y == 0) {
                     result = Math.abs(_x) == 1 ? true : false;
+                } else if (mover == 1 && y < 5 && _y == -1) {
+                    result = _x == 0 ? true : false;
                 } else {
                     result = false;
                 }
-            } else {
-                result = false;
+                return result;
             }
-            return result;
-        }
-        case 2: {
-            //士         @author 斌
-            let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
-            if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
-                if (Math.abs(_x) == 1) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else {
-                    result = false;
-                }
-            } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
-                if (Math.abs(_x) == 1) {
-                    result = Math.abs(_y) == 1 ? true : false;
-                } else {
-                    result = false;
-                }
-            } else {
-                result = false;
-            }
-            return result;
-        }
-        case 3: {
-            // 马         @author 斌
-            if (Math.abs(_y) == 2) {
-                result = Math.abs(_x) == 1 ? true : false;
-                for (let i = 0; i < piecesList.length; i++) {
-                    if (
-                        x == piecesList[i].position.x &&
-                        y + _y / 2 == piecesList[i].position.y &&
-                        piecesList[i].survive
-                    ) {
+        case 1:
+            {
+                // 将帅         @author 斌
+                let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
+                if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
+                    if (_x == 0) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else if (_y == 0) {
+                        result = Math.abs(_x) == 1 ? true : false;
+                    } else {
                         result = false;
-                        console.log(piecesList[i].survive)
                     }
-                }
-            } else if (Math.abs(_x) == 2) {
-                result = Math.abs(_y) == 1 ? true : false;
-                for (let i = 0; i < piecesList.length; i++) {
-                    if (
-                        x + _x / 2 == piecesList[i].position.x &&
-                        y == piecesList[i].position.y &&
-                        piecesList[i].survive
-                    ) {
+                } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
+                    if (_x == 0) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else if (_y == 0) {
+                        result = Math.abs(_x) == 1 ? true : false;
+                    } else {
                         result = false;
-                        console.log(piecesList[i].survive)
                     }
+                } else {
+                    result = false;
                 }
-            } else {
-                result = false;
+                return result;
             }
-            return result;
-        }
-        case 4: {
-            //象 @author zegu
-            if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
-                result = false;
-            } else if (piece.id < 16 && n_y > 4) {
-                result = false;
-            } else if (piece.id > 16 && n_y < 5) {
-                result = false;
-            }
-
-            //中点是否有子
-            let midpoint = piecesList.some((element) => {
-                return (
-                    element.position.x == m_x &&
-                    element.position.y == m_y &&
-                    element.survive
-                );
-            });
-            // alert(midpoint)
-            result = midpoint ? false : result;
-            break;
-        }
-        case 5: {
-            //炮 @author zegu
-            //走直线
-            let line =
-                _x == 0 || (_y == 0 && Math.abs(_x) + Math.abs(_y) != 0) ? true : false;
-            if (!line) {
-                result = false;
-                break;
-            }
-
-            let sum = 0;
-            let end = false;
-
-            if (_x != 0) {
-                let max = Math.max(x, n_x);
-                let min = Math.min(x, n_x);
-
-                //中间是否有子
-                piecesList.forEach((element) => {
-                    if ( //末尾有子否
-                        element.position.x == n_x &&
-                        element.survive &&
-                        element.position.y == y) {
-                        end = true;
+        case 2:
+            {
+                //士         @author 斌
+                let mover = piece.id < 16 ? 0 : 1; // 判断红黑方
+                if (mover == 0 && n_x < 6 && n_x > 2 && n_y < 3) {
+                    if (Math.abs(_x) == 1) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else {
+                        result = false;
                     }
-                    if ( //中间子数
-                        element.position.x > min &&
-                        element.position.x < max &&
-                        element.survive &&
-                        element.position.y == y
-                    ) {
-                        sum++;
+                } else if (mover == 1 && n_x < 6 && n_x > 2 && n_y > 6) {
+                    if (Math.abs(_x) == 1) {
+                        result = Math.abs(_y) == 1 ? true : false;
+                    } else {
+                        result = false;
                     }
-
-                });
+                } else {
+                    result = false;
+                }
+                return result;
             }
-            if (_y != 0) {
-                let max = Math.max(y, n_y);
-                let min = Math.min(y, n_y);
+        case 3:
+            {
+                // 马         @author 斌
+                if (Math.abs(_y) == 2) {
+                    result = Math.abs(_x) == 1 ? true : false;
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (
+                            x == piecesList[i].position.x &&
+                            y + _y / 2 == piecesList[i].position.y &&
+                            piecesList[i].survive
+                        ) {
+                            result = false;
+                            console.log(piecesList[i].survive)
+                        }
+                    }
+                } else if (Math.abs(_x) == 2) {
+                    result = Math.abs(_y) == 1 ? true : false;
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (
+                            x + _x / 2 == piecesList[i].position.x &&
+                            y == piecesList[i].position.y &&
+                            piecesList[i].survive
+                        ) {
+                            result = false;
+                            console.log(piecesList[i].survive)
+                        }
+                    }
+                } else {
+                    result = false;
+                }
+                return result;
+            }
+        case 4:
+            {
+                //象 @author zegu
+                if (Math.abs(_x) != 2 || Math.abs(_y) != 2) {
+                    result = false;
+                } else if (piece.id < 16 && n_y > 4) {
+                    result = false;
+                } else if (piece.id > 16 && n_y < 5) {
+                    result = false;
+                }
 
                 //中点是否有子
-                piecesList.forEach((element) => {
-                    if (element.position.y == n_y && element.survive && element.position.x == x) {
-                        end = true;
-                    }
-                    if (
-                        element.position.y > min &&
-                        element.position.y < max &&
-                        element.survive &&
-                        element.position.x == x
-                    ) {
-                        sum++;
-                    }
+                let midpoint = piecesList.some((element) => {
+                    return (
+                        element.position.x == m_x &&
+                        element.position.y == m_y &&
+                        element.survive
+                    );
                 });
-            }
-
-            result = sum <= 1 ? true : false;
-
-            if ((sum == 0 && end) || sum > 2 || (sum == 1 && !end)) {
-                result = false;
+                // alert(midpoint)
+                result = midpoint ? false : result;
                 break;
             }
-            break;
-        }
-        case 6: {
-            //车 @author LuBing
-            if ((_x != 0 && _y != 0) || (_x == 0 && _y == 0)) {
-                return false;
-            } else if (_x != 0 && _y == 0 || _y != 0 && _x == 0) {
-                for (let i = 0; i < piecesList.length; i++) {
-                    if (!piecesList[i].survive) {
-                        continue
-                    }
-                    if (piecesList[i].position.y == y) {
-                        if (
-                            piecesList[i].position.x - x < 0 &&
-                            _x < 0 &&
-                            piecesList[i].position.x - x > _x
-                        ) {
-                            return false;
-                        } else if (
-                            piecesList[i].position.x - x > 0 &&
-                            _x > 0 &&
-                            piecesList[i].position.x - x < _x
-                        ) {
-                            return false;
+        case 5:
+            {
+                //炮 @author zegu
+                //走直线
+                let line =
+                    _x == 0 || (_y == 0 && Math.abs(_x) + Math.abs(_y) != 0) ? true : false;
+                if (!line) {
+                    result = false;
+                    break;
+                }
+
+                let sum = 0;
+                let end = false;
+
+                if (_x != 0) {
+                    let max = Math.max(x, n_x);
+                    let min = Math.min(x, n_x);
+
+                    //中间是否有子
+                    piecesList.forEach((element) => {
+                        if ( //末尾有子否
+                            element.position.x == n_x &&
+                            element.survive &&
+                            element.position.y == y) {
+                            end = true;
                         }
-                    }
-                    if (piecesList[i].position.x == x) {
+                        if ( //中间子数
+                            element.position.x > min &&
+                            element.position.x < max &&
+                            element.survive &&
+                            element.position.y == y
+                        ) {
+                            sum++;
+                        }
+
+                    });
+                }
+                if (_y != 0) {
+                    let max = Math.max(y, n_y);
+                    let min = Math.min(y, n_y);
+
+                    //中点是否有子
+                    piecesList.forEach((element) => {
+                        if (element.position.y == n_y && element.survive && element.position.x == x) {
+                            end = true;
+                        }
                         if (
-                            piecesList[i].position.y - y < 0 &&
-                            _y < 0 &&
-                            piecesList[i].position.y - y > _y
+                            element.position.y > min &&
+                            element.position.y < max &&
+                            element.survive &&
+                            element.position.x == x
                         ) {
-                            return false;
-                        } else if (
-                            piecesList[i].position.y - y > 0 &&
-                            _y > 0 &&
-                            piecesList[i].position.y - y < _y
-                        ) {
-                            return false;
+                            sum++;
+                        }
+                    });
+                }
+
+                result = sum <= 1 ? true : false;
+
+                if ((sum == 0 && end) || sum > 2 || (sum == 1 && !end)) {
+                    result = false;
+                    break;
+                }
+                break;
+            }
+        case 6:
+            {
+                //车 @author LuBing
+                if ((_x != 0 && _y != 0) || (_x == 0 && _y == 0)) {
+                    return false;
+                } else if (_x != 0 && _y == 0 || _y != 0 && _x == 0) {
+                    for (let i = 0; i < piecesList.length; i++) {
+                        if (!piecesList[i].survive) {
+                            continue
+                        }
+                        if (piecesList[i].position.y == y) {
+                            if (
+                                piecesList[i].position.x - x < 0 &&
+                                _x < 0 &&
+                                piecesList[i].position.x - x > _x
+                            ) {
+                                return false;
+                            } else if (
+                                piecesList[i].position.x - x > 0 &&
+                                _x > 0 &&
+                                piecesList[i].position.x - x < _x
+                            ) {
+                                return false;
+                            }
+                        }
+                        if (piecesList[i].position.x == x) {
+                            if (
+                                piecesList[i].position.y - y < 0 &&
+                                _y < 0 &&
+                                piecesList[i].position.y - y > _y
+                            ) {
+                                return false;
+                            } else if (
+                                piecesList[i].position.y - y > 0 &&
+                                _y > 0 &&
+                                piecesList[i].position.y - y < _y
+                            ) {
+                                return false;
+                            }
                         }
                     }
                 }
+                break;
             }
-            break;
-        }
     }
     return result;
 }
@@ -259,8 +266,8 @@ function clickOnPieces($piece) {
 
     //不能吃自己的子
     let isOwn = player.redCamp ?
-        $piece.attr("index") < 16 :
-        $piece.attr("index") > 15;
+        $piece.attr("index") > 15 :
+        $piece.attr("index") < 16
 
     let r_x = piecesList[$piece.attr("index")].position.x;
     let r_y = piecesList[$piece.attr("index")].position.y;
@@ -355,8 +362,8 @@ function movePieces() {
     let isOwn = false;
     if (board.onHand) {
         isOwn = player.redCamp ?
-            board.onHand.attr("index") < 16 :
-            board.onHand.attr("index") > 15;
+            board.onHand.attr("index") > 15 :
+            board.onHand.attr("index") < 16;
     }
     console.log('isOwn ' + isOwn)
     if (board.onHand && isOwn) {
