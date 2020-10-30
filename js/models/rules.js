@@ -536,7 +536,11 @@ function checkPiecesMove(piece, {
     x,
     y
 }) {
-    let bool = false;
+    let bool = true;
+    let sign =  rulesChecker(piece,{x:piece.position.x,y:piece.position.y},{n_x:x,n_y:y});
+    if(!sign){
+        return false;
+    }
     piecesList.forEach(function (value,index) {
         if(!value.survive){
             return false;
@@ -545,14 +549,32 @@ function checkPiecesMove(piece, {
         value.id > 15 :
         value.id < 16;
         if(isOwn){
-            let sign =  rulesChecker(piece,{x:piece.position.x,y:piece.position.y},{n_x:x,n_y:y})
-            if(value.position.x != x && value.position.y != y && sign ){
-                bool = true;
+            if(value.position.x == x && value.position.y == y ){
+                bool = false;
                 return;
             }
         }
     })
     return bool
+}
+
+/**
+ * @description 检查是否有棋子，并是返回
+ * @param {object} 棋盘相对坐标
+ * @returns {object} 返回存在对象
+ */
+function isTherePiece({x,y}){
+    let obj = null;
+    piecesList.forEach(function(value,index){
+        if(!value.survive){
+            return false;
+        }
+        if(value.position.x == x && value.position.y == y){
+            obj = value;
+            return;
+        }
+    })
+    return obj;
 }
 
 /**
@@ -572,9 +594,16 @@ function trappedDead() {
             console.log(value)
             for (let i = 0; i < 9; i++) {
                 for (let j = 0; j < 10; j++) {
-
+                    let obj = isTherePiece({x:i,y:j});
+                   
                     sign = checkPiecesMove(value,{x:i,y:j});
                     if (sign) {
+                        if(obj!=null && (!player.redCamp ?
+                            obj.id > 15 :
+                            obj.id < 16)){
+                                obj.survive = false;
+                            }
+
                         //保存之前状态         
                         let t_x = piecesList[index].position.x;
                         let t_y = piecesList[index].position.y;
@@ -591,6 +620,12 @@ function trappedDead() {
                         //恢复原来的相对坐标
                         piecesList[index].position.x = t_x;
                         piecesList[index].position.y = t_y;
+
+                        if(obj!=null && (!player.redCamp ?
+                            obj.id > 15 :
+                            obj.id < 16)){
+                                obj.survive = true;
+                            }
 
                         if (mark != 1 && player.redCamp) {
                             result = false;
