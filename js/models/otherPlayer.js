@@ -34,12 +34,16 @@ function otherMove(data) {
     let piece = piecesList[index]
     let n_x = data.piece.position.x
     let n_y = data.piece.position.y
+
+
     console.log(piece)
 
     let checkRules = rulesChecker(piece, piece.position, {
         n_x,
         n_y
     })
+
+
     if (checkRules) {
         let {
             a_x,
@@ -55,7 +59,10 @@ function otherMove(data) {
             top: a_y + 'px',
             left: a_x + 'px'
         })
+        if (data.mark)
+            alert('将军')
     }
+
     player.current = true
 
     // callback()
@@ -91,6 +98,8 @@ function otherEat(data) {
             top: a_y + 'px',
             left: a_x + 'px'
         })
+        if (data.mark)
+            alert('将军')
 
         piece_byEat.DOM.hide()
         piece_byEat.survive = false
