@@ -96,7 +96,7 @@ function rulesChecker(piece, {
                         piecesList[i].survive
                     ) {
                         result = false;
-                        console.log(piecesList[i].survive)
+                        // console.log(piecesList[i].survive)
                     }
                 }
             } else if (Math.abs(_x) == 2) {
@@ -269,7 +269,7 @@ function clickOnPieces($piece) {
         a_y
     } = getAbsolute(r_x, r_y);
 
-    console.log('isOwn ' + isOwn)
+    // console.log('isOwn ' + isOwn)
     //吃子
     if (board.onHand && board.onHand != $piece && !isOwn) {
         //规则判断
@@ -319,12 +319,14 @@ function clickOnPieces($piece) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
                 piecesList[$piece.attr("index")].survive = true
+                $piece.show()
                 alert("红方不能动")
                 return false;
             } else if (mark == 2 && !player.redCamp) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
                 piecesList[$piece.attr("index")].survive = true
+                $piece.show()
                 alert("黑方不能动")
                 return false;
             } else if (mark == 1) {
@@ -347,7 +349,7 @@ function clickOnPieces($piece) {
             sendMsg(data)
 
             board.onHand = null;
-            console.log(piecesList);
+            // console.log(piecesList);
             player.current = false
         } else {
             alert("不满足走子规则");
@@ -386,7 +388,7 @@ function movePieces() {
             board.onHand.attr("index") > 15 :
             board.onHand.attr("index") < 16;
     }
-    console.log('isOwn ' + isOwn)
+    // console.log('isOwn ' + isOwn)
     if (board.onHand && isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -399,7 +401,7 @@ function movePieces() {
                 n_y: board.click.r_y,
             }
         );
-        console.log('rulescheck ' + checkResult);
+        // console.log('rulescheck ' + checkResult);
 
         //点击非棋子，如果手上有子，则移动手子到点击个位置
         if (checkResult && player.current) {
@@ -496,12 +498,12 @@ function checkGeneral() {
                 n_x: piecesList[27].position.x,
                 n_y: piecesList[27].position.y
             });
-            console.log(result);
+            // console.log(result);
             if (result) {
                 // console.log("B result:"+result);
-                console.log({
-                    v: value
-                })
+                // console.log({
+                //     v: value
+                // })
                 mark = 1;
             }
 
@@ -513,8 +515,6 @@ function checkGeneral() {
                 n_x: piecesList[4].position.x,
                 n_y: piecesList[4].position.y
             });
-            console.log(piecesList[4])
-            console.log(result);
             if (result) {
                 // console.log("R result:"+result);
                 // console.log({
@@ -537,19 +537,25 @@ function checkPiecesMove(piece, {
     y
 }) {
     let bool = true;
-    let sign =  rulesChecker(piece,{x:piece.position.x,y:piece.position.y},{n_x:x,n_y:y});
-    if(!sign){
+    let sign = rulesChecker(piece, {
+        x: piece.position.x,
+        y: piece.position.y
+    }, {
+        n_x: x,
+        n_y: y
+    });
+    if (!sign) {
         return false;
     }
-    piecesList.forEach(function (value,index) {
-        if(!value.survive){
+    piecesList.forEach(function (value, index) {
+        if (!value.survive) {
             return false;
         }
         let isOwn = player.redCamp ?
-        value.id > 15 :
-        value.id < 16;
-        if(isOwn){
-            if(value.position.x == x && value.position.y == y ){
+            value.id > 15 :
+            value.id < 16;
+        if (isOwn) {
+            if (value.position.x == x && value.position.y == y) {
                 bool = false;
                 return;
             }
@@ -563,13 +569,16 @@ function checkPiecesMove(piece, {
  * @param {object} 棋盘相对坐标
  * @returns {object} 返回存在对象
  */
-function isTherePiece({x,y}){
+function isTherePiece({
+    x,
+    y
+}) {
     let obj = null;
-    piecesList.forEach(function(value,index){
-        if(!value.survive){
+    piecesList.forEach(function (value, index) {
+        if (!value.survive) {
             return false;
         }
-        if(value.position.x == x && value.position.y == y){
+        if (value.position.x == x && value.position.y == y) {
             obj = value;
             return;
         }
@@ -591,18 +600,24 @@ function trappedDead() {
             value.id > 15 :
             value.id < 16;
         if (isOwn) {
-            console.log(value)
+            // console.log(value)
             for (let i = 0; i < 9; i++) {
                 for (let j = 0; j < 10; j++) {
-                    let obj = isTherePiece({x:i,y:j});
-                   
-                    sign = checkPiecesMove(value,{x:i,y:j});
+                    let obj = isTherePiece({
+                        x: i,
+                        y: j
+                    });
+
+                    sign = checkPiecesMove(value, {
+                        x: i,
+                        y: j
+                    });
                     if (sign) {
-                        if(obj!=null && (!player.redCamp ?
-                            obj.id > 15 :
-                            obj.id < 16)){
-                                obj.survive = false;
-                            }
+                        if (obj != null && (!player.redCamp ?
+                                obj.id > 15 :
+                                obj.id < 16)) {
+                            obj.survive = false;
+                        }
 
                         //保存之前状态         
                         let t_x = piecesList[index].position.x;
@@ -614,18 +629,15 @@ function trappedDead() {
 
                         let mark = checkGeneral();
 
-                        console.log("id:" + value.id + "Mark ---- " + mark)
-                        console.log('i-->'+i+'j-->'+j)
-
                         //恢复原来的相对坐标
                         piecesList[index].position.x = t_x;
                         piecesList[index].position.y = t_y;
 
-                        if(obj!=null && (!player.redCamp ?
-                            obj.id > 15 :
-                            obj.id < 16)){
-                                obj.survive = true;
-                            }
+                        if (obj != null && (!player.redCamp ?
+                                obj.id > 15 :
+                                obj.id < 16)) {
+                            obj.survive = true;
+                        }
 
                         if (mark != 1 && player.redCamp) {
                             result = false;
