@@ -56,13 +56,13 @@ $("#board").click(function() {
  */
 $("button:eq(0)").on("click", "", function() {
     let username = $(".userName").val();
-    //对username正则检验
 
-    post(apiAddress, { //像后端传递信息
+
+    post(apiAddress, { //传递信息
         username,
     }).then((data) => { //完成后的回调
         player.userInfo = data.userInfo;
-        $("button").hide();
+        $("button").eq(0).hide();
         $(".userName").hide();
         $("h3").html(data.userInfo.username);
         $(".start").show();
@@ -88,9 +88,6 @@ $(".start").on("click", "", function() {
             msg = null;
         }
 
-        // console.log(msg);
-        // console.log(msg.header.action);
-
         if (msg && msg.header.action === "OK") {
             gameOk(msg.data);
         }
@@ -99,6 +96,12 @@ $(".start").on("click", "", function() {
         }
         if (msg && msg.header.action === "eat") {
             otherEat(msg.data);
+        }
+        if (msg && msg.header.action === "chat") {
+            otherChat(msg.data);
+        }
+        if (msg && msg.header.action === "close") {
+            toMatch()
         }
     };
 
@@ -129,5 +132,33 @@ $(".start").on("click", "", function() {
             },
         };
         sendMsg(data);
-    };
+    }
+
+    player.ws.onclose = function() {
+        console.log('ws closed')
+        setTimeout(() => {
+            // location.reload();
+
+        }, 5000)
+
+    }
 });
+
+$('.chat').on('click', 'button', function() {
+    let content = $('.chat input').val()
+    let mesg = {
+        header: {
+            action: 'chat'
+        },
+        data: {
+            userId: player.userInfo.id,
+            roomId: player.roomId,
+            username: player.userInfo.username,
+            content
+        }
+    }
+    if (player.ws) {
+        sendMsg(mesg)
+        $('.chat .box').append($(`<span>我</span>:<span>${content}</span><br/>`))
+    }
+})

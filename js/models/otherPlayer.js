@@ -9,16 +9,7 @@ function gameOk(data) {
 
     //准备棋盘和棋子
     generatePieces(piecesList);
-    if (!player.redCamp) {
-        $("#board").css({
-            transform: "rotateZ(180deg)",
-        });
-        $(".qi").css({
-            transform: "rotateZ(180deg)",
-        });
-    }
-    // 显示棋盘
-    $("#board").show();
+
 }
 
 /**
@@ -106,4 +97,38 @@ function otherEat(data) {
     }
     player.current = true
         // callback()
+}
+
+/**
+ * 
+ * @param {*} data 
+ */
+function otherChat(data) {
+    $('.chat .box').append($(`<span>${data.username}</span>:<span>${data.content}</span><br/>`))
+}
+
+/**
+ * 重开 滚去匹配
+ */
+function toMatch() {
+    piecesList = [...piecesListBack]
+    if (!player.redCamp) {
+        $("#board").css({
+            transform: "rotateZ(-180deg)",
+        });
+        $(".qi").css({
+            transform: "rotateZ(180deg)",
+        });
+    }
+    $('.qi').remove()
+    $('.start').show()
+    console.log()
+    console.log(piecesList)
+    console.log(piecesListBack)
+
+
+    //匹配按钮浮现
+
+    //断开ws连接
+    player.ws.close()
 }

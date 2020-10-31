@@ -341,3 +341,15 @@ let piecesList = [
         }
     }
 ]
+
+let piecesListBack = []
+piecesList.forEach(Element => {
+    piecesListBack.push({
+        id: Element.id,
+        piecesType: Element.piecesType,
+        position: {
+            x: Element.position.x,
+            y: Element.position.y
+        }
+    })
+})

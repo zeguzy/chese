@@ -456,12 +456,10 @@ function movePieces() {
                 data.data.mark = true
             }
 
-
             board.onHand.css({ //设置棋子在棋盘位置
                 left: board.click.a_x + "px",
                 top: board.click.a_y + "px",
             });
-
             sendMsg(data)
 
             //移除选中样式
@@ -505,13 +503,8 @@ function checkGeneral() {
             });
             console.log(result);
             if (result) {
-                // console.log("B result:"+result);
-                console.log({
-                    v: value
-                })
                 mark = 1;
             }
-
         } else if (index >= 16) {
             result = rulesChecker(value, {
                 x: value.position.x,
@@ -530,7 +523,48 @@ function checkGeneral() {
             }
         }
     })
-    mark = num == 0 && player.redCamp ? 1 : mark;
-    mark = num == 0 && !player.redCamp ? 2 : mark;
+    mark = (num == 0 && player.redCamp) ? 1 : mark;
+    mark = (num == 0 && !player.redCamp) ? 2 : mark;
     return mark;
 }
+
+
+function failure() {
+    //自己的分数减少 并更新页面 与失败动画
+    player.score = player.score - 100 * 1
+    alert('失败')
+
+    let mesg = {
+        header: {
+            action: 'Failure'
+        },
+        data: {
+            userId: player.userInfo.userId,
+            roomId: player.roomId
+        }
+    }
+    sendMsg(mesg)
+}
+
+
+function win() {
+    //自己的分数增加 并更新页面 与动画
+    player.score = player.score + 100 * 1
+    alert('胜利')
+}
+
+
+function giveIn() {
+    let mesg = {
+        header: {
+            action: 'giveIn'
+        },
+        data: {
+            userId: player.userInfo.userId,
+            roomId: player.roomId
+        }
+    }
+    sendMsg(mesg)
+}
+
+function drawnGame() {}

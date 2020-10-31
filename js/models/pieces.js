@@ -52,6 +52,8 @@ function getAbsolute(x, y) {
  * @author zegu
  */
 function generatePieces(piecesList) {
+    // 显示棋盘
+    $("#board").show();
     let $board = $("#board");
 
     piecesList.forEach((element) => {
@@ -78,4 +80,12 @@ function generatePieces(piecesList) {
             clickOnPieces($piece);
         });
     });
+    if (!player.redCamp) {
+        $("#board").css({
+            transform: "rotateZ(180deg)",
+        });
+        $(".qi").css({
+            transform: "rotateZ(180deg)",
+        });
+    }
 }
