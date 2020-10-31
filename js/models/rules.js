@@ -344,19 +344,14 @@ function clickOnPieces($piece) {
                 data.data.mark = true
             }
 
-
             //设置棋子在棋盘位置
             board.onHand.css({
                 left: a_x + "px",
                 top: a_y + "px",
             });
             board.onHand.removeClass("on");
-
-
             sendMsg(data)
-
             board.onHand = null;
-            // console.log(piecesList);
             player.current = false
         } else {
             alert("不满足走子规则");
@@ -395,7 +390,7 @@ function movePieces() {
             board.onHand.attr("index") > 15 :
             board.onHand.attr("index") < 16;
     }
-    // console.log('isOwn ' + isOwn)
+
     if (board.onHand && isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -408,7 +403,6 @@ function movePieces() {
                 n_y: board.click.r_y,
             }
         );
-        // console.log('rulescheck ' + checkResult);
 
         //点击非棋子，如果手上有子，则移动手子到点击个位置
         if (checkResult && player.current) {
@@ -503,12 +497,9 @@ function checkGeneral() {
                 n_x: piecesList[27].position.x,
                 n_y: piecesList[27].position.y
             });
-            // console.log(result);
+
             if (result) {
-                // console.log("B result:"+result);
-                // console.log({
-                //     v: value
-                // })
+
                 mark = 1;
             }
         } else if (index >= 16) {
@@ -520,10 +511,6 @@ function checkGeneral() {
                 n_y: piecesList[4].position.y
             });
             if (result) {
-                // console.log("R result:"+result);
-                // console.log({
-                //     v: value
-                // })
                 mark = 2;
             }
         }
@@ -533,6 +520,137 @@ function checkGeneral() {
     return mark;
 }
 
+
+/**
+ * @description 检测棋子能否移动到棋盘上某点
+ */
+function checkPiecesMove(piece, {
+    x,
+    y
+}) {
+    let bool = true;
+    let sign = rulesChecker(piece, {
+        x: piece.position.x,
+        y: piece.position.y
+    }, {
+        n_x: x,
+        n_y: y
+    });
+    if (!sign) {
+        return false;
+    }
+    piecesList.forEach(function(value, index) {
+        if (!value.survive) {
+            return false;
+        }
+        let isOwn = player.redCamp ?
+            value.id > 15 :
+            value.id < 16;
+        if (isOwn) {
+            if (value.position.x == x && value.position.y == y) {
+                bool = false;
+                return;
+            }
+        }
+    })
+    return bool
+}
+
+/**
+ * @description 检查是否有棋子，并是返回
+ * @param {object} 棋盘相对坐标
+ * @returns {object} 返回存在对象
+ * @author lubing
+ */
+function isTherePiece({
+    x,
+    y
+}) {
+    let obj = null;
+    piecesList.forEach(function(value, index) {
+        if (!value.survive) {
+            return false;
+        }
+        if (value.position.x == x && value.position.y == y) {
+            obj = value;
+            return;
+        }
+    })
+    return obj;
+}
+
+/**
+ * @description 检查是否困毙
+ * @author LuBing
+ */
+function trappedDead() {
+    let result = true;
+    let sign = false;
+    piecesList.forEach(function(value, index) {
+        if (!value.survive) {
+            return true;
+        }
+        let isOwn = player.redCamp ?
+            value.id > 15 :
+            value.id < 16;
+        if (isOwn) {
+            // console.log(value)
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 10; j++) {
+                    let obj = isTherePiece({
+                        x: i,
+                        y: j
+                    });
+
+                    sign = checkPiecesMove(value, {
+                        x: i,
+                        y: j
+                    });
+                    if (sign) {
+                        if (obj != null && (!player.redCamp ?
+                                obj.id > 15 :
+                                obj.id < 16)) {
+                            obj.survive = false;
+                        }
+
+                        //保存之前状态         
+                        let t_x = piecesList[index].position.x;
+                        let t_y = piecesList[index].position.y;
+
+                        //更新子的相对坐标
+                        piecesList[index].position.x = i;
+                        piecesList[index].position.y = j;
+
+                        let mark = checkGeneral();
+
+                        //恢复原来的相对坐标
+                        piecesList[index].position.x = t_x;
+                        piecesList[index].position.y = t_y;
+
+                        if (obj != null && (!player.redCamp ?
+                                obj.id > 15 :
+                                obj.id < 16)) {
+                            obj.survive = true;
+                        }
+
+                        if (mark != 1 && player.redCamp) {
+                            result = false;
+                            return;
+                        } else if (mark != 2 && !player.redCamp) {
+                            result = false;
+                            return;
+                        }
+
+
+                    }
+
+
+                }
+            }
+        }
+    })
+    return result;
+}
 
 function failure() {
     //自己的分数减少 并更新页面 与失败动画
@@ -571,5 +689,3 @@ function giveIn() {
     }
     sendMsg(mesg)
 }
-
-function drawnGame() {}

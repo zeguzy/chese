@@ -130,9 +130,9 @@ function toMatch() {
     }
     $('.qi').remove()
     $('.start').show()
-    console.log()
-    console.log(piecesList)
-    console.log(piecesListBack)
+        // console.log()
+        // console.log(piecesList)
+        // console.log(piecesListBack)
 
 
     //匹配按钮浮现
