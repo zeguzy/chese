@@ -50,8 +50,12 @@ function otherMove(data) {
             top: a_y + 'px',
             left: a_x + 'px'
         })
-        if (data.mark)
-            alert('将军')
+        if (data.mark) {
+            let tr = trappedDead()
+            alert('move-将军:' + tr)
+
+        }
+
     }
 
     player.current = true
@@ -89,11 +93,15 @@ function otherEat(data) {
             top: a_y + 'px',
             left: a_x + 'px'
         })
-        if (data.mark)
-            alert('将军')
 
         piece_byEat.DOM.hide()
         piece_byEat.survive = false
+
+        if (data.mark) {
+            let tr = trappedDead()
+            alert('Eat-将军:' + tr)
+        }
+
     }
     player.current = true
         // callback()

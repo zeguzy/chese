@@ -100,7 +100,7 @@ function rulesChecker(piece, {
                             piecesList[i].survive
                         ) {
                             result = false;
-                            console.log(piecesList[i].survive)
+                            // console.log(piecesList[i].survive)
                         }
                     }
                 } else if (Math.abs(_x) == 2) {
@@ -112,7 +112,7 @@ function rulesChecker(piece, {
                             piecesList[i].survive
                         ) {
                             result = false;
-                            console.log(piecesList[i].survive)
+                            // console.log(piecesList[i].survive)
                         }
                     }
                 } else {
@@ -276,8 +276,8 @@ function clickOnPieces($piece) {
         a_y
     } = getAbsolute(r_x, r_y);
 
-    console.log('isOwn ' + isOwn)
-        //吃子
+    // console.log('isOwn ' + isOwn)
+    //吃子
     if (board.onHand && board.onHand != $piece && !isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -326,12 +326,14 @@ function clickOnPieces($piece) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
                 piecesList[$piece.attr("index")].survive = true
+                $piece.show()
                 alert("红方不能动")
                 return false;
             } else if (mark == 2 && !player.redCamp) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
                 piecesList[$piece.attr("index")].survive = true
+                $piece.show()
                 alert("黑方不能动")
                 return false;
             } else if (mark == 1) {
@@ -354,7 +356,7 @@ function clickOnPieces($piece) {
             sendMsg(data)
 
             board.onHand = null;
-            console.log(piecesList);
+            // console.log(piecesList);
             player.current = false
         } else {
             alert("不满足走子规则");
@@ -393,7 +395,7 @@ function movePieces() {
             board.onHand.attr("index") > 15 :
             board.onHand.attr("index") < 16;
     }
-    console.log('isOwn ' + isOwn)
+    // console.log('isOwn ' + isOwn)
     if (board.onHand && isOwn) {
         //规则判断
         let index = board.onHand.attr("index");
@@ -406,7 +408,7 @@ function movePieces() {
                 n_y: board.click.r_y,
             }
         );
-        console.log('rulescheck ' + checkResult);
+        // console.log('rulescheck ' + checkResult);
 
         //点击非棋子，如果手上有子，则移动手子到点击个位置
         if (checkResult && player.current) {
@@ -449,10 +451,10 @@ function movePieces() {
                 alert("黑方不能动")
                 return false;
             } else if (mark == 1) {
-                alert('将军')
+                alert('红方被将军')
                 data.data.mark = true
             } else if (mark == 2) {
-                alert('将军')
+                alert('黑方被将军')
                 data.data.mark = true
             }
 
@@ -501,8 +503,12 @@ function checkGeneral() {
                 n_x: piecesList[27].position.x,
                 n_y: piecesList[27].position.y
             });
-            console.log(result);
+            // console.log(result);
             if (result) {
+                // console.log("B result:"+result);
+                // console.log({
+                //     v: value
+                // })
                 mark = 1;
             }
         } else if (index >= 16) {
@@ -513,12 +519,11 @@ function checkGeneral() {
                 n_x: piecesList[4].position.x,
                 n_y: piecesList[4].position.y
             });
-            console.log(result);
             if (result) {
                 // console.log("R result:"+result);
-                console.log({
-                    v: value
-                })
+                // console.log({
+                //     v: value
+                // })
                 mark = 2;
             }
         }
