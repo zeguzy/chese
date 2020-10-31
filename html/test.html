@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 512px;
+            height: 512px;
+
+            background:
+                no-repeat url(../image/bg/bg2Header.png) 31px 0px,
+                no-repeat url(../image/bg/bg2.png) 0px 0px;
+        }
+        
+
+        .box .data {
+            width: 450px;
+            height: 150px;
+            margin: 15px 31px 0 31px;
+        }
+
+        .data tr td {
+            width: 110px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .data tr:nth-of-type(1) td {
+            color: red;
+            text-shadow: 0.1em 0.1em 0.2em red;
+        }
+
+        .data tr:nth-of-type(2) td {
+            color: rgb(129, 122, 122);
+            text-shadow: 0.1em 0.1em 0.2em rgb(129, 122, 122);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+        <table class="data">
+            <tr>
+                <td>赢</td>
+                <td>陈子龙</td>
+                <td>+200</td>
+            </tr>
+            <tr>
+                <td>输</td>
+                <td>张斌</td>
+                <td>-200</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>

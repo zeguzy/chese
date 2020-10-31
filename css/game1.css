@@ -1,0 +1,899 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../image/bg/bg72.jpg) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+li {
+    list-style: none;
+}
+
+.content {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.content>div {
+    float: left;
+}
+
+/*左边用户信息*/
+.left {
+    width: 310px;
+    height: 650px;
+}
+
+/* 用户1 */
+.play1 {
+    width: 310px;
+    height: 280px;
+    background: url(../image/bg/bg8.bmp) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    position: relative;
+    margin: 20px 0 0 0;
+    /* 图片边框*/
+    /* -o-border-image:url(../image/bg/border.png) 30 30 round;
+    border-image: url(../image/bg/border.png) 30 30 round; */
+
+}
+
+/*头像bg*/
+.play1 .headerBack {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    margin: 22.5px 0 0 15.5px;
+    border-radius: 50%;
+    background: url(../image/bg/bg5.jpg) no-repeat;
+    box-shadow: 0 0 15px rgb(247, 210, 3);
+}
+
+/* 头像 */
+.play1 .userHeader {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin: 30px 0 0 23px;
+    border-radius: 50%;
+    background: url(../image/bg/head1.jpg) no-repeat;
+}
+
+
+/* 用户名 */
+.play1 .userName {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 49px 0 0 130px;
+    background: url(../image/bg/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 用户段位 */
+.play1 .userRank {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 79px 0 0 130px;
+    background: url(../image/bg/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play1 .userName span,
+.play1 .userRank span {
+    margin: 6px 0 0 6px;
+    font-size: 14px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+    /*字体加阴影*/
+}
+
+/* 时长 */
+.play1 .userTime {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 140px 0 0 18px;
+    background: url(../image/bg/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 步数 */
+.play1 .userStep {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 200px 0 0 18px;
+    background: url(../image/bg/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play1 .userTime .time,
+.play1 .userStep .step {
+    margin: 9px 0 0 25px;
+    font-size: 32px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+
+
+.play2 {
+    width: 310px;
+    height: 280px;
+    background: url(../image/bg/bg8.bmp) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    margin-top: 70px;
+    position: relative;
+}
+
+/*头像bg*/
+.play2 .headerBack {
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    margin: 22.5px 0 0 15.5px;
+    border-radius: 50%;
+    background: url(../image/bg/bg5.jpg) no-repeat;
+    box-shadow: 0 0 15px rgb(247, 210, 3);
+}
+
+
+
+.play2 .userHeader {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    margin: 30px 0 0 23px;
+    border-radius: 50%;
+    background: url(../image/bg/head2.jpg) no-repeat;
+}
+
+.play2 .userName {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 49px 0 0 130px;
+    background: url(../image/bg/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userRank {
+    width: 160px;
+    height: 25px;
+    position: absolute;
+    margin: 79px 0 0 130px;
+    background: url(../image/bg/name.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userName span,
+.play2 .userRank span {
+    margin: 6px 0 0 6px;
+    font-size: 14px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+.play2 .userTime {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 140px 0 0 18px;
+    background: url(../image/bg/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+
+.play2 .userStep {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    margin: 200px 0 0 18px;
+    background: url(../image/bg/time.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.play2 .userTime .time,
+.play2 .userStep .step {
+    margin: 9px 0 0 25px;
+    font-size: 32px;
+    color: rgb(97, 6, 245);
+    text-shadow: 0.1em 0.1em 0.2em rgb(97, 6, 245);
+}
+
+.mid {
+    width: 600px;
+    height: 650px;
+    background: url(../image/chessBoard/3.gif) no-repeat;
+    /* background: url(../image/chessBoard/8.jpg) no-repeat; */
+    background-size: cover;
+    -moz-background-size: cover;
+    margin-left: 30px;
+    position: relative;
+}
+
+/*棋盘*/
+.mid .chess {
+    width: 500px;
+    height: 560px;
+    position: absolute;
+    top: 50px;
+    left: 45px;
+    background: url(../image/chessBoard/chessBoard.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.right {
+    width: 310px;
+    height: 650px;
+    /* background: url(../image/chessBoard/back.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover; */
+    margin-left: 30px;
+    position: relative;
+}
+
+
+/*小logo*/
+.right .rightTop {
+    width: 310px;
+    height: 200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background: url(../image/promptBox/logo.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    /* animation: topRun 5s linear infinite; */
+}
+
+@keyframes topRun {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: 4px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
+/**排行榜*/
+.right .rightMid {
+    width: 310px;
+    height: 150px;
+    position: absolute;
+    left: 0px;
+    top: 201px;
+    background: url(../image/promptBox/charts.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.rightMid .chartLogo {
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    margin: 0 auto;
+    background: url(../image/promptBox/chartLogo.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/*聊天框*/
+.right .rightBottom {
+    width: 310px;
+    height: 298px;
+    position: absolute;
+    left: 0px;
+    top: 352px;
+    background: url(../image/bg/chartbg2.jpg) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/*用户1计时器*/
+.play1 .rockTime {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 320px;
+    top: 5px;
+    background: url(../image/time/1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    animation: imgRun 30s linear infinite;
+}
+
+/*用户2计时器*/
+.play2 .rockTime {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 320px;
+    top: 5px;
+    background: url(../image/time/1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    animation: imgRun 30s linear infinite;
+}
+
+@keyframes imgRun {
+    0% {
+        background: url(../image/time/1.png);
+    }
+
+    12.5% {
+        background: url(../image/time/2.png);
+    }
+
+    25% {
+        background: url(../image/time/3.png);
+    }
+
+    37.5% {
+        background: url(../image/time/4.png);
+    }
+
+    50% {
+        background: url(../image/time/5.png);
+    }
+
+    62.5% {
+        background: url(../image/time/6.png);
+    }
+
+    75% {
+        background: url(../image/time/7.png);
+    }
+
+    87.5% {
+        background: url(../image/time/8.png);
+    }
+
+    100% {
+        background: url(../image/time/9.png);
+    }
+}
+
+/*排行榜信息*/
+.rightMid table {
+    display: block;
+    width: 310px;
+    height: 130px;
+    margin-top: 25px;
+    color: white;
+}
+
+.rightMid table tr th {
+    width: 100px;
+    color: white;
+}
+
+.rightMid table tr td {
+    width: 100px;
+    text-align: center;
+}
+
+.rightMid .rightCharts {
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    left: 30px;
+    top: 0;
+}
+
+/*主要按钮*/
+.contentBtn {
+    width: 600px;
+    height: 65px;
+    position: absolute;
+    left: 50%;
+    top: 650px;
+    margin-top: -15px;
+    margin-left: -294px;
+}
+
+.contentBtn>div {
+    width: 100px;
+    height: 60px;
+    float: left;
+    margin: 2px 10px 0 10px;
+}
+
+/*登录界面*/
+.login {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.loginBox {
+    width: 25%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    left: 37.5%;
+    right: 37.5%;
+    background: url(../image/promptBox/login.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.loginOk {
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 57%;
+    bottom: 33%;
+    left: 45%;
+    right: 45%;
+    background: url(../image/promptBox/loginOk.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    z-index: 1;
+}
+
+.loginOk:hover {
+    background: url(../image/promptBox/loginOk2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.usInput {
+    width: 54%;
+    height: 6%;
+    position: absolute;
+    top: 41.5%;
+    bottom: 52.5%;
+    left: 19%;
+    right: 27%;
+    padding-left: 5px;
+}
+
+/*按钮样式*/
+.btn1>div {
+    width: 100px;
+    height: 49px;
+    margin: 5.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/promptBox/remorseful.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.btn1>div:hover {
+    background: url(../image/promptBox/remorseful1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    transform: scale(1.1);
+}
+
+.btn2>div {
+    width: 100px;
+    height: 49px;
+    margin: 5.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/promptBox/tieGame.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.btn2>div:hover {
+
+    background: url(../image/promptBox/tieGame1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    transform: scale(1.1);
+}
+
+.btn3>div {
+    width: 100px;
+    height: 49px;
+    margin: 5.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/promptBox/giveUp.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+
+}
+
+.btn3>div:hover {
+    background: url(../image/promptBox/giveUp1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    transform: scale(1.1);
+}
+
+.btn4>div {
+    width: 100px;
+    height: 49px;
+    margin: 5.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/promptBox/quit.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.btn4>div:hover {
+    background: url(../image/promptBox/quit1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    transform: scale(1.1);
+}
+
+.btn5>div {
+    width: 50px;
+    height: 50px;
+    margin: 0.5px 0 0 15px;
+    border-radius: 10px;
+    background: url(../image/bg/wMusic.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.btn5>div:hover {
+    transform: scale(1.2);
+}
+
+/*退出界面*/
+.quit {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.quitBox {
+    width: 22%;
+    height: 30%;
+    position: absolute;
+    top: 25%;
+    bottom: 45%;
+    left: 39%;
+    right: 39%;
+    background: url(../image/dialogBox/quitBg.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.quitNo {
+    width: 30%;
+    height: 14%;
+    position: absolute;
+    top: 65%;
+    bottom: 25%;
+    left: 11%;
+    right: 59%;
+    background: url(../image/promptBox/noW1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.quitNo:hover {
+    background: url(../image/promptBox/noW2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.quitOk {
+    width: 30%;
+    height: 14%;
+    position: absolute;
+    top: 65%;
+    bottom: 25%;
+    left: 59%;
+    right: 11%;
+    background: url(../image/promptBox/okW1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.quitOk:hover {
+    background: url(../image/promptBox/OkW2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/*认输界面*/
+.giveUp {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.giveUpBox {
+    width: 22%;
+    height: 30%;
+    position: absolute;
+    top: 25%;
+    bottom: 45%;
+    left: 39%;
+    right: 39%;
+    background: url(../image/dialogBox/giveUp.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.giveUpNo {
+    width: 30%;
+    height: 14%;
+    position: absolute;
+    top: 65%;
+    bottom: 25%;
+    left: 11%;
+    right: 59%;
+    background: url(../image/promptBox/noW1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.giveUpNo:hover {
+    background: url(../image/promptBox/noW2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.giveUpOk {
+    width: 30%;
+    height: 14%;
+    position: absolute;
+    top: 65%;
+    bottom: 25%;
+    left: 59%;
+    right: 11%;
+    background: url(../image/promptBox/okW1.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.giveUpOk:hover {
+    background: url(../image/promptBox/OkW2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 失败 */
+.fail {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1;
+}
+
+.failImg {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    top: 25%;
+    bottom: 45%;
+    left: 35%;
+    right: 35%;
+    background: url(../image/promptBox/failed.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 赢了 */
+.win {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.winImg {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    top: 25%;
+    bottom: 45%;
+    left: 35%;
+    right: 35%;
+    background: url(../image/promptBox/success.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 平局*/
+.tieGame {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.tieGameImg {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    top: 25%;
+    bottom: 45%;
+    left: 35%;
+    right: 35%;
+    background: url(../image/promptBox/heping.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 对局开始*/
+.gameStar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.gameStarImg {
+    width: 30%;
+    height: 21%;
+    position: absolute;
+    top: 35%;
+    bottom: 44%;
+    left: 35%;
+    right: 35%;
+    background: url(../image/promptBox/starGame2.png) no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+/* 棋子界面*/
+.pieces {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: -6;
+}
+
+.piecesImg {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin: -25px 0 0 -25px;
+
+}
+
+.on {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/*动画蒙版*/
+.page1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 1;
+}
+
+/*聊天框*/
+.chartbg {
+    width: 220px;
+    height: 39px;
+    position: absolute;
+    left: 2px;
+    bottom: 4px;
+    background: url(../image/bg/bg7.jpg) no-repeat;
+}
+
+.chartbg input {
+    width: 200px;
+    height: 28px;
+    position: absolute;
+    left: 5px;
+    bottom: 3px;
+    background: rgb(212, 149, 66);
+}
+
+.chartbtn {
+    width: 80px;
+    height: 39px;
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    border-radius: 5px;
+    background: url(../image/promptBox/send1.png) no-repeat;
+}
+
+.chartbtn:hover {
+
+    background: url(../image/promptBox/send2.png) no-repeat;
+}
+
+/*聊天内容显示*/
+.chartContent {
+    width: 290px;
+    height: 245px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    background: rgb(252, 173, 2);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.chartContent .information {
+    width: 280px;
+    height: 30px;
+    line-height: 30px;
+    /* background: rgb(233, 226, 226); */
+    border: 1px solid red;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+.information strong {
+
+    margin-left: 4px;
+
+}

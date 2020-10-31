@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大师象棋-欢迎您</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/index.js"></script>
+    <!-- 滚轮插件 -->
+    <script src="../js/jquery.mousewheel.js"></script>
+    <style>
+     
+    </style>
+</head>
+
+<body>
+    <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
+        <source src="../music/background.mp3" type="audio/mp3">
+    </audio>
+    <section class="header">
+        <div class="videoBack">
+            <!-- 设置自动播放autoplay="autoplay" loop="loop" -->
+            <video muted autoplay="autoplay" loop="loop" style="opacity: 1.6;">
+                <source src="../video/background4.mp4" type="video/mp4" />
+            </video>
+            <!-- 加亮度 -->
+            <video muted autoplay="autoplay" loop="loop" style="opacity: 0.2;filter: brightness(2.3);">
+                <source src="../video/background5.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <div><img class="logo" src="../image/promptBox/logo.png" /></div>
+        <!-- 播放游戏规则视频按钮 -->
+        <div class="playBtn">
+            <img src="../image/promptBox/playBtn.png" />
+        </div>
+        <!-- 游戏规则视频 -->
+        <div class="videos">
+            <video loop="loop" controls="controls" preload="auto" playsinline type="video/mp4" height="100%"
+                width="100%" src="../video/chessRule.mp4">
+            </video>
+            <div class="close">
+            </div>
+        </div>
+        <!-- 按钮轮播 -->
+        <div class="lunboBtn">
+            <div class="left"></div>
+            <div class="lunboContent">
+                <div class="lunbo lunbo1"><a href="../html/game1.html"><img src="../image/promptBox/star1.png"
+                            width="100%"></a></div>
+                <div class="lunbo "><img src="../image/promptBox/ruleGame1.png" width="100%"></div>
+
+                <div class="lunbo "><img src="../image/promptBox/setGame1.png" width="100%"></div>
+                <div class="lunbo exit"><img src="../image/promptBox/exitGame1.png" width="100%"></div>
+            </div>
+            <div class="right"></div>
+        </div>
+        <!-- <div class="logo2"> <img src="../image/bg/backLogo.png"></div> -->
+    </section>
+    <!-- 退出游戏 -->
+    <div class="quit">
+        <div class="quitBox">
+            <div class="quitNo"></div>
+            <div class="quitOk"></div>
+        </div>
+    </div>
+    <!-- 游戏加载 -->
+    <div class="door">
+        <div class="leftDoor"></div>
+        <div class="rightDoor"></div>
+    </div>
+</body>
+
+</html>
