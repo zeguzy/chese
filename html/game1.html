@@ -18,151 +18,154 @@
 </head>
 
 <body>
-    <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
-        <source src="../music/backgroundMusic.mp3" type="audio/mp3">
-    </audio>
-    <!-- 确认登录按钮 -->
-    <div class="login">
-        <div class="loginBox">
-            <input class="usInput" type="text" value="" placeholder="请输入用户名！">
+    <div class="bodyContent">
+        <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
+            <source src="../music/backgroundMusic.mp3" type="audio/mp3">
+        </audio>
+        <!-- 确认登录按钮 -->
+        <div class="login">
+            <div class="loginBox">
+                <input class="usInput" type="text" value="" placeholder="请输入用户名！">
+            </div>
+            <div class="loginOk"></div>
         </div>
-        <div class="loginOk"></div>
-    </div>
-    <!-- 对局开始按钮 -->
-    <div class="gameStar">
-        <div class="gameStarImg"></div>
-    </div>
-    <section class="content">
-        <!-- 用户信息 -->
-        <div class="left">
-            <!-- 第一个用户 -->
-            <div class="play1">
-                <div class="headerBack"> </div>
-                <div class="userHeader"></div>
-                <div class="userName"><span>用户名：陈子龙</span></div>
-                <div class="userRank"><span>用户段位：象棋大师</span></div>
-                <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                <div class="userStep"><span class="step">步数：0</span></div>
-                <div class="rockTime">
-                    <div class="img"></div>
+        <!-- 对局开始按钮 -->
+        <div class="gameStar">
+            <div class="gameStarImg"></div>
+        </div>
+        <section class="content">
+            <!-- 用户信息 -->
+            <div class="left">
+                <!-- 第一个用户 -->
+                <div class="play1">
+                    <div class="headerBack"> </div>
+                    <div class="userHeader"></div>
+                    <div class="userName"><span>用户名：陈子龙</span></div>
+                    <div class="userRank"><span>用户段位：象棋大师</span></div>
+                    <div class="userTime"><span class="time">时长：0:0:0</span></div>
+                    <div class="userStep"><span class="step">步数：0</span></div>
+                    <div class="rockTime">
+                        <div class="img"></div>
+                    </div>
+                </div>
+                <!-- 第二个用户 -->
+                <div class="play2">
+                    <div class="headerBack"> </div>
+                    <div class="userHeader"></div>
+                    <div class="userName"><span>用户名：卢冰</span></div>
+                    <div class="userRank"><span>用户段位：象棋大师</span></div>
+                    <div class="userTime"><span class="time">时长：0:0:0</span></div>
+                    <div class="userStep"><span class="step">步数：0</span></div>
+                    <div class="rockTime">
+                        <div class="img"></div>
+                    </div>
                 </div>
             </div>
-            <!-- 第二个用户 -->
-            <div class="play2">
-                <div class="headerBack"> </div>
-                <div class="userHeader"></div>
-                <div class="userName"><span>用户名：卢冰</span></div>
-                <div class="userRank"><span>用户段位：象棋大师</span></div>
-                <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                <div class="userStep"><span class="step">步数：0</span></div>
-                <div class="rockTime">
-                    <div class="img"></div>
-                </div>
-            </div>
-        </div>
-        <!-- 棋盘 -->
-        <div class="mid">
+            <!-- 棋盘 -->
+            <div class="mid">
 
-            <div class='chess'>
-                <!--棋子显示 -->
-                <div class="pieces">
-                    <ul class="piecesImg">
-                    </ul>
+                <div class='chess'>
+                    <!--棋子显示 -->
+                    <div class="pieces">
+                        <ul class="piecesImg">
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="right">
-            <!-- 游戏logo -->
-            <div class="rightTop"></div>
-            <!-- 游戏排行榜 -->
-            <div class="rightMid">
-                <div class="chartLogo">
+            <div class="right">
+                <!-- 游戏logo -->
+                <div class="rightTop"></div>
+                <!-- 游戏排行榜 -->
+                <div class="rightMid">
+                    <div class="chartLogo">
+                    </div>
+                    <div class="rightCharts">排行榜</div>
+                    <table>
+                        <tr>
+                            <th>名次</th>
+                            <th>用户名</th>
+                            <th>段位</th>
+                        </tr>
+                        <tr style="color: rgb(250, 4, 4);">
+                            <td><img src="../image/promptBox/one.png" alt=""></td>
+                            <td><span style="color: rgb(250, 4, 4);">陈子龙</span></td>
+                            <td><span style="color: rgb(250, 4, 4);">象棋大师</span></td>
+                        </tr>
+                        <tr style="color: rgb(250, 205, 4);">
+                            <td><img src="../image/promptBox/two.png" alt=""></td>
+                            <td><span style="color: rgb(250, 205, 4);">卢冰</span></td>
+                            <td><span style="color: rgb(250, 205, 4);">象棋大师</span></td>
+                        </tr>
+                        <tr style="color: rgb(183, 185, 33);">
+                            <td><img src="../image/promptBox/three.png" alt=""></td>
+                            <td><span style="color: rgb(183, 185, 33);">张耀</span></td>
+                            <td><span style="color: rgb(183, 185, 33);">象棋大师</span></td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="rightCharts">排行榜</div>
-                <table>
-                    <tr>
-                        <th>名次</th>
-                        <th>用户名</th>
-                        <th>段位</th>
-                    </tr>
-                    <tr style="color: rgb(250, 4, 4);">
-                        <td><img src="../image/promptBox/one.png" alt=""></td>
-                        <td><span style="color: rgb(250, 4, 4);">陈子龙</span></td>
-                        <td><span style="color: rgb(250, 4, 4);">象棋大师</span></td>
-                    </tr>
-                    <tr style="color: rgb(250, 205, 4);">
-                        <td><img src="../image/promptBox/two.png" alt=""></td>
-                        <td><span style="color: rgb(250, 205, 4);">卢冰</span></td>
-                        <td><span style="color: rgb(250, 205, 4);">象棋大师</span></td>
-                    </tr>
-                    <tr style="color: rgb(183, 185, 33);">
-                        <td><img src="../image/promptBox/three.png" alt=""></td>
-                        <td><span style="color: rgb(183, 185, 33);">张耀</span></td>
-                        <td><span style="color: rgb(183, 185, 33);">象棋大师</span></td>
-                    </tr>
-                </table>
-            </div>
-            <!-- 游戏聊天框 -->
-            <div class="rightBottom">
-                <div class="chartContent" id="chartContent">
+                <!-- 游戏聊天框 -->
+                <div class="rightBottom">
+                    <div class="chartContent" id="chartContent">
 
+                    </div>
+                    <div class="chartbg">
+                        <input type="text" class="playInf">
+                    </div>
+                    <div class="chartbtn"></div>
                 </div>
-                <div class="chartbg">
-                    <input type="text" class="playInf">
+            </div>
+            <!-- 对局按钮 -->
+            <div class="contentBtn">
+                <div class="btn1">
+                    <div></div>
                 </div>
-                <div class="chartbtn"></div>
+                <div class="btn2">
+                    <div></div>
+                </div>
+                <div class="btn3">
+                    <div></div>
+                </div>
+                <div class="btn4">
+                    <div></div>
+                </div>
+                <div class=btn5>
+                    <div data-index=0></div>
+                </div>
+            </div>
+        </section>
+        <!-- 退出游戏 -->
+        <div class="quit">
+            <div class="quitBox">
+                <div class="quitNo"></div>
+                <div class="quitOk"></div>
             </div>
         </div>
-        <!-- 对局按钮 -->
-        <div class="contentBtn">
-            <div class="btn1">
-                <div></div>
-            </div>
-            <div class="btn2">
-                <div></div>
-            </div>
-            <div class="btn3">
-                <div></div>
-            </div>
-            <div class="btn4">
-                <div></div>
-            </div>
-            <div class=btn5>
-                <div data-index=0></div>
+        <!-- 认输按钮 -->
+        <div class="giveUp">
+            <div class="giveUpBox">
+                <div class="giveUpNo"></div>
+                <div class="giveUpOk">
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
-    <!-- 退出游戏 -->
-    <div class="quit">
-        <div class="quitBox">
-            <div class="quitNo"></div>
-            <div class="quitOk"></div>
+        <!-- 输了图像显示 -->
+        <div class="fail">
+            <div class="failImg"></div>
+        </div>
+        <!-- 赢了图像显示 -->
+        <div class="win">
+            <div class="winImg"></div>
+        </div>
+        <!-- 平局图像显示 -->
+        <div class="tieGame">
+            <div class="tieGameImg"></div>
+        </div>
+        <!-- 蒙版图像显示 -->
+        <div class="page1">
         </div>
     </div>
-    <!-- 认输按钮 -->
-    <div class="giveUp">
-        <div class="giveUpBox">
-            <div class="giveUpNo"></div>
-            <div class="giveUpOk">
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- 输了图像显示 -->
-    <div class="fail">
-        <div class="failImg"></div>
-    </div>
-    <!-- 赢了图像显示 -->
-    <div class="win">
-        <div class="winImg"></div>
-    </div>
-    <!-- 平局图像显示 -->
-    <div class="tieGame">
-        <div class="tieGameImg"></div>
-    </div>
-    <!-- 蒙版图像显示 -->
-    <div class="page1">
-    </div>
+
 
 </body>
 
