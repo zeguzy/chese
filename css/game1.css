@@ -6,12 +6,12 @@ body {
     -moz-background-size: cover;
 }
 
-li{
+li {
     list-style: none;
 }
+
 .content {
     width: 1280px;
-    border: 1px solid red;
     margin: 0 auto;
 }
 
@@ -217,12 +217,14 @@ li{
 .mid {
     width: 600px;
     height: 650px;
-    /* background: url(../image/chessBoard/back.png) no-repeat;
+    background: url(../image/chessBoard/3.gif) no-repeat;
+    /* background: url(../image/chessBoard/8.jpg) no-repeat; */
     background-size: cover;
-    -moz-background-size: cover; */
+    -moz-background-size: cover;
     margin-left: 30px;
     position: relative;
 }
+
 /*棋盘*/
 .mid .chess {
     width: 500px;
@@ -317,7 +319,7 @@ li{
     background: url(../image/time/1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
-     animation: imgRun 30s linear infinite;
+    animation: imgRun 30s linear infinite;
 }
 
 /*用户2计时器*/
@@ -330,7 +332,7 @@ li{
     background: url(../image/time/1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
-     animation: imgRun 30s linear infinite;
+    animation: imgRun 30s linear infinite;
 }
 
 @keyframes imgRun {
@@ -384,10 +386,12 @@ li{
     width: 100px;
     color: white;
 }
+
 .rightMid table tr td {
     width: 100px;
     text-align: center;
 }
+
 .rightMid .rightCharts {
     width: 100px;
     height: 20px;
@@ -440,7 +444,7 @@ li{
     -moz-background-size: cover;
 }
 
-.loginOk{
+.loginOk {
     width: 10%;
     height: 10%;
     position: absolute;
@@ -454,13 +458,13 @@ li{
     z-index: 1;
 }
 
-.loginOk:hover{        
-    background: url(../image/promptBox/loginOk2.png) no-repeat; 
+.loginOk:hover {
+    background: url(../image/promptBox/loginOk2.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
 
-.usInput{
+.usInput {
     width: 54%;
     height: 6%;
     position: absolute;
@@ -481,12 +485,14 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
+
 .btn1>div:hover {
     background: url(../image/promptBox/remorseful1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
     transform: scale(1.1);
 }
+
 .btn2>div {
     width: 100px;
     height: 49px;
@@ -496,13 +502,15 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
+
 .btn2>div:hover {
-  
+
     background: url(../image/promptBox/tieGame1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
     transform: scale(1.1);
 }
+
 .btn3>div {
     width: 100px;
     height: 49px;
@@ -511,14 +519,16 @@ li{
     background: url(../image/promptBox/giveUp.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
-    
+
 }
+
 .btn3>div:hover {
     background: url(../image/promptBox/giveUp1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
     transform: scale(1.1);
 }
+
 .btn4>div {
     width: 100px;
     height: 49px;
@@ -528,26 +538,30 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
+
 .btn4>div:hover {
     background: url(../image/promptBox/quit1.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
     transform: scale(1.1);
 }
+
 .btn5>div {
     width: 50px;
     height: 50px;
-    margin: 5.5px 0 0 15px;
+    margin: 0.5px 0 0 15px;
     border-radius: 10px;
     background: url(../image/bg/wMusic.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
+
 .btn5>div:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
- /*退出界面*/
- .quit {
+
+/*退出界面*/
+.quit {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -571,7 +585,8 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.quitNo{
+
+.quitNo {
     width: 30%;
     height: 14%;
     position: absolute;
@@ -583,12 +598,14 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.quitNo:hover{
+
+.quitNo:hover {
     background: url(../image/promptBox/noW2.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
-.quitOk{
+
+.quitOk {
     width: 30%;
     height: 14%;
     position: absolute;
@@ -600,13 +617,15 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.quitOk:hover{
+
+.quitOk:hover {
     background: url(../image/promptBox/OkW2.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
-  /*认输界面*/
-  .giveUp {
+
+/*认输界面*/
+.giveUp {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -630,7 +649,8 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.giveUpNo{
+
+.giveUpNo {
     width: 30%;
     height: 14%;
     position: absolute;
@@ -642,12 +662,14 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.giveUpNo:hover{
+
+.giveUpNo:hover {
     background: url(../image/promptBox/noW2.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
-.giveUpOk{
+
+.giveUpOk {
     width: 30%;
     height: 14%;
     position: absolute;
@@ -659,11 +681,13 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
-.giveUpOk:hover{
+
+.giveUpOk:hover {
     background: url(../image/promptBox/OkW2.png) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
 }
+
 /* 失败 */
 .fail {
     width: 100%;
@@ -689,8 +713,9 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
- /* 赢了 */
- .win {
+
+/* 赢了 */
+.win {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -716,7 +741,7 @@ li{
 }
 
 /* 平局*/
-.tieGame{
+.tieGame {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -740,8 +765,9 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
- /* 对局开始*/
- .gameStar{
+
+/* 对局开始*/
+.gameStar {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -752,6 +778,7 @@ li{
     background: rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
+
 .gameStarImg {
     width: 30%;
     height: 21%;
@@ -764,18 +791,20 @@ li{
     background-size: cover;
     -moz-background-size: cover;
 }
- /* 棋子界面*/
- .pieces{
+
+/* 棋子界面*/
+.pieces {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
-    left:0;
+    left: 0;
     right: 0;
     background: rgba(0, 0, 0, 0);
     z-index: -6;
 }
+
 .piecesImg {
     width: 50px;
     height: 50px;
@@ -785,6 +814,7 @@ li{
     margin: -25px 0 0 -25px;
 
 }
+
 .on {
     width: 50px;
     height: 50px;
@@ -792,6 +822,7 @@ li{
     left: 0px;
     top: 0px;
 }
+
 /*动画蒙版*/
 .page1 {
     width: 100%;
@@ -801,11 +832,12 @@ li{
     bottom: 0;
     left: -200%;
     right: 0;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     z-index: 1;
 }
+
 /*聊天框*/
-.chartbg{
+.chartbg {
     width: 220px;
     height: 39px;
     position: absolute;
@@ -813,7 +845,8 @@ li{
     bottom: 4px;
     background: url(../image/bg/bg7.jpg) no-repeat;
 }
-.chartbg input{
+
+.chartbg input {
     width: 200px;
     height: 28px;
     position: absolute;
@@ -821,7 +854,8 @@ li{
     bottom: 3px;
     background: rgb(212, 149, 66);
 }
-.chartbtn{
+
+.chartbtn {
     width: 80px;
     height: 39px;
     position: absolute;
@@ -830,7 +864,36 @@ li{
     border-radius: 5px;
     background: url(../image/promptBox/send1.png) no-repeat;
 }
-.chartbtn:hover{
+
+.chartbtn:hover {
 
     background: url(../image/promptBox/send2.png) no-repeat;
+}
+
+/*聊天内容显示*/
+.chartContent {
+    width: 290px;
+    height: 245px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+    background: rgb(252, 173, 2);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.chartContent .information {
+    width: 280px;
+    height: 30px;
+    line-height: 30px;
+    /* background: rgb(233, 226, 226); */
+    border: 1px solid red;
+    margin-left: 4px;
+    margin-top: 2px;
+}
+
+.information strong {
+
+    margin-left: 4px;
+
 }

@@ -14,7 +14,7 @@
     <!-- 滚轮插件 -->
     <script src="../js/jquery.mousewheel.js"></script>
     <style>
-   
+
     </style>
 </head>
 
@@ -34,7 +34,9 @@
         <div class="gameStarImg"></div>
     </div>
     <section class="content">
+        <!-- 用户信息 -->
         <div class="left">
+            <!-- 第一个用户 -->
             <div class="play1">
                 <div class="headerBack"> </div>
                 <div class="userHeader"></div>
@@ -46,6 +48,7 @@
                     <div class="img"></div>
                 </div>
             </div>
+            <!-- 第二个用户 -->
             <div class="play2">
                 <div class="headerBack"> </div>
                 <div class="userHeader"></div>
@@ -58,8 +61,11 @@
                 </div>
             </div>
         </div>
+        <!-- 棋盘 -->
         <div class="mid">
+           
             <div class='chess'>
+                 <!--棋子显示 -->
                 <div class="pieces">
                     <ul class="piecesImg">
                     </ul>
@@ -67,7 +73,9 @@
             </div>
         </div>
         <div class="right">
+            <!-- 游戏logo -->
             <div class="rightTop"></div>
+            <!-- 游戏排行榜 -->
             <div class="rightMid">
                 <div class="chartLogo">
                 </div>
@@ -95,13 +103,18 @@
                     </tr>
                 </table>
             </div>
+            <!-- 游戏聊天框 -->
             <div class="rightBottom">
+                <div class="chartContent" id="chartContent">
+                 
+                </div>
                 <div class="chartbg">
-                    <input type="text">
+                    <input type="text" class="playInf">
                 </div>
                 <div class="chartbtn"></div>
             </div>
         </div>
+        <!-- 对局按钮 -->
         <div class="contentBtn">
             <div class="btn1">
                 <div></div>
@@ -134,19 +147,19 @@
             <div class="giveUpOk"></a></div>
         </div>
     </div>
-    <!-- 输了 -->
+    <!-- 输了图像显示 -->
     <div class="fail">
         <div class="failImg"></div>
     </div>
-    <!-- 赢了 -->
+    <!-- 赢了图像显示 -->
     <div class="win">
         <div class="winImg"></div>
     </div>
-    <!-- 平局 -->
+    <!-- 平局图像显示 -->
     <div class="tieGame">
         <div class="tieGameImg"></div>
     </div>
-    <!-- 蒙版 -->
+    <!-- 蒙版图像显示 -->
     <div class="page1">
     </div>
 

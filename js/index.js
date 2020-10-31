@@ -7,8 +7,25 @@ $(function () {
     let per = 0;
     let btnT = false;//判断是否能继续点击
     let backMusic = document.getElementsByClassName("backMusic")[0];
-    $("body").on("click",function(){
-        backMusic.play();//继续bg音乐
+    $("body").on("click", function () {
+        setTimeout(function () {
+            backMusic.play();//继续bg音乐 
+        }, 2000);
+
+    })
+    /*点击门打开 */
+    $(".door").on("click", function () {
+        showSound("../music/playDoor.mp3");
+        $(".leftDoor").css({ animation: "leftRun 3s linear forwards" })
+        $(".rightDoor").css({ animation: "rightRun 3s linear forwards" })
+        setTimeout(function () {
+            $(".door").css({ "left": "-200%" });
+        }, 3000);
+
+        // $(".leftDoor").animate({transform: "rotateY(120deg)"},5000)
+        // $(".rightDoor").animate({transform: "rotateY(-120deg)"},5000,function(){
+        //     $(".door").css({left:"-200%"});
+        // })
     })
     //点击按钮播放视频
     $(".playBtn").on("click", function () {
@@ -111,7 +128,7 @@ $(function () {
             btnT = false;
         });
     })
-   /*点击退出游戏按钮 */
+    /*点击退出游戏按钮 */
     $(".exit").on("click", function () {
         showSound("../music/clickOn.mp3");
         $(".quit").css({ "left": "0" })
@@ -125,6 +142,14 @@ $(function () {
     /*点击确定退出游戏 */
     $(".quitOk").on("click", function () {
         showSound("../music/clickOn.mp3");
+        // window.opener = null;
+        // window.open('', '_self');
+        // window.close();
+
+        // window.open('','_self','');//打开新窗口
+        // window.close();//关闭窗口
+        
+        window.location.href = "about:blank";
         window.close();
     })
     /**
@@ -141,11 +166,11 @@ $(function () {
         let delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||
             (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));//获得当前对象的位置
         if (delta > 0) {//判断滚轮是向上滚动还是向下滚动
-           $(".right").click();
-        } if (delta < 0) {
+            $(".right").click();
+        }else if (delta < 0) {
             $(".left").click();
         }
- 
+
     });
 
 })

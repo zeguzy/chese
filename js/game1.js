@@ -1,9 +1,11 @@
 $(function () {
-
+    let o = -1;//棋子初始化
+    let chartContent = document.getElementById('chartContent');//通过id获得滚轮条
     /*播放背景音乐 */
     let backMusic = document.getElementsByClassName("backMusic")[0];
     $("body").on("click", function () {
         backMusic.play();//继续bg音乐
+        $("body").off();
     })
 
     /*确定登录 */
@@ -17,8 +19,8 @@ $(function () {
         showSound("../music/clickOn.mp3");
         $(".gameStar").css({ "left": "-200%" });
         $(".pieces").css({ "z-index": "1" });
-        $(".page1").css({ "left": "0" });
-        addPieces();
+        $(".page1").css({ "left": "0" });//蒙版图像显示
+        addPieces();//棋子动画函数
     })
     /*退出游戏按钮 */
     $(".btn4").on("click", function () {
@@ -81,11 +83,18 @@ $(function () {
     $(".win").on("click", function () {
         showSound("../music/clickOn.mp3");
         $(".win").css({ "left": "-200%" });
-    }) 
-    let o = -1;
+    })
+    /*随机改变背景 */
+    // function randomImg() {
+    //     let r=Math.floor(Math.random()*6)+1;  
+    //     $(".mid").css({background: "url(../image/chessBoard/"+r+".gif) no-repeat", "background-size": "cover", "-moz-background-size": "cover"})
+    // }
+    // setInterval(() => {
+    //     randomImg();
+    // }, 2000);
     // 添加棋子
     function addPieces() {
-        
+
         let pieces_html = '';
         for (let i = 31; i >= 0; i--) {
             pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: ' + 280 + 'px;left: ' + 260 + 'px;background: url(' + piecesList[i].pieces.img + ') no-repeat"></li>';
@@ -93,12 +102,11 @@ $(function () {
         }
         $(".piecesImg").html(pieces_html);       // 把象棋的HTML代码放入页面对应的元素中
         /*移动象棋动画 */
-       
+
         function go() {
             o++;
-            console.log(piecesList[o].position.x);
             /*移动动画 */
-            $(".piecesImg li:last").animate({ top: ((piecesList[o].position.y) * 60 + 12) + 'px', left: (piecesList[o].position.x * 60 + 11) + 'px' }, 500, function () {
+            $(".piecesImg li:last").animate({ top: ((piecesList[o].position.y) * 60 + 12) + 'px', left: (piecesList[o].position.x * 60 + 11) + 'px' }, 100, function () {
                 $(".piecesImg li:last").remove();//移除元素
                 showSound("../music/playChess.mp3");
                 let strDiv = '<div class="is"  style=" width: 50px; height: 50px;position: absolute;top: ' + ((piecesList[o].position.y) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 12) + 'px;background: url(' + piecesList[o].pieces.img + ') no-repeat"></div>';
@@ -115,6 +123,15 @@ $(function () {
         }
         go();
     }
+    /*点击发送增加div */
+    let m = 0;
+    $(".chartbtn").on("click", function () {
+        let strDiv = '<div class="information"><strong>陈子龙：</strong><span>' + $(".playInf").val() + '</span></div>';
+        $(".chartContent").append(strDiv);
+        chartContent.scrollTop = chartContent.scrollHeight;//将滚轮长度设置到最底部
+
+    })
+
     /*按钮控制音效 */
     $(".btn5 div").on("click", function () {
         if ($(".btn5 div").attr("data-index") == 0) {
@@ -124,9 +141,9 @@ $(function () {
                 "-moz-background-size": "cover"
             });
             /*设置自定义属性值 */
-            $(".btn5 div").attr("data-index","1");
-
-            $("audio").trigger("pause");
+            $(".btn5 div").attr("data-index", "1");
+            backMusic.pause();//关闭音效
+            // $("audio").trigger("pause");
         }
         else if ($(".btn5 div").attr("data-index") == 1) {
             $(".btn5 div").css({
@@ -134,8 +151,9 @@ $(function () {
                 "background-size": "cover",
                 "-moz-background-size": "cover"
             });
-            $(".btn5 div").attr("data-index","0");
-            $("audio").trigger("play");
+            $(".btn5 div").attr("data-index", "0");
+            backMusic.play(); //打开音效
+            // $("audio").trigger("play");
         }
     })
 
