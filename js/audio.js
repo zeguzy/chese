@@ -19,7 +19,7 @@ $(".btn5 div").on("click", function() {
         });
         /*设置自定义属性值 */
         $(".btn5 div").attr("data-index", "1");
-        backMusic.pause(); //关闭音效
+        player.backMusic.pause(); //关闭音效
         // $("audio").trigger("pause");
     } else if ($(".btn5 div").attr("data-index") == 1) {
         $(".btn5 div").css({
@@ -28,7 +28,7 @@ $(".btn5 div").on("click", function() {
             "-moz-background-size": "cover"
         });
         $(".btn5 div").attr("data-index", "0");
-        backMusic.play(); //打开音效
+        player.backMusic.play(); //打开音效
         // $("audio").trigger("play");
     }
 })

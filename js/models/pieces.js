@@ -126,7 +126,8 @@ function addPieces() {
                     "left": "-200%"
                 });
                 $('.pieces').remove()
-                    //准备棋盘和棋子
+
+                //准备棋盘和棋子
                 generatePieces(piecesList);
                 return 0;
             }
@@ -173,7 +174,7 @@ function clickOnPieces($piece) {
 
         if (checkResult && player.current) {
             //满足规则  吃
-            alert("吃");
+            showSound('../../music/eat.mp3')
             $piece.hide();
 
             //保存手子的坐标数据
@@ -301,10 +302,9 @@ function movePieces() {
 
         //点击非棋子，如果手上有子，则移动手子到点击个位置
         if (checkResult && player.current) {
-
+            showSound('../../music/xq.mp3')
             let t_x = piecesList[index].position.x;
             let t_y = piecesList[index].position.y;
-
 
             //更新子的相对坐标
             piecesList[index].position.x = board.click.r_x;
@@ -332,12 +332,12 @@ function movePieces() {
             if (mark == 1 && player.redCamp) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
-                alert("红方不能动")
+                alert("红方将被将军")
                 return false;
             } else if (mark == 2 && !player.redCamp) {
                 piecesList[index].position.x = t_x;
                 piecesList[index].position.y = t_y;
-                alert("黑方不能动")
+                alert("黑方将被将军")
                 return false;
             } else if (mark == 1) {
                 showSound('../../music/jj.mp3')

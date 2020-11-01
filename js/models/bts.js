@@ -21,6 +21,26 @@ $(".quitOk").on("click", function() {
     $(window).attr('location', "../html/index.html");
 })
 
+/*点击任意地方失败页面消失 */
+$(".fail").on("click", function() {
+    showSound("../music/clickOn.mp3");
+    $(".fail").css({
+        "left": "-200%"
+    });
+    setTimeout(
+        function() {
+            toMatch()
+        },
+        3000
+    )
+})
+
+function settle() {
+    $(".settle").css({
+        "left": "0"
+    }); //显示结算界面
+}
+
 /*认输按钮 */
 $(".btn3").on("click", function() {
     showSound("../music/clickOn.mp3");

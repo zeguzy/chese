@@ -432,9 +432,7 @@ function trappedDead() {
                             return;
                         }
 
-
                     }
-
 
                 }
             }
@@ -446,10 +444,8 @@ function trappedDead() {
 function failure() {
     //自己的分数减少 并更新页面 与失败动画
     player.score = player.score - 100 * 1
-    showSound("../music/clickOn.mp3");
-    $(".giveUp").css({
-        "left": "-200%"
-    }); //退出页面消失
+    showSound("../../music/clickOn.mp3");
+
     $(".fail").css({
         "left": "0"
     }); //出现失败页面 
@@ -465,27 +461,45 @@ function failure() {
         }
     }
     sendMsg(mesg)
+    setTimeout(() => {
+        $(".fail").css({
+            "left": "-200%"
+        });
+        settle()
+        setTimeout(function() {
+            $('.settle .box .data td').eq(4).html(player.userInfo.username)
+            $('.settle .box .data td').eq(1).html(player.otherPlayers.username)
+            $('.settle').css({
+                "left": "-200%"
+            });
+            toMatch()
+        }, 2000)
+    }, 2000)
 }
 
 
 function win() {
     //自己的分数增加 并更新页面 与动画
     player.score = player.score + 100 * 1
-    alert('胜利')
-    toMatch()
-}
 
-
-/*点击任意地方失败页面消失 */
-$(".fail").on("click", function() {
-    showSound("../music/clickOn.mp3");
-    $(".fail").css({
-        "left": "-200%"
+    $('.win').css({
+        "left": "0"
     });
-    setTimeout(
-        function() {
+    setTimeout(function() {
+
+        setTimeout(function() {
+            $('.settle .box .data td').eq(1).html(player.userInfo.username)
+            $('.settle .box .data td').eq(4).html(player.otherPlayers.username)
+            settle()
+        }, 1000)
+        $(".win").css({
+            "left": "-200%"
+        });
+        setTimeout(function() {
+            $('.settle').css({
+                "left": "-200%"
+            });
             toMatch()
-        },
-        3000
-    )
-})
+        }, 2000)
+    }, 3000)
+}

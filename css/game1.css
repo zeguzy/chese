@@ -140,8 +140,8 @@ li {
     -moz-background-size: cover;
 }
 
-.play1 .userTime .time,
-.play1 .userStep .step {
+.play1 .userTime span,
+.play1 .userStep span {
     margin: 9px 0 0 25px;
     font-size: 32px;
     color: rgb(97, 6, 245);
@@ -228,8 +228,8 @@ li {
     -moz-background-size: cover;
 }
 
-.play2 .userTime .time,
-.play2 .userStep .step {
+.play2 .userTime span,
+.play2 .userStep span {
     margin: 9px 0 0 25px;
     font-size: 32px;
     color: rgb(97, 6, 245);
@@ -942,7 +942,7 @@ li {
     position: absolute;
     top: 7px;
     left: 10px;
-    background: rgb(252, 173, 2);
+    background: rgb(228, 204, 154);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -964,4 +964,57 @@ li {
 .play1>div:nth-child(5)>span:nth-child(2) {
     color: red;
     font-size: 30px;
+}
+
+.play2>div:nth-child(5)>span:nth-child(2) {
+    color: red;
+    font-size: 30px;
+}
+
+
+/*结算*/
+
+.settle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -200%;
+    right: 0;
+    background: rgb(63, 55, 55, 0);
+}
+
+.box {
+    width: 512px;
+    height: 512px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -256px 0 0 -256px;
+    background: no-repeat url(../image/bg/bg2Header.png) 31px 0px, no-repeat url(../image/bg/bg2.png) 0px 0px;
+}
+
+.box .data {
+    width: 450px;
+    height: 150px;
+    position: absolute;
+    left: 31px;
+    top: 110px;
+}
+
+.data tr td {
+    width: 110px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.data tr:nth-of-type(1) td {
+    color: red;
+    text-shadow: 0.1em 0.1em 0.2em red;
+}
+
+.data tr:nth-of-type(2) td {
+    color: rgb(129, 122, 122);
+    text-shadow: 0.1em 0.1em 0.2em rgb(129, 122, 122);
 }

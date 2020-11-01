@@ -41,17 +41,10 @@ function gameOk(data) {
  * @author zegu
  */
 function otherMove(data) {
-    console.log('otherMove')
-
     let index = data.piece.id
-
     let piece = piecesList[index]
     let n_x = data.piece.position.x
     let n_y = data.piece.position.y
-
-
-    console.log(piece)
-
     let checkRules = rulesChecker(piece, piece.position, {
         n_x,
         n_y
@@ -68,16 +61,20 @@ function otherMove(data) {
             y: n_y
         }
 
-        piece.DOM.css({
+        piece.DOM.animate({
             top: a_y + 'px',
             left: a_x + 'px'
-        })
+        }, 500)
+        showSound('../../music/xq.mp3')
         if (data.mark) {
+            showSound('../../music/jj.mp3')
             let tr = trappedDead()
             if (tr) {
                 failure()
             }
         }
+
+
         //步数加一
         player.otherPlayers.steps = player.otherPlayers.steps * 1 + 1
         $('.play1 .userStep span').eq(1).html(player.otherPlayers.steps)
@@ -117,15 +114,16 @@ function otherEat(data) {
         }
 
         //移动子
-        piece_onhand.DOM.css({
+        piece_onhand.DOM.animate({
             top: a_y + 'px',
             left: a_x + 'px'
-        })
+        }, 500)
 
         piece_byEat.DOM.hide()
         piece_byEat.survive = false
-
+        showSound('../../music/eat.mp3')
         if (data.mark) {
+            showSound('../../music/jj.mp3')
             let tr = trappedDead()
             if (tr) {
                 failure()
@@ -133,6 +131,7 @@ function otherEat(data) {
         }
 
     }
+
     player.current = true
     player.time = 0
     player.userTimeInterval = setInterval(() => {
@@ -145,15 +144,12 @@ function otherEat(data) {
 }
 
 /**
- * 重开 滚去匹配
+ * 重开 匹配
  */
 function toMatch() {
     piecesList = [...piecesListBack]
     if (!player.redCamp) {
         $("#board").css({
-            transform: "rotateZ(-180deg)",
-        });
-        $(".qi").css({
             transform: "rotateZ(180deg)",
         });
     }
@@ -162,7 +158,6 @@ function toMatch() {
     $('.chess').append($(`<div class="pieces">
                             <ul class="piecesImg"></ul>
                         </div>`))
-    alert('玩家离开')
 
 
     //匹配按钮浮现
@@ -182,4 +177,5 @@ function toMatch() {
     $('.play2 .userTime span').eq(1).html(0 + 's')
         //断开ws连接
     player.ws.close()
+
 }

@@ -25,9 +25,9 @@ let player = {
 $(function() {
     let chartContent = document.getElementById('chartContent'); //通过id获得滚轮条
     /*播放背景音乐 */
-    let backMusic = document.getElementsByClassName("backMusic")[0];
+    player.backMusic = document.getElementsByClassName("backMusic")[0];
     $("body").on("click", function() {
-        backMusic.play(); //继续bg音乐
+        player.backMusic.play(); //继续bg音乐
         $("body").off();
     })
 })
@@ -81,6 +81,7 @@ $(".gameStarImg").on("click", "", function() {
             msg = null;
         }
 
+        console.log(msg)
         if (msg && msg.header.action === "OK") {
             gameOk(msg.data);
         }
@@ -104,7 +105,7 @@ $(".gameStarImg").on("click", "", function() {
 
 /*点击确定认输 */
 $(".giveUpOk").on("click", function() {
-    showSound("../music/clickOn.mp3");
+    showSound("../../music/clickOn.mp3");
     //退出页面消失
     $(".giveUp").css({
         "left": "-200%"
@@ -119,8 +120,23 @@ $(".giveUpOk").on("click", function() {
         },
         data: {
             roomId: player.roomId,
-            userId: player.userInfo.userId
+            userId: player.userInfo.id
         }
     }
     sendMsg(mesg)
+    setTimeout(() => {
+        $(".fail").css({
+            "left": "-200%"
+        });
+        $('.settle .box .data td').eq(4).html(player.userInfo.username)
+        $('.settle .box .data td').eq(1).html(player.otherPlayers.username)
+        settle()
+        setTimeout(function() {
+            //失败消失页面
+            $(".settle").css({
+                "left": "-200%"
+            });
+        }, 2000)
+    }, 1000)
+
 })
