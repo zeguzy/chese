@@ -256,215 +256,6 @@ function rulesChecker(piece, {
     return result;
 }
 
-/**
- * @description 当棋子被点击时
- * @param {*} $piece
- * @author zegu
- */
-function clickOnPieces($piece) {
-    event.stopPropagation(); //阻止点击棋子的冒泡事件，防止影响棋子位置
-
-    //不能吃自己的子
-    let isOwn = player.redCamp ?
-        $piece.attr("index") > 15 :
-        $piece.attr("index") < 16
-
-    let r_x = piecesList[$piece.attr("index")].position.x;
-    let r_y = piecesList[$piece.attr("index")].position.y;
-    let {
-        a_x,
-        a_y
-    } = getAbsolute(r_x, r_y);
-
-    // console.log('isOwn ' + isOwn)
-    //吃子
-    if (board.onHand && board.onHand != $piece && !isOwn) {
-        //规则判断
-        let index = board.onHand.attr("index");
-        let checkResult = rulesChecker(
-            piecesList[index], {
-                x: piecesList[index].position.x,
-                y: piecesList[index].position.y,
-            }, {
-                n_x: r_x,
-                n_y: r_y,
-            }
-        );
-
-        if (checkResult && player.current) {
-            //满足规则  吃
-            alert("吃");
-            $piece.hide();
-
-            //保存手子的坐标数据
-            let t_x = piecesList[index].position.x;
-            let t_y = piecesList[index].position.y;
-
-            //更新状态
-            piecesList[index].position = {
-                x: r_x,
-                y: r_y,
-            };
-            piecesList[$piece.attr("index")].survive = false;
-
-            let data = {
-                header: {
-                    action: 'eat'
-                },
-                data: {
-                    userId: player.userInfo.id,
-                    roomId: player.roomId,
-                    piece: {
-                        onHandId: board.onHand.attr('index'),
-                        byEatId: $piece.attr("index")
-                    }
-                }
-            }
-
-            let mark = checkGeneral();
-            if (mark == 1 && player.redCamp) {
-                piecesList[index].position.x = t_x;
-                piecesList[index].position.y = t_y;
-                piecesList[$piece.attr("index")].survive = true
-                $piece.show()
-                alert("红方不能动")
-                return false;
-            } else if (mark == 2 && !player.redCamp) {
-                piecesList[index].position.x = t_x;
-                piecesList[index].position.y = t_y;
-                piecesList[$piece.attr("index")].survive = true
-                $piece.show()
-                alert("黑方不能动")
-                return false;
-            } else if (mark == 1) {
-                alert('将军')
-                data.data.mark = true
-            } else if (mark == 2) {
-                alert('将军')
-                data.data.mark = true
-            }
-
-            //设置棋子在棋盘位置
-            board.onHand.css({
-                left: a_x + "px",
-                top: a_y + "px",
-            });
-            board.onHand.removeClass("on");
-            sendMsg(data)
-            board.onHand = null;
-            player.current = false
-        } else {
-            alert("不满足走子规则");
-        }
-        return;
-    } else if (board.onHand == $piece) {
-
-        //点自己两下  应该取消选中
-        $piece.removeClass("on");
-        board.onHand = null;
-        return;
-    } else if (board.onHand && isOwn) {
-        board.onHand.removeClass("on");
-        board.onHand = $piece;
-        $($piece).addClass("on");
-        return;
-    }
-
-    //只点了一下 选中
-    board.onHand = $piece;
-    $($piece).addClass("on");
-}
-
-/**
- * @description 移子
- * @author zegu
- */
-function movePieces() {
-    /**
-     * @description 点击棋盘后
-     * @author zegu
-     */
-    let isOwn = false;
-    if (board.onHand) {
-        isOwn = player.redCamp ?
-            board.onHand.attr("index") > 15 :
-            board.onHand.attr("index") < 16;
-    }
-
-    if (board.onHand && isOwn) {
-        //规则判断
-        let index = board.onHand.attr("index");
-        let checkResult = rulesChecker(
-            piecesList[index], {
-                x: piecesList[index].position.x,
-                y: piecesList[index].position.y,
-            }, {
-                n_x: board.click.r_x,
-                n_y: board.click.r_y,
-            }
-        );
-
-        //点击非棋子，如果手上有子，则移动手子到点击个位置
-        if (checkResult && player.current) {
-
-            let t_x = piecesList[index].position.x;
-            let t_y = piecesList[index].position.y;
-
-
-            //更新子的相对坐标
-            piecesList[index].position.x = board.click.r_x;
-            piecesList[index].position.y = board.click.r_y;
-
-
-            let data = {
-                header: {
-                    action: 'move'
-                },
-                data: {
-                    userId: player.userInfo.id,
-                    roomId: player.roomId,
-                    piece: {
-                        mark: false,
-                        id: board.onHand.attr('index'),
-                        position: {
-                            x: board.click.r_x,
-                            y: board.click.r_y
-                        }
-                    }
-                }
-            }
-            let mark = checkGeneral();
-            if (mark == 1 && player.redCamp) {
-                piecesList[index].position.x = t_x;
-                piecesList[index].position.y = t_y;
-                alert("红方不能动")
-                return false;
-            } else if (mark == 2 && !player.redCamp) {
-                piecesList[index].position.x = t_x;
-                piecesList[index].position.y = t_y;
-                alert("黑方不能动")
-                return false;
-            } else if (mark == 1) {
-                alert('红方被将军')
-                data.data.mark = true
-            } else if (mark == 2) {
-                alert('黑方被将军')
-                data.data.mark = true
-            }
-
-            board.onHand.css({ //设置棋子在棋盘位置
-                left: board.click.a_x + "px",
-                top: board.click.a_y + "px",
-            });
-            sendMsg(data)
-
-            //移除选中样式
-            board.onHand.removeClass("on");
-            board.onHand = null;
-            player.current = false
-        }
-    }
-}
 
 /**
  * @description 检查将军
@@ -655,7 +446,14 @@ function trappedDead() {
 function failure() {
     //自己的分数减少 并更新页面 与失败动画
     player.score = player.score - 100 * 1
-    alert('失败')
+    showSound("../music/clickOn.mp3");
+    $(".giveUp").css({
+        "left": "-200%"
+    }); //退出页面消失
+    $(".fail").css({
+        "left": "0"
+    }); //出现失败页面 
+
 
     let mesg = {
         header: {
@@ -674,18 +472,20 @@ function win() {
     //自己的分数增加 并更新页面 与动画
     player.score = player.score + 100 * 1
     alert('胜利')
+    toMatch()
 }
 
 
-function giveIn() {
-    let mesg = {
-        header: {
-            action: 'giveIn'
+/*点击任意地方失败页面消失 */
+$(".fail").on("click", function() {
+    showSound("../music/clickOn.mp3");
+    $(".fail").css({
+        "left": "-200%"
+    });
+    setTimeout(
+        function() {
+            toMatch()
         },
-        data: {
-            userId: player.userInfo.userId,
-            roomId: player.roomId
-        }
-    }
-    sendMsg(mesg)
-}
+        3000
+    )
+})

@@ -2,14 +2,37 @@
  * @description 游戏准备好后
  * @author zegu
  */
+
+
+
 function gameOk(data) {
     player.redCamp = data.redCamp
     player.current = data.current
     player.roomId = data.roomId
 
-    //准备棋盘和棋子
-    generatePieces(piecesList);
+    player.otherPlayers = {
+        username: data.otherPlayers.username,
+        userId: data.otherPlayers.userId,
+        time: 0,
+        steps: 0
+    }
 
+    //定时器开始记时
+    if (player.redCamp) {
+        player.userTimeInterval = setInterval(() => {
+            $('.play2 .userTime span').eq(1).html(player.time++ + 's')
+        }, 1000)
+    } else {
+        player.otherPlayers.userTimeInterval = setInterval(() => {
+            $('.play1 .userTime span').eq(1).html(player.time++ + 's')
+        }, 1000)
+    }
+
+    let danGrad = chessBit[parseInt(data.otherPlayers.score / 1000) % 6]
+    $('.play1 .userRank span').eq(1).html(danGrad.bit)
+    $('.play1 .userName span').eq(1).html(player.otherPlayers.username)
+    $('.play1 .userStep span').eq(1).html(player.otherPlayers.steps)
+    addPieces(); //棋子动画函
 }
 
 /**
@@ -34,7 +57,6 @@ function otherMove(data) {
         n_y
     })
 
-
     if (checkRules) {
         let {
             a_x,
@@ -52,15 +74,21 @@ function otherMove(data) {
         })
         if (data.mark) {
             let tr = trappedDead()
-            alert('move-将军:' + tr)
-
+            if (tr) {
+                failure()
+            }
         }
-
+        //步数加一
+        player.otherPlayers.steps = player.otherPlayers.steps * 1 + 1
+        $('.play1 .userStep span').eq(1).html(player.otherPlayers.steps)
     }
 
     player.current = true
-
-    // callback()
+    player.time = 0
+    player.userTimeInterval = setInterval(() => {
+        $('.play2 .userTime span').eq(1).html(player.time++ + 's')
+    }, 1000)
+    clearInterval(player.otherPlayers.userTimeInterval)
 }
 
 /**
@@ -99,20 +127,21 @@ function otherEat(data) {
 
         if (data.mark) {
             let tr = trappedDead()
-            alert('Eat-将军:' + tr)
+            if (tr) {
+                failure()
+            }
         }
 
     }
     player.current = true
-        // callback()
-}
-
-/**
- * 
- * @param {*} data 
- */
-function otherChat(data) {
-    $('.chat .box').append($(`<span>${data.username}</span>:<span>${data.content}</span><br/>`))
+    player.time = 0
+    player.userTimeInterval = setInterval(() => {
+            $('.play2 .userTime span').eq(1).html(player.time++ + 's')
+        }, 1000)
+        //步数加一
+    player.otherPlayers.steps = player.otherPlayers.steps * 1 + 1
+    $('.play1 .userStep span').eq(1).html(player.otherPlayers.steps)
+    clearInterval(player.otherPlayers.userTimeInterval)
 }
 
 /**
@@ -129,14 +158,28 @@ function toMatch() {
         });
     }
     $('.qi').remove()
-    $('.start').show()
-        // console.log()
-        // console.log(piecesList)
-        // console.log(piecesListBack)
+
+    $('.chess').append($(`<div class="pieces">
+                            <ul class="piecesImg"></ul>
+                        </div>`))
+    alert('玩家离开')
 
 
     //匹配按钮浮现
+    showSound("../music/clickOn.mp3");
+    $(".login").css({
+        "left": "-200%"
+    });
+    $(".gameStar").css({
+        "left": "0"
+    });
 
-    //断开ws连接
+    player.time = 0
+    player.otherPlayers.time = 0
+    clearInterval(player.userTimeInterval)
+    clearInterval(player.otherPlayers.userTimeInterval)
+    $('.play1 .userTime span').eq(1).html(0 + 's')
+    $('.play2 .userTime span').eq(1).html(0 + 's')
+        //断开ws连接
     player.ws.close()
 }

@@ -7,61 +7,61 @@ let piecesType = {
 
     soldiers_b: { //兵
         id: 0,
-        img: '../images/pieces/soldiers_b.png'
+        img: '../image/pieces/soldiers_b.png'
     },
     soldiers_r: {
         id: 0,
-        img: '../images/pieces/soldiers_r.png'
+        img: '../image/pieces/soldiers_r.png'
     },
     general_b: { //将
         id: 1,
-        img: '../images/pieces/general_b.png'
+        img: '../image/pieces/general_b.png'
     },
     general_r: {
         id: 1,
-        img: '../images/pieces/general_r.png'
+        img: '../image/pieces/general_r.png'
     },
 
     scholar_b: { //士
         id: 2,
-        img: '../images/pieces/scholar_b.png'
+        img: '../image/pieces/scholar_b.png'
     },
     scholar_r: {
         id: 2,
-        img: '../images/pieces/scholar_r.png'
+        img: '../image/pieces/scholar_r.png'
     },
     horse_b: { // 马
         id: 3,
-        img: '../images/pieces/horse_b.png'
+        img: '../image/pieces/horse_b.png'
     },
     horse_r: {
         id: 3,
-        img: '../images/pieces/horse_r.png'
+        img: '../image/pieces/horse_r.png'
     },
     elephant_b: { //象
         id: 4,
-        img: '../images/pieces/elephant_b.png'
+        img: '../image/pieces/elephant_b.png'
     },
     elephant_r: {
         id: 4,
-        img: '../images/pieces/elephant_r.png'
+        img: '../image/pieces/elephant_r.png'
     },
     gun_b: { //炮
         id: 5,
-        img: '../images/pieces/gun_b.png'
+        img: '../image/pieces/gun_b.png'
     },
     gun_r: {
         id: 5,
-        img: '../images/pieces/gun_r.png'
+        img: '../image/pieces/gun_r.png'
     },
 
     car_b: { //车
         id: 6,
-        img: '../images/pieces/car_b.png'
+        img: '../image/pieces/car_b.png'
     },
     car_r: {
         id: 6,
-        img: '../images/pieces/car_r.png'
+        img: '../image/pieces/car_r.png'
     }
 }
 
@@ -353,3 +353,31 @@ piecesList.forEach(Element => {
         }
     })
 })
+
+
+/*象棋段位 */
+let chessBit = [{
+        cod: 1000,
+        bit: "业余一段"
+    },
+    {
+        cod: 2000,
+        bit: "业余三段"
+    },
+    {
+        cod: 3000,
+        bit: "业余五段"
+    },
+    {
+        cod: 4000,
+        bit: "业余七段"
+    },
+    {
+        cod: 5000,
+        bit: "业余九段"
+    },
+    {
+        cod: 6000,
+        bit: "象棋大师"
+    }
+]

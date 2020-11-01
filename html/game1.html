@@ -7,8 +7,6 @@
     <title>游戏主页</title>
     <link rel="stylesheet" href="../css/game1.css">
     <script src="../js/utils/jquery.js"></script>
-    <script src="../js/data.js"></script>
-    <script src="../js/game1.js"></script>
 
     <!-- 滚轮插件 -->
     <script src="../js/utils/jquery.mousewheel.js"></script>
@@ -40,10 +38,10 @@
                 <div class="play1">
                     <div class="headerBack"> </div>
                     <div class="userHeader"></div>
-                    <div class="userName"><span>用户名：陈子龙</span></div>
-                    <div class="userRank"><span>用户段位：象棋大师</span></div>
-                    <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                    <div class="userStep"><span class="step">步数：0</span></div>
+                    <div class="userName"><span>用户名</span> <span></span></div>
+                    <div class="userRank"><span>用户段位</span><span></span></div>
+                    <div class="userTime"><span class="time">时长：</span><span>0</span></div>
+                    <div class="userStep"><span class="step">步数：</span><span>0</span></div>
                     <div class="rockTime">
                         <div class="img"></div>
                     </div>
@@ -52,10 +50,10 @@
                 <div class="play2">
                     <div class="headerBack"> </div>
                     <div class="userHeader"></div>
-                    <div class="userName"><span>用户名：卢冰</span></div>
-                    <div class="userRank"><span>用户段位：象棋大师</span></div>
-                    <div class="userTime"><span class="time">时长：0:0:0</span></div>
-                    <div class="userStep"><span class="step">步数：0</span></div>
+                    <div class="userName"><span>用户名</span><span></span></div>
+                    <div class="userRank"><span>用户段位：</span><span></span></div>
+                    <div class="userTime"><span class="time">时长：</span><span>0</span></div>
+                    <div class="userStep"><span class="step">步数：</span><span>0</span></div>
                     <div class="rockTime">
                         <div class="img"></div>
                     </div>
@@ -64,7 +62,7 @@
             <!-- 棋盘 -->
             <div class="mid">
 
-                <div class='chess'>
+                <div class='chess' id='board'>
                     <!--棋子显示 -->
                     <div class="pieces">
                         <ul class="piecesImg">
@@ -166,7 +164,18 @@
         </div>
     </div>
 
+    <script src="../js/data/pieces.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/config/ip.js"></script>
 
+    <script src="../js/models/pieces.js"></script>
+    <script src="../js/models/rules.js"></script>
+    <script src="../js/models/otherPlayer.js"></script>
+    <script src="../js/models/back.js"></script>
+    <script src="../js/models/player.js"></script>
+    <script src="../js/models/bts.js"></script>
+    <script src="../js/models/chat.js"></script>
+    <script type="text/javascript" src='../js/main.js'></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 /**
- * 棋盘点击
+ * 棋盘对象
  */
 let board = {
     click: {
@@ -11,76 +11,69 @@ let board = {
     },
     onHand: null, //手子
 };
+//用户信息
+let player = {
+    ws: null, // webSocket
+    userInfo: {}, //玩家信息
+    steps: 0, //步数
+    current: false,
+    userTimeInterval: null,
+    time: 0
+};
 
-let player = {}; //用户信息
-player.ws = null; // webSocket
-player.userInfo = {};
-otherPlayer = {};
-player.current = player.redCamp ? true : false; //初始化
 
-
-/**
- * 点击棋盘后
- * @author zegu  lubing
- */
-//点击棋盘
-$("#board").click(function() {
-    var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
-    var y = event.offsetY;
-
-    if (x >= 585 || y >= 665 || y < 20 || x < 5) { //点击边界外的坐标忽略 
-        return false;
-    }
-    let {
-        r_x,
-        r_y
-    } = getRelative(x, y);
-
-    let {
-        a_x,
-        a_y
-    } = getAbsolute(r_x, r_y);
-
-    board.click.r_x = r_x;
-    board.click.r_y = r_y;
-    board.click.a_x = a_x;
-    board.click.a_y = a_y;
-
-    movePieces();
-
+$(function() {
+    let chartContent = document.getElementById('chartContent'); //通过id获得滚轮条
+    /*播放背景音乐 */
+    let backMusic = document.getElementsByClassName("backMusic")[0];
+    $("body").on("click", function() {
+        backMusic.play(); //继续bg音乐
+        $("body").off();
+    })
 })
 
 /**
  * 上传用户名
  * @author zegu
  */
-$("button:eq(0)").on("click", "", function() {
-    let username = $(".userName").val();
-
-
+$(".loginOk").on("click", "", function() {
+    // 
+    let username = $(".usInput").val();
     post(apiAddress, { //传递信息
         username,
     }).then((data) => { //完成后的回调
-        player.userInfo = data.userInfo;
-        $("button").eq(0).hide();
-        $(".userName").hide();
-        $("h3").html(data.userInfo.username);
-        $(".start").show();
+        afterLogin(data)
     });
-
-    //模拟
-    // player.redCamp = false; //是否为红
-    // $("button").hide();
-    // $(".userName").hide();
-    // $("h3").html("你好 lubing");
-    // $(".start").show();
-    // $(".usernameLable").hide();
 });
 
 //开始按钮点击后
-$(".start").on("click", "", function() {
-    $(".start").hide();
+$(".gameStarImg").on("click", "", function() {
+    //样式
+    gameStart()
     player.ws = new WebSocket(wsAddress);
+
+    // 打开WebSocket连接后立刻发送一条消息:
+    player.ws.onopen = function() {
+        let data = {
+            header: {
+                action: "match",
+            },
+            data: {
+                userInfo: player.userInfo,
+            },
+        };
+        sendMsg(data);
+    }
+    player.ws.onclose = function() {
+        showSound("../music/clickOn.mp3");
+        $(".login").css({
+            "left": "-200%"
+        });
+        $(".gameStar").css({
+            "left": "0"
+        });
+    }
+
     player.ws.onmessage = function(msg) {
         try {
             msg = JSON.parse(msg.data);
@@ -103,62 +96,31 @@ $(".start").on("click", "", function() {
         if (msg && msg.header.action === "close") {
             toMatch()
         }
-    };
-
-    //模拟生成棋盘
-    // setTimeout(() => {
-    //     // 生成 棋子
-    //     generatePieces(piecesList);
-    //     if (player.redCamp) {
-    //         $("#board").css({
-    //             transform: "rotateZ(180deg)",
-    //         });
-    //         $(".qi").css({
-    //             transform: "rotateZ(180deg)",
-    //         });
-    //     }
-    //     // 显示棋盘
-    //     $("#board").show();
-    // }, 100);
-
-    // 打开WebSocket连接后立刻发送一条消息:
-    player.ws.onopen = function() {
-        let data = {
-            header: {
-                action: "match",
-            },
-            data: {
-                userInfo: player.userInfo,
-            },
-        };
-        sendMsg(data);
-    }
-
-    player.ws.onclose = function() {
-        console.log('ws closed')
-        setTimeout(() => {
-            // location.reload();
-
-        }, 5000)
-
-    }
-});
-
-$('.chat').on('click', 'button', function() {
-    let content = $('.chat input').val()
-    let mesg = {
-        header: {
-            action: 'chat'
-        },
-        data: {
-            userId: player.userInfo.id,
-            roomId: player.roomId,
-            username: player.userInfo.username,
-            content
+        if (msg && msg.header.action === "win") {
+            win()
         }
     }
-    if (player.ws) {
-        sendMsg(mesg)
-        $('.chat .box').append($(`<span>我</span>:<span>${content}</span><br/>`))
+})
+
+/*点击确定认输 */
+$(".giveUpOk").on("click", function() {
+    showSound("../music/clickOn.mp3");
+    //退出页面消失
+    $(".giveUp").css({
+        "left": "-200%"
+    });
+    //出现失败页面
+    $(".fail").css({
+        "left": "0"
+    });
+    let mesg = {
+        header: {
+            action: 'giveIn'
+        },
+        data: {
+            roomId: player.roomId,
+            userId: player.userInfo.userId
+        }
     }
+    sendMsg(mesg)
 })
