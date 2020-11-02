@@ -1066,3 +1066,74 @@ li {
     margin: -143px 0 0 -250px;
     background: url(../image/promptBox/draw.png) no-repeat;
 }
+
+.timeOut {
+    width: 150px;
+    height: 60px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin: -80px 0 0 -75px;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.timeOut span {
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+
+/*是否同意平局*/
+
+.yesOrNo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: -200%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.yesImg {
+    width: 300px;
+    height: 198px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -100px 0 0 -150px;
+    background: url(../image/dialogBox/yesOrNo.png);
+}
+
+.yesImg .nobtn {
+    width: 74px;
+    height: 22px;
+    position: absolute;
+    left: 40px;
+    top: 120px;
+    background: url(../image/promptBox/noW1.png);
+}
+
+.yesImg .nobtn:hover {
+    background: url(../image/promptBox/noW2.png);
+}
+
+.yesImg .yesbtn {
+    width: 74px;
+    height: 22px;
+    position: absolute;
+    right: 40px;
+    top: 120px;
+    background: url(../image/promptBox/okW1.png);
+}
+
+.yesImg .yesbtn:hover {
+    background: url(../image/promptBox/OkW2.png);
+}

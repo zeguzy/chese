@@ -21,6 +21,15 @@ function gameOk(data) {
     if (player.redCamp) {
         player.userTimeInterval = setInterval(() => {
             $('.play2 .userTime span').eq(1).html(player.time++ + 's')
+            if (player.time == 20) {
+                $(".timeOut").animate({
+                    "margin": "-20px 0 0 -75px"
+                }, 1000).animate({
+                    "margin": "-20px 0 0 -75px"
+                }, 1500).animate({
+                    "margin": "-80px 0 0 -75px"
+                }, 1000);
+            }
         }, 1000)
     } else {
         player.otherPlayers.userTimeInterval = setInterval(() => {
@@ -75,7 +84,6 @@ function otherMove(data) {
                 failure()
             }
         }
-
         //步数加一
         player.otherPlayers.steps = player.otherPlayers.steps * 1 + 1
         $('.play1 .userStep span').eq(1).html(player.otherPlayers.steps)
@@ -85,6 +93,15 @@ function otherMove(data) {
     player.time = 0
     player.userTimeInterval = setInterval(() => {
         $('.play2 .userTime span').eq(1).html(player.time++ + 's')
+        if (player.time == 20) {
+            $(".timeOut").animate({
+                "margin": "-20px 0 0 -75px"
+            }, 1000).animate({
+                "margin": "-20px 0 0 -75px"
+            }, 1500).animate({
+                "margin": "-80px 0 0 -75px"
+            }, 1000);
+        }
     }, 1000)
     clearInterval(player.otherPlayers.userTimeInterval)
 }

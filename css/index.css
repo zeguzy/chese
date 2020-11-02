@@ -3,7 +3,92 @@ body {
     padding: 0;
 }
 
+.voice {
+    margin-top: 10px;
+}
+
+.close1 {
+    margin-left: -43px;
+}
+
+.flow {
+    height: 35px;
+    width: 10px;
+    z-index: 999;
+    position: fixed;
+    top: 435px;
+    left: 159px;
+}
+
+.settings {
+    width: 350px;
+    height: 100px;
+    display: none;
+    top: 412px;
+    position: absolute;
+    background: url(../image/voice/bg1.jpg);
+}
+
+.high {
+    position: fixed;
+    top: 439px;
+    left: 159px;
+    width: 184px;
+    background-image: url("../image/voice/tiao.png");
+    background-position: -177px;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.mid {
+    left: 30%;
+    top: 50%;
+    display: none;
+    float: left;
+    position: absolute;
+    width: 500px;
+}
+
+.mid .tab {
+    height: 325px;
+    background: #464646;
+    width: 150px;
+    text-align: center;
+    float: left;
+}
+
+.info {
+    width: 826px;
+    height: 325px;
+    /* display: none; */
+}
+
+.tab li {
+    margin-top: 16px;
+    margin-left: -40px;
+    list-style-type: none;
+    font-size: 12px;
+}
+
+.tab li>a {
+    color: #b1b1b1;
+    display: block;
+    text-decoration: none;
+}
+
+.mid .tab .on {
+    background: #0086cf;
+    color: #fff;
+}
+
+.tab li>a:hover {
+    color: #0086cf;
+    border-bottom: 1px solid #0086cf;
+}
+
+
 /*border:1px solid black;*/
+
 .header {
     width: 100%;
     height: 100%;
@@ -19,7 +104,9 @@ body {
     z-index: -100;
 }
 
+
 /*bg视频样式*/
+
 .videoBack {
     width: 100%;
     position: fixed;
@@ -36,11 +123,13 @@ body {
     /* margin-left: 5%; */
 }
 
+
 /*logo动画*/
+
 .logo {
     width: 40%;
     margin: 0 0 0 30%;
-    animation: logoRun 5s  linear infinite;
+    animation: logoRun 5s linear infinite;
     opacity: 0.8;
 }
 
@@ -49,20 +138,19 @@ body {
         margin-left: 30%;
         margin-top: 0%;
     }
-
     50% {
         margin-left: 30%;
         margin-top: 2%;
     }
-
     100% {
         margin-left: 30%;
         margin-top: 0%;
     }
-
 }
 
+
 /*点击播放视频的按钮*/
+
 .playBtn {
     width: 6%;
     position: fixed;
@@ -77,7 +165,9 @@ body {
     height: 100%;
 }
 
+
 /*视频播放*/
+
 .videos {
     width: 50%;
     position: fixed;
@@ -89,6 +179,7 @@ body {
     box-shadow: 0px 0px 200px rgba(100, 99, 95, 1);
     z-index: 100;
 }
+
 .close {
     width: 48px;
     height: 48px;
@@ -98,11 +189,14 @@ body {
     overflow: hidden;
     background: no-repeat url(../image/promptBox/close.png) -5px -5px;
 }
+
 .close:hover {
     background: no-repeat url(../image/promptBox/close.png) -5px -53px;
 }
 
+
 /*轮播内容*/
+
 .lunboContent {
     width: 70%;
     height: 120%;
@@ -115,6 +209,7 @@ body {
     opacity: 0.9;
     overflow: hidden;
 }
+
 .lunboContent .lunbo {
     width: 70%;
     height: 62%;
@@ -124,8 +219,9 @@ body {
     left: 100%;
     right: 15%;
     /*自适应bg图*/
-    opacity: 0;   
+    opacity: 0;
 }
+
 .lunboContent .lunbo1 {
     width: 70%;
     height: 62%;
@@ -134,12 +230,12 @@ body {
     bottom: 18%;
     left: 15%;
     right: 15%;
-    opacity: 1;   
+    opacity: 1;
 }
 
 
-
 /*轮播按钮*/
+
 .lunboBtn {
     width: 29%;
     height: 7%;
@@ -147,7 +243,8 @@ body {
     left: 35.5%;
     top: 69.5%;
 }
-.lunboBtn .left{
+
+.lunboBtn .left {
     width: 10.5%;
     height: 115%;
     position: absolute;
@@ -161,7 +258,8 @@ body {
     float: left;
     /*自适应bg图*/
 }
- .lunboBtn .right{
+
+.lunboBtn .right {
     width: 10.5%;
     height: 115%;
     right: 0;
@@ -172,8 +270,11 @@ body {
     -moz-background-size: cover;
     /*自适应bg图*/
     float: right;
-}  
+}
+
+
 /*是否退出游戏*/
+
 .exitW {
     width: 20%;
     height: 40%;
@@ -194,8 +295,7 @@ body {
     z-index: 1;
 }
 
-.exitBack .exitContent p{
-
+.exitBack .exitContent p {
     width: 78%;
     height: 10%;
     position: absolute;
@@ -208,8 +308,9 @@ body {
 
 .exitBack .exitContent p {
     font-size: 30px;
-    color:white;
+    color: white;
 }
+
 .exitBack .no {
     width: 30%;
     position: absolute;
@@ -243,7 +344,9 @@ body {
     right: 0;
 }
 
+
 /*退出界面*/
+
 .quit {
     width: 100%;
     height: 100%;
@@ -306,8 +409,11 @@ body {
     background-size: cover;
     -moz-background-size: cover;
 }
-   /* 门动画 */
-   .door {
+
+
+/* 门动画 */
+
+.door {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -357,7 +463,6 @@ body {
     0% {
         transform: rotateY(0deg);
     }
-
     100% {
         transform: rotateY(120deg);
     }

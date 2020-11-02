@@ -100,6 +100,13 @@ $(".gameStarImg").on("click", "", function() {
         if (msg && msg.header.action === "win") {
             win()
         }
+        if (msg && msg.header.action === "askDraw") {
+            yesOrNo()
+        }
+        if (msg && msg.header.action === "draw") {
+            draw()
+        }
+
     }
 })
 
@@ -138,5 +145,4 @@ $(".giveUpOk").on("click", function() {
             });
         }, 2000)
     }, 1000)
-
 })

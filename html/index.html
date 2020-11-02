@@ -16,6 +16,36 @@
 </head>
 
 <body>
+    <div class="settings">
+        <span>背景音量调节</span>
+        <img src="../image/voice/voice1.png" id="voice" class="voice">
+        <img src="../image/voice/voicetiao.png" alt="" class="voice">
+        <div class="high"><br></div>
+        <img src="../image/voice/shuqing.png" alt="" class="flow" id="flow">
+    </div>
+    <div class="mid">
+        <div class="tab" id="changePro">
+            <ul>
+                <img src="../image/voice/close1.png" class="close1" alt="">
+                <li class="on"><a target="_blank">基本教程</a></li>
+                <li class=""><a target="_blank">入门布局</a></li>
+                <li class=""><a target="_blank">进阶棋谱1</a></li>
+                <li class=""><a target="_blank">进阶棋谱2</a></li>
+                <li class=""><a target="_blank">进阶棋谱3</a></li>
+                <li class=""><a target="_blank">进阶棋谱4</a></li>
+            </ul>
+        </div>
+        <div class="info" style="display: block;">
+            <video id="video1" controls="controls" height="325px" loop>
+                <source src="../video/qipu/jinjieqipu1.mp4">
+            </video>
+        </div>
+        <div class="info" style="display: none;"><video src="../video/象棋规则.mp4" height="325px" loop muted alt="">1</video></div>
+        <div class="info" style="display: none;"><video src="../video/qipu/jinjieqipu1.mp4" height="325px" loop muted alt="">2</video></div>
+        <div class="info" style="display: none;"><video src="../video/qipu/jinjieqipu2.mp4" height="325px" autoplay loop muted alt="">3</video></div>
+        <div class="info" style="display: none;"><video src="../video/qipu/jinjieqipu3.mp4" height="325px" autoplay loop muted alt="">4</video></div>
+        <div class="info" style="display: none;"><video src="../video/qipu/jinjieqipu4.mp4" height="325px" autoplay loop muted alt=""></video></div>
+    </div>
     <audio class="backMusic" autoplay="autoplay" loop="loop" controls="controls" style="display: none;">
         <source src="../music/background.mp3" type="audio/mp3">
     </audio>
@@ -49,9 +79,9 @@
                 <div class="lunbo lunbo1">
                     <a href="../html/game1.html"><img src="../image/promptBox/star1.png" width="100%"></a>
                 </div>
-                <div class="lunbo "><img src="../image/promptBox/ruleGame1.png" width="100%"></div>
+                <div class="lunbo "><img src="../image/promptBox/ruleGame1.png" width="100%" id="shuoming"></div>
 
-                <div class="lunbo "><img src="../image/promptBox/setGame1.png" width="100%"></div>
+                <div class="lunbo "><img src="../image/promptBox/setGame1.png" width="100%" id="gameset"></div>
                 <div class="lunbo exit"><img src="../image/promptBox/exitGame1.png" width="100%"></div>
             </div>
             <div class="right"></div>

@@ -59,10 +59,38 @@ $(".giveUpNo").on("click", function() {
 
 /*出现平局页面 */
 $(".btn2").on("click", function() {
-    showSound("../music/clickOn.mp3");
-    $(".tieGame").css({
-        "left": "0"
+    // showSound("../music/clickOn.mp3");
+    // $(".tieGame").css({
+    //     "left": "0"
+    // });
+    // yesOrNo()
+    let mesg = {
+        header: {
+            action: 'askDraw'
+        },
+        data: {
+            roomId: player.roomId,
+            userId: player.userInfo.id
+        }
+    }
+    sendMsg(mesg)
+})
+
+
+$('.yesbtn').on('click', function() {
+    $(".yesOrNo").css({
+        "left": "-200%"
     });
+    let mesg = {
+        header: {
+            action: 'agreeDraw'
+        },
+        data: {
+            roomId: player.roomId,
+            userId: player.userInfo.id
+        }
+    }
+    sendMsg(mesg)
 })
 
 /*悔棋 */
