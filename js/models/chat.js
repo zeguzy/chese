@@ -18,6 +18,7 @@ $('.chartbtn').on('click', '', function() {
         sendMsg(mesg)
         $('.chartContent').append($(`<span style="color:blue">我</span>:<span>${content}</span><br/>`))
     }
+    player.chartContent.scrollTop = chartContent.scrollHeight; //将滚轮长度设置到最底部
 })
 
 /**

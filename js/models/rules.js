@@ -444,22 +444,22 @@ function trappedDead() {
 function failure() {
     //自己的分数减少 并更新页面 与失败动画
     player.score = player.score - 100 * 1
-    showSound("../../music/clickOn.mp3");
 
     $(".fail").css({
         "left": "0"
     }); //出现失败页面 
-
 
     let mesg = {
         header: {
             action: 'Failure'
         },
         data: {
-            userId: player.userInfo.userId,
+            userId: player.userInfo.id,
             roomId: player.roomId
         }
     }
+    $('.settle .box .data td').eq(4).html(player.userInfo.username)
+    $('.settle .box .data td').eq(1).html(player.otherPlayers.username)
     sendMsg(mesg)
     setTimeout(() => {
         $(".fail").css({
@@ -467,14 +467,14 @@ function failure() {
         });
         settle()
         setTimeout(function() {
-            $('.settle .box .data td').eq(4).html(player.userInfo.username)
-            $('.settle .box .data td').eq(1).html(player.otherPlayers.username)
+
             $('.settle').css({
                 "left": "-200%"
             });
             toMatch()
         }, 2000)
     }, 2000)
+
 }
 
 
@@ -485,21 +485,20 @@ function win() {
     $('.win').css({
         "left": "0"
     });
+    $('.settle .box .data td').eq(1).html(player.userInfo.username)
+    $('.settle .box .data td').eq(4).html(player.otherPlayers.username)
     setTimeout(function() {
-
-        setTimeout(function() {
-            $('.settle .box .data td').eq(1).html(player.userInfo.username)
-            $('.settle .box .data td').eq(4).html(player.otherPlayers.username)
-            settle()
-        }, 1000)
         $(".win").css({
             "left": "-200%"
         });
+        settle()
         setTimeout(function() {
             $('.settle').css({
                 "left": "-200%"
             });
-            toMatch()
-        }, 2000)
+            setTimeout(function() {
+                toMatch()
+            }, 3000)
+        }, 4000)
     }, 3000)
 }

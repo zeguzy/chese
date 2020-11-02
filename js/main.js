@@ -23,7 +23,7 @@ let player = {
 
 
 $(function() {
-    let chartContent = document.getElementById('chartContent'); //通过id获得滚轮条
+    player.chartContent = document.getElementById('chartContent'); //通过id获得滚轮条
     /*播放背景音乐 */
     player.backMusic = document.getElementsByClassName("backMusic")[0];
     $("body").on("click", function() {

@@ -102,7 +102,7 @@ function addPieces() {
     let pieces_html = '';
 
     for (let i = 31; i >= 0; i--) {
-        pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: ' + 280 + 'px;left: ' + 260 + 'px;background: url(' + piecesList[i].piecesType.img + ') no-repeat"></li>';
+        pieces_html += '<li  style=" width: 50px; height: 50px;position: absolute;top: ' + 280 + 'px;left: ' + 260 + 'px;background: url(../../image/promptBox/bbg.png) no-repeat"></li>';
     }
 
 
@@ -117,8 +117,8 @@ function addPieces() {
             left: (piecesList[o].position.x * 60 + 11) + 'px'
         }, 100, function() {
             $(".piecesImg li:last").remove(); //移除元素
-            showSound("../music/playChess.mp3");
-            let strDiv = '<div class="is"  style=" width: 50px; height: 50px;position: absolute;top: ' + ((piecesList[o].position.y) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 12) + 'px;background: url(' + piecesList[o].piecesType.img + ') no-repeat"></div>';
+            showSound("../../music/xq.mp3");
+            let strDiv = '<div class="is"  style=" width: 50px; height: 50px;position: absolute;top: ' + ((piecesList[o].position.y) * 60 - 11) + 'px;left: ' + (piecesList[o].position.x * 60 - 12) + 'px;background: url(../../image/promptBox/bbg.png) no-repeat"></div>';
             /*在相应位置生成相应的图片 */
             $(".pieces").append(strDiv);
             if (o == 31) {
@@ -219,11 +219,11 @@ function clickOnPieces($piece) {
                 return false;
             } else if (mark == 1) {
                 showSound('../../music/jj.mp3')
-                    // alert('将军')
+                jj()
                 data.data.mark = true
             } else if (mark == 2) {
                 showSound('../../music/jj.mp3')
-                    // alert('将军')
+                jj()
                 data.data.mark = true
             }
 
@@ -232,7 +232,7 @@ function clickOnPieces($piece) {
                 left: a_x + "px",
                 top: a_y + "px",
             });
-            board.onHand.removeClass("on");
+            board.onHand.removeClass("selected");
             sendMsg(data)
             board.onHand = null;
             player.current = false
@@ -254,21 +254,22 @@ function clickOnPieces($piece) {
         }
         return;
     } else if (board.onHand == $piece) {
-
         //点自己两下  应该取消选中
-        $piece.removeClass("on");
+        $piece.removeClass("selected");
         board.onHand = null;
         return;
     } else if (board.onHand && isOwn) {
+        //第二次点自己其他子，应该选中其他
         board.onHand.removeClass("on");
         board.onHand = $piece;
-        $($piece).addClass("on");
+        $($piece).addClass("selected");
         return;
+    } else if (isOwn) {
+        //只点了一下 选中
+        board.onHand = $piece;
+        $($piece).addClass("selected");
     }
 
-    //只点了一下 选中
-    board.onHand = $piece;
-    $($piece).addClass("on");
 }
 
 /**
@@ -280,6 +281,7 @@ function movePieces() {
      * @description 点击棋盘后
      * @author zegu
      */
+
     let isOwn = false;
     if (board.onHand) {
         isOwn = player.redCamp ?
@@ -341,10 +343,11 @@ function movePieces() {
                 return false;
             } else if (mark == 1) {
                 showSound('../../music/jj.mp3')
+                jj()
                 data.data.mark = true
             } else if (mark == 2) {
                 showSound('../../music/jj.mp3')
-                    // alert('黑方被将军')
+                jj()
                 data.data.mark = true
             }
 
@@ -355,7 +358,7 @@ function movePieces() {
             sendMsg(data)
 
             //移除选中样式
-            board.onHand.removeClass("on");
+            board.onHand.removeClass("selected");
             board.onHand = null;
             player.current = false
 

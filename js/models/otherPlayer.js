@@ -68,12 +68,13 @@ function otherMove(data) {
         showSound('../../music/xq.mp3')
         if (data.mark) {
             showSound('../../music/jj.mp3')
+            jj()
             let tr = trappedDead()
             if (tr) {
+                // alert('将死')
                 failure()
             }
         }
-
 
         //步数加一
         player.otherPlayers.steps = player.otherPlayers.steps * 1 + 1
@@ -124,8 +125,10 @@ function otherEat(data) {
         showSound('../../music/eat.mp3')
         if (data.mark) {
             showSound('../../music/jj.mp3')
+            jj()
             let tr = trappedDead()
             if (tr) {
+                // alert('将死')
                 failure()
             }
         }
@@ -147,21 +150,20 @@ function otherEat(data) {
  * 重开 匹配
  */
 function toMatch() {
-    piecesList = [...piecesListBack]
-    if (!player.redCamp) {
-        $("#board").css({
-            transform: "rotateZ(180deg)",
-        });
-    }
-    $('.qi').remove()
-
-    $('.chess').append($(`<div class="pieces">
-                            <ul class="piecesImg"></ul>
-                        </div>`))
-
+    // alert('toMatch')
+    $('#board').remove()
+    $('.mid').append($(`
+            <div class='chess' id='board'>
+                    <!--棋子显示 -->
+                    <div class="pieces">
+                        <ul class="piecesImg">
+                        </ul>
+                    </div>
+                </div>
+    `))
 
     //匹配按钮浮现
-    showSound("../music/clickOn.mp3");
+    showSound("../../music/clickOn.mp3");
     $(".login").css({
         "left": "-200%"
     });
@@ -169,13 +171,32 @@ function toMatch() {
         "left": "0"
     });
 
+
+    piecesList = []
+    piecesListBack.forEach(Element => {
+        piecesList.push({
+            id: Element.id,
+            piecesType: Element.piecesType,
+            position: {
+                x: Element.position.x,
+                y: Element.position.y
+            }
+        })
+    })
+
     player.time = 0
     player.otherPlayers.time = 0
     clearInterval(player.userTimeInterval)
     clearInterval(player.otherPlayers.userTimeInterval)
     $('.play1 .userTime span').eq(1).html(0 + 's')
     $('.play2 .userTime span').eq(1).html(0 + 's')
-        //断开ws连接
+
+    player.otherPlayers.steps = 0
+    player.steps = 0
+    $('.play1 .userStep span').eq(1).html(0)
+    $('.play2 .userStep span').eq(1).html(0)
+
+    //断开ws连接
     player.ws.close()
 
 }

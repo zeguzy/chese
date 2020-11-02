@@ -39,7 +39,8 @@ function gameStart() {
  * @author zegu  lubing
  */
 //点击棋盘
-$("#board").click(function() {
+$(".mid").on('click', '#board', function() {
+    // alert('emmm')
     var x = event.offsetX; //获得鼠标点击对象内部的x，y轴坐标
     var y = event.offsetY;
 

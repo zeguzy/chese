@@ -283,8 +283,13 @@ li {
 
 /*子被选中后的效*/
 
-.on {
-    border: 1px solid white;
+.selected::before {
+    width: 55px;
+    height: 65px;
+    content: ' ';
+    display: block;
+    position: absolute;
+    background: no-repeat url('../image/promptBox/select1.png') 2px 3px;
 }
 
 
@@ -318,7 +323,7 @@ li {
 /**排行榜*/
 
 .right .rightMid {
-    width: 310px;
+    width: 320px;
     height: 150px;
     position: absolute;
     left: 0px;
@@ -1017,4 +1022,47 @@ li {
 .data tr:nth-of-type(2) td {
     color: rgb(129, 122, 122);
     text-shadow: 0.1em 0.1em 0.2em rgb(129, 122, 122);
+}
+
+
+/*将军样式*/
+
+.jj {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: -200%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.jj .jjImg {
+    width: 152px;
+    height: 150px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -150px 0 0 -76px;
+    background: url(../image/promptBox/jj.png) no-repeat;
+}
+
+.draw {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: -200%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.draw .drawImg {
+    width: 500px;
+    height: 226px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -143px 0 0 -250px;
+    background: url(../image/promptBox/draw.png) no-repeat;
 }
