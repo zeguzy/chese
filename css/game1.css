@@ -239,7 +239,7 @@ li {
 .mid {
     width: 600px;
     height: 650px;
-    /* background: url(../image/chessBoard/3.gif) no-repeat; */
+    background: url(../image/chessBoard/3.gif) no-repeat;
     /* background: url(../image/chessBoard/8.jpg) no-repeat; */
     background-size: cover;
     -moz-background-size: cover;
@@ -355,68 +355,6 @@ li {
     background: url(../image/bg/chartbg2.jpg) no-repeat;
     background-size: cover;
     -moz-background-size: cover;
-}
-
-
-/*用户1计时器*/
-
-.play1 .rockTime {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 320px;
-    top: 5px;
-    background: url(../image/time/1.png) no-repeat;
-    background-size: cover;
-    -moz-background-size: cover;
-    animation: imgRun 30s linear infinite;
-    display: none;
-}
-
-
-/*用户2计时器*/
-
-.play2 .rockTime {
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 320px;
-    top: 5px;
-    background: url(../image/time/1.png) no-repeat;
-    background-size: cover;
-    -moz-background-size: cover;
-    animation: imgRun 30s linear infinite;
-    display: none;
-}
-
-@keyframes imgRun {
-    0% {
-        background: url(../image/time/1.png);
-    }
-    12.5% {
-        background: url(../image/time/2.png);
-    }
-    25% {
-        background: url(../image/time/3.png);
-    }
-    37.5% {
-        background: url(../image/time/4.png);
-    }
-    50% {
-        background: url(../image/time/5.png);
-    }
-    62.5% {
-        background: url(../image/time/6.png);
-    }
-    75% {
-        background: url(../image/time/7.png);
-    }
-    87.5% {
-        background: url(../image/time/8.png);
-    }
-    100% {
-        background: url(../image/time/9.png);
-    }
 }
 
 

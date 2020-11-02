@@ -260,7 +260,7 @@ function clickOnPieces($piece) {
         return;
     } else if (board.onHand && isOwn) {
         //第二次点自己其他子，应该选中其他
-        board.onHand.removeClass("on");
+        board.onHand.removeClass("selected");
         board.onHand = $piece;
         $($piece).addClass("selected");
         return;
