@@ -11,7 +11,9 @@ let board = {
     },
     onHand: null, //手子
 };
-//用户信息
+/*
+ *用户信息
+ */
 let player = {
     ws: null, // webSocket
     userInfo: {}, //玩家信息
@@ -30,6 +32,19 @@ $(function() {
         player.backMusic.play(); //继续bg音乐
         $("body").off();
     })
+
+    //随机切换棋盘背景
+    function randomImg() {
+        let r = Math.floor(Math.random() * 6) + 1;
+        $(".mid").css({
+            background: "url(../image/chessBoard/" + r + ".gif) no-repeat",
+            "background-size": "cover",
+            "-moz-background-size": "cover"
+        })
+    }
+    setInterval(() => {
+        randomImg();
+    }, 2000);
 })
 
 /**
@@ -106,7 +121,6 @@ $(".gameStarImg").on("click", "", function() {
         if (msg && msg.header.action === "draw") {
             draw()
         }
-
     }
 })
 
@@ -130,6 +144,7 @@ $(".giveUpOk").on("click", function() {
             userId: player.userInfo.id
         }
     }
+
     sendMsg(mesg)
     setTimeout(() => {
         $(".fail").css({

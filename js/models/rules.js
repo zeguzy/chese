@@ -472,7 +472,7 @@ function failure() {
                 "left": "-200%"
             });
             toMatch()
-        }, 2000)
+        }, 6000)
     }, 2000)
 
 }
@@ -496,9 +496,7 @@ function win() {
             $('.settle').css({
                 "left": "-200%"
             });
-            setTimeout(function() {
-                toMatch()
-            }, 3000)
-        }, 4000)
+            toMatch()
+        }, 8000)
     }, 3000)
 }
